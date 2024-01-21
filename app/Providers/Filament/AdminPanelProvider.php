@@ -4,20 +4,43 @@ namespace App\Providers\Filament;
 
 use Filament\Pages;
 use Filament\Panel;
+use Awcodes\Overlook;
 use Filament\Widgets;
 use Filament\PanelProvider;
+use Awcodes\Curator\CuratorPlugin;
 use Filament\Support\Colors\Color;
+use Hasnayeen\Themes\ThemesPlugin;
 use Filament\Support\Enums\MaxWidth;
+use RickDBCN\FilamentEmail\FilamentEmail;
 use Filament\Http\Middleware\Authenticate;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Kenepa\ResourceLock\ResourceLockPlugin;
+use Awcodes\FilamentVersions\VersionsPlugin;
+use Filament\SpatieLaravelTranslatablePlugin;
+use Tapp\FilamentSurvey\FilamentSurveyPlugin;
+use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
+use FilipFonal\FilamentLogManager\FilamentLogManager;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Kenepa\ResourceLock\Resources\ResourceLockResource;
 use Filament\Http\Middleware\DisableBladeIconComponents;
+use Yebor974\Filament\RenewPassword\RenewPasswordPlugin;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use SolutionForest\FilamentFirewall\FilamentFirewallPanel;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use BezhanSalleh\FilamentExceptions\FilamentExceptionsPlugin;
+use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
+use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
+use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
+use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
+use ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -25,11 +48,12 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->viteTheme(['resources/css/filament/admin/theme.css', 'resources/js/filament/admin/scroll-fix.js'])
             ->id('admin')
             ->path('')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -38,8 +62,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                Overlook\Widgets\OverlookWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -51,10 +74,67 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                SetTheme::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
             ])->spa()
-            ->maxContentWidth(MaxWidth::Full);
+            ->maxContentWidth(MaxWidth::Full)
+            ->sidebarCollapsibleOnDesktop()
+            ->plugins([
+                ResourceLockPlugin::make(),
+                new RenewPasswordPlugin(),
+                QuickCreatePlugin::make()
+                    ->excludes([
+                        ResourceLockResource::class,
+                    ])->sortBy('navigation'),
+                CuratorPlugin::make()
+                    ->label('Media')
+                    ->pluralLabel('Media')
+                    ->navigationIcon('heroicon-o-photo')
+                    ->navigationCountBadge(),
+                ThemesPlugin::make(),
+                FilamentAuthenticationLogPlugin::make(),
+                FilamentSurveyPlugin::make(),
+                SpatieLaravelTranslatablePlugin::make(),
+                new FilamentEmail(),
+                FilamentExceptionsPlugin::make(),
+                FilamentShieldPlugin::make()->gridColumns([
+                    'default' => 1,
+                    'sm' => 2,
+                    'lg' => 3
+                ])
+                    ->sectionColumnSpan(1)
+                    ->checkboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'lg' => 4,
+                    ])
+                    ->resourceCheckboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                    ]),
+                Overlook\OverlookPlugin::make()
+                    ->sort(2)
+                    ->columns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'md' => 3,
+                        'lg' => 4,
+                        'xl' => 5,
+                        '2xl' => null,
+                    ]),
+                VersionsPlugin::make(),
+                BreezyCore::make()->myProfile(
+                    shouldRegisterNavigation: true
+                )->enableTwoFactorAuthentication(),
+                MaintenanceSwitchPlugin::make(),
+                FilamentJobsMonitorPlugin::make(),
+                FilamentFirewallPanel::make(),
+                FilamentLogManager::make(),
+                EnvironmentIndicatorPlugin::make()->showBorder(false),
+                FilamentSpatieLaravelBackupPlugin::make()->usingQueue('backups'),
+                FilamentSpatieLaravelHealthPlugin::make()
+            ]);
     }
 }
