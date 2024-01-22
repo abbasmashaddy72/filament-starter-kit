@@ -43,6 +43,7 @@
         "shuvroroy/filament-spatie-laravel-health": "^2.0",
         "solution-forest/filament-firewall": "^2.0",
         "stechstudio/filament-impersonate": "^3.5",
+        "tapp/filament-auditing": "^3.0",
         "tapp/filament-authentication-log": "^3.0",
         "tapp/filament-survey": "^3.0",
         "timwassenburg/filament-timesheets": "^1.0",
