@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.1",
         "abanoubnassem/filament-phone-field": "^0.0.5",
+        "alperenersoy/filament-export": "dev-fix-there",
         "awcodes/filament-curator": "^3.4",
         "awcodes/filament-quick-create": "^3.3",
         "awcodes/filament-tiptap-editor": "^3.0",
@@ -29,6 +30,7 @@
         "husam-tariq/filament-timepicker": "^3.0",
         "jeffgreco13/filament-breezy": "^2.2",
         "kenepa/resource-lock": "^2.0",
+        "lara-zeus/bolt": "^3.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
@@ -105,6 +107,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/TappNetwork/laravel-survey"
+        },
+        {
+            "type": "github",
+            "url": "https://github.com/lara-zeus/filament-export"
         }
     ],
     "minimum-stability": "stable",

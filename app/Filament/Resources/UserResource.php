@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 use App\Filament\Resources\UserResource\RelationManagers;
 use Tapp\FilamentAuditing\RelationManagers\AuditsRelationManager;
+use Tapp\FilamentAuthenticationLog\RelationManagers\AuthenticationLogsRelationManager;
 
 class UserResource extends Resource
 {
@@ -93,6 +94,7 @@ class UserResource extends Resource
     {
         return [
             AuditsRelationManager::class,
+            AuthenticationLogsRelationManager::class,
         ];
     }
 

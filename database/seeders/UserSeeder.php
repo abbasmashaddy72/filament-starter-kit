@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             $users = User::factory()->count(rand(100, 300))->create();
             $superAdmin = $users->first();
             $superAdmin->update([
-                'email' => 'superadmin@nacl.com',
+                'email' => 'superadmin@cms.com',
             ]);
             $superAdmin->assignRole('super_admin');
         }

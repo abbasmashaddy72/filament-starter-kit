@@ -7,6 +7,7 @@ use Filament\Panel;
 use Awcodes\Overlook;
 use Filament\Widgets;
 use Filament\PanelProvider;
+use LaraZeus\Bolt\BoltPlugin;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\Support\Colors\Color;
 use Hasnayeen\Themes\ThemesPlugin;
@@ -96,7 +97,6 @@ class AdminPanelProvider extends PanelProvider
                 ThemesPlugin::make(),
                 FilamentAuthenticationLogPlugin::make(),
                 FilamentSurveyPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make(),
                 new FilamentEmail(),
                 FilamentExceptionsPlugin::make(),
                 FilamentShieldPlugin::make()->gridColumns([
@@ -134,7 +134,9 @@ class AdminPanelProvider extends PanelProvider
                 FilamentLogManager::make(),
                 EnvironmentIndicatorPlugin::make()->showBorder(false),
                 FilamentSpatieLaravelBackupPlugin::make()->usingQueue('backups'),
-                FilamentSpatieLaravelHealthPlugin::make()
+                FilamentSpatieLaravelHealthPlugin::make(),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
+                BoltPlugin::make(),
             ]);
     }
 }
