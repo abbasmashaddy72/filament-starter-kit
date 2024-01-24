@@ -12,7 +12,6 @@ return [
 
     'languages' => [
         'en' => 'English',
-        'es' => 'Spanish',
     ],
 
     'navigation' => [

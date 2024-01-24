@@ -13,6 +13,7 @@ use Filament\Support\Colors\Color;
 use Hasnayeen\Themes\ThemesPlugin;
 use Filament\Support\Enums\MaxWidth;
 use RickDBCN\FilamentEmail\FilamentEmail;
+use Awcodes\LightSwitch\LightSwitchPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Kenepa\ResourceLock\ResourceLockPlugin;
@@ -51,7 +52,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->viteTheme(['resources/css/filament/admin/theme.css', 'resources/js/filament/admin/scroll-fix.js'])
             ->id('admin')
-            ->path('')
+            ->path('admin')
             ->login()
             ->colors([
                 'primary' => Color::Blue,
@@ -137,6 +138,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelHealthPlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
                 BoltPlugin::make(),
+                LightSwitchPlugin::make(),
             ]);
     }
 }

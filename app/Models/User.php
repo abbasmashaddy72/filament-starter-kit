@@ -4,19 +4,21 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
+use OwenIt\Auditing\Auditable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use OwenIt\Auditing\Contracts\Auditable;
+use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Yebor974\Filament\RenewPassword\Contracts\RenewPasswordContract;
 use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
-class User extends Authenticatable implements RenewPasswordContract, Auditable
+class User extends Authenticatable implements RenewPasswordContract, AuditableContract
 {
-    use \OwenIt\Auditing\Auditable, AuthenticationLoggable, HasApiTokens, HasFactory, HasRoles, Notifiable, TwoFactorAuthenticatable;
+    use Auditable, AuthenticationLoggable, HasApiTokens, HasFactory, HasPanelShield, HasRoles, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.

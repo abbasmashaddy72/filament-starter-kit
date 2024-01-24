@@ -15,9 +15,10 @@
         "awcodes/filament-quick-create": "^3.3",
         "awcodes/filament-tiptap-editor": "^3.0",
         "awcodes/filament-versions": "^2.0",
+        "awcodes/light-switch": "^1.0",
         "awcodes/overlook": "^2.0",
         "bezhansalleh/filament-exceptions": "^2.0",
-        "bezhansalleh/filament-language-switch": "*",
+        "bezhansalleh/filament-language-switch": "^3.0",
         "bezhansalleh/filament-shield": "^3.1",
         "brickx/maintenance-switch": "^1.0",
         "coolsam/flatpickr": "^3.0",
@@ -25,6 +26,7 @@
         "filament/filament": "^3.2",
         "filament/spatie-laravel-settings-plugin": "^3.2",
         "filipfonal/filament-log-manager": "^2.0",
+        "guava/filament-icon-picker": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "hasnayeen/themes": "^3.0",
         "husam-tariq/filament-timepicker": "^3.0",
@@ -113,6 +115,6 @@
             "url": "https://github.com/lara-zeus/filament-export"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

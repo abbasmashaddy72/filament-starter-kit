@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Spatie\Health\Checks\Checks\DebugModeCheck;
 use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
+use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,10 @@ class AppServiceProvider extends ServiceProvider
             DebugModeCheck::new(),
             EnvironmentCheck::new(),
         ]);
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+            $switch->visible(outsidePanels: true)
+                ->displayLocale('en')
+                ->locales(['ar', 'en', 'fr']);
+        });
     }
 }
