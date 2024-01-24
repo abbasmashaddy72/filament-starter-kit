@@ -136,7 +136,7 @@ class AdminPanelProvider extends PanelProvider
                 EnvironmentIndicatorPlugin::make()->showBorder(false),
                 FilamentSpatieLaravelBackupPlugin::make()->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales(array_keys(config('app.locales'))),
                 BoltPlugin::make(),
                 LightSwitchPlugin::make(),
             ]);

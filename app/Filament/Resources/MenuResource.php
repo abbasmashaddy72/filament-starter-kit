@@ -8,6 +8,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Livewire\Attributes\Reactive;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\MenuResource\Pages;
@@ -17,6 +18,9 @@ use App\Filament\Resources\MenuResource\RelationManagers;
 
 class MenuResource extends Resource
 {
+    #[Reactive]
+    public ?string $activeLocale = null;
+
     protected static ?string $model = Menu::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-bars-3';

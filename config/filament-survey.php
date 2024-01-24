@@ -10,9 +10,7 @@ return [
         'SurveyResource' => \Tapp\FilamentSurvey\Resources\SurveyResource::class,
     ],
 
-    'languages' => [
-        'en' => 'English',
-    ],
+    'languages' => config('app.locales'),
 
     'navigation' => [
         'answer' => [
