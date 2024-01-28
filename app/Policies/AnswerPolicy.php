@@ -18,7 +18,7 @@ class AnswerPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_answer');
+        return $user->can('view_any_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -30,7 +30,7 @@ class AnswerPolicy
      */
     public function view(User $user, Answer $answer): bool
     {
-        return $user->can('view_answer');
+        return $user->can('view_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -41,7 +41,7 @@ class AnswerPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_answer');
+        return $user->can('create_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -53,7 +53,7 @@ class AnswerPolicy
      */
     public function update(User $user, Answer $answer): bool
     {
-        return $user->can('update_answer');
+        return $user->can('update_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -65,7 +65,7 @@ class AnswerPolicy
      */
     public function delete(User $user, Answer $answer): bool
     {
-        return $user->can('delete_answer');
+        return $user->can('delete_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -76,7 +76,7 @@ class AnswerPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_answer');
+        return $user->can('delete_any_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -88,7 +88,7 @@ class AnswerPolicy
      */
     public function forceDelete(User $user, Answer $answer): bool
     {
-        return $user->can('force_delete_answer');
+        return $user->can('force_delete_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -99,7 +99,7 @@ class AnswerPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_answer');
+        return $user->can('force_delete_any_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -111,7 +111,7 @@ class AnswerPolicy
      */
     public function restore(User $user, Answer $answer): bool
     {
-        return $user->can('restore_answer');
+        return $user->can('restore_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -122,7 +122,7 @@ class AnswerPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_answer');
+        return $user->can('restore_any_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -134,7 +134,7 @@ class AnswerPolicy
      */
     public function replicate(User $user, Answer $answer): bool
     {
-        return $user->can('replicate_answer');
+        return $user->can('replicate_::MattDaneshvar\Survey\Models\Answer');
     }
 
     /**
@@ -145,7 +145,7 @@ class AnswerPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_answer');
+        return $user->can('reorder_::MattDaneshvar\Survey\Models\Answer');
     }
 
 }

@@ -18,7 +18,7 @@ class IpPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_firewall::ip');
+        return $user->can('view_any_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -30,7 +30,7 @@ class IpPolicy
      */
     public function view(User $user, Ip $ip): bool
     {
-        return $user->can('view_firewall::ip');
+        return $user->can('view_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -41,7 +41,7 @@ class IpPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_firewall::ip');
+        return $user->can('create_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -53,7 +53,7 @@ class IpPolicy
      */
     public function update(User $user, Ip $ip): bool
     {
-        return $user->can('update_firewall::ip');
+        return $user->can('update_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -65,7 +65,7 @@ class IpPolicy
      */
     public function delete(User $user, Ip $ip): bool
     {
-        return $user->can('delete_firewall::ip');
+        return $user->can('delete_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -76,7 +76,7 @@ class IpPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_firewall::ip');
+        return $user->can('delete_any_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -88,7 +88,7 @@ class IpPolicy
      */
     public function forceDelete(User $user, Ip $ip): bool
     {
-        return $user->can('force_delete_firewall::ip');
+        return $user->can('force_delete_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -99,7 +99,7 @@ class IpPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_firewall::ip');
+        return $user->can('force_delete_any_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -111,7 +111,7 @@ class IpPolicy
      */
     public function restore(User $user, Ip $ip): bool
     {
-        return $user->can('restore_firewall::ip');
+        return $user->can('restore_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -122,7 +122,7 @@ class IpPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_firewall::ip');
+        return $user->can('restore_any_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -134,7 +134,7 @@ class IpPolicy
      */
     public function replicate(User $user, Ip $ip): bool
     {
-        return $user->can('replicate_firewall::ip');
+        return $user->can('replicate_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
     /**
@@ -145,7 +145,7 @@ class IpPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_firewall::ip');
+        return $user->can('reorder_::SolutionForest\FilamentFirewall\Models\Ip');
     }
 
 }

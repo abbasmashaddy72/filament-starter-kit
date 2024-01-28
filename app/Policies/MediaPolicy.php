@@ -18,7 +18,7 @@ class MediaPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_media');
+        return $user->can('view_any_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -30,7 +30,7 @@ class MediaPolicy
      */
     public function view(User $user, Media $media): bool
     {
-        return $user->can('view_media');
+        return $user->can('view_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -41,7 +41,7 @@ class MediaPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_media');
+        return $user->can('create_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -53,7 +53,7 @@ class MediaPolicy
      */
     public function update(User $user, Media $media): bool
     {
-        return $user->can('update_media');
+        return $user->can('update_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -65,7 +65,7 @@ class MediaPolicy
      */
     public function delete(User $user, Media $media): bool
     {
-        return $user->can('delete_media');
+        return $user->can('delete_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -76,7 +76,7 @@ class MediaPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_media');
+        return $user->can('delete_any_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -88,7 +88,7 @@ class MediaPolicy
      */
     public function forceDelete(User $user, Media $media): bool
     {
-        return $user->can('force_delete_media');
+        return $user->can('force_delete_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -99,7 +99,7 @@ class MediaPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_media');
+        return $user->can('force_delete_any_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -111,7 +111,7 @@ class MediaPolicy
      */
     public function restore(User $user, Media $media): bool
     {
-        return $user->can('restore_media');
+        return $user->can('restore_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -122,7 +122,7 @@ class MediaPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_media');
+        return $user->can('restore_any_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -134,7 +134,7 @@ class MediaPolicy
      */
     public function replicate(User $user, Media $media): bool
     {
-        return $user->can('replicate_media');
+        return $user->can('replicate_::Awcodes\Curator\Models\Media');
     }
 
     /**
@@ -145,7 +145,7 @@ class MediaPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_media');
+        return $user->can('reorder_::Awcodes\Curator\Models\Media');
     }
 
 }

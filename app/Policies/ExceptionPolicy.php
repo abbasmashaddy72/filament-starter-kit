@@ -18,7 +18,7 @@ class ExceptionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_exception');
+        return $user->can('view_any_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -30,7 +30,7 @@ class ExceptionPolicy
      */
     public function view(User $user, Exception $exception): bool
     {
-        return $user->can('view_exception');
+        return $user->can('view_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -41,7 +41,7 @@ class ExceptionPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_exception');
+        return $user->can('create_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -53,7 +53,7 @@ class ExceptionPolicy
      */
     public function update(User $user, Exception $exception): bool
     {
-        return $user->can('update_exception');
+        return $user->can('update_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -65,7 +65,7 @@ class ExceptionPolicy
      */
     public function delete(User $user, Exception $exception): bool
     {
-        return $user->can('delete_exception');
+        return $user->can('delete_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -76,7 +76,7 @@ class ExceptionPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_exception');
+        return $user->can('delete_any_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -88,7 +88,7 @@ class ExceptionPolicy
      */
     public function forceDelete(User $user, Exception $exception): bool
     {
-        return $user->can('force_delete_exception');
+        return $user->can('force_delete_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -99,7 +99,7 @@ class ExceptionPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_exception');
+        return $user->can('force_delete_any_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -111,7 +111,7 @@ class ExceptionPolicy
      */
     public function restore(User $user, Exception $exception): bool
     {
-        return $user->can('restore_exception');
+        return $user->can('restore_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -122,7 +122,7 @@ class ExceptionPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_exception');
+        return $user->can('restore_any_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -134,7 +134,7 @@ class ExceptionPolicy
      */
     public function replicate(User $user, Exception $exception): bool
     {
-        return $user->can('replicate_exception');
+        return $user->can('replicate_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
     /**
@@ -145,7 +145,7 @@ class ExceptionPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_exception');
+        return $user->can('reorder_::BezhanSalleh\FilamentExceptions\Models\Exception');
     }
 
 }

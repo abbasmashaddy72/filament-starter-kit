@@ -15,9 +15,12 @@ use App\Filament\Resources\MenuResource\Pages;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\MenuResource\RelationManagers;
+use Filament\Resources\Concerns\Translatable;
 
 class MenuResource extends Resource
 {
+    use Translatable;
+
     #[Reactive]
     public ?string $activeLocale = null;
 

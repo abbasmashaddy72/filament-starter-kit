@@ -18,7 +18,7 @@ class SectionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_section');
+        return $user->can('view_any_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -30,7 +30,7 @@ class SectionPolicy
      */
     public function view(User $user, Section $section): bool
     {
-        return $user->can('view_section');
+        return $user->can('view_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -41,7 +41,7 @@ class SectionPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_section');
+        return $user->can('create_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -53,7 +53,7 @@ class SectionPolicy
      */
     public function update(User $user, Section $section): bool
     {
-        return $user->can('update_section');
+        return $user->can('update_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -65,7 +65,7 @@ class SectionPolicy
      */
     public function delete(User $user, Section $section): bool
     {
-        return $user->can('delete_section');
+        return $user->can('delete_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -76,7 +76,7 @@ class SectionPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_section');
+        return $user->can('delete_any_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -88,7 +88,7 @@ class SectionPolicy
      */
     public function forceDelete(User $user, Section $section): bool
     {
-        return $user->can('force_delete_section');
+        return $user->can('force_delete_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -99,7 +99,7 @@ class SectionPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_section');
+        return $user->can('force_delete_any_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -111,7 +111,7 @@ class SectionPolicy
      */
     public function restore(User $user, Section $section): bool
     {
-        return $user->can('restore_section');
+        return $user->can('restore_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -122,7 +122,7 @@ class SectionPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_section');
+        return $user->can('restore_any_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -134,7 +134,7 @@ class SectionPolicy
      */
     public function replicate(User $user, Section $section): bool
     {
-        return $user->can('replicate_section');
+        return $user->can('replicate_::MattDaneshvar\Survey\Models\Section');
     }
 
     /**
@@ -145,7 +145,7 @@ class SectionPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_section');
+        return $user->can('reorder_::MattDaneshvar\Survey\Models\Section');
     }
 
 }

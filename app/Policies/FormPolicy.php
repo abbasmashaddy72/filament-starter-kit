@@ -18,7 +18,7 @@ class FormPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_form');
+        return $user->can('view_any_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -30,7 +30,7 @@ class FormPolicy
      */
     public function view(User $user, Form $form): bool
     {
-        return $user->can('view_form');
+        return $user->can('view_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -41,7 +41,7 @@ class FormPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_form');
+        return $user->can('create_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -53,7 +53,7 @@ class FormPolicy
      */
     public function update(User $user, Form $form): bool
     {
-        return $user->can('update_form');
+        return $user->can('update_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -65,7 +65,7 @@ class FormPolicy
      */
     public function delete(User $user, Form $form): bool
     {
-        return $user->can('delete_form');
+        return $user->can('delete_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -76,7 +76,7 @@ class FormPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_form');
+        return $user->can('delete_any_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -88,7 +88,7 @@ class FormPolicy
      */
     public function forceDelete(User $user, Form $form): bool
     {
-        return $user->can('force_delete_form');
+        return $user->can('force_delete_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -99,7 +99,7 @@ class FormPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_form');
+        return $user->can('force_delete_any_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -111,7 +111,7 @@ class FormPolicy
      */
     public function restore(User $user, Form $form): bool
     {
-        return $user->can('restore_form');
+        return $user->can('restore_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -122,7 +122,7 @@ class FormPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_form');
+        return $user->can('restore_any_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -134,7 +134,7 @@ class FormPolicy
      */
     public function replicate(User $user, Form $form): bool
     {
-        return $user->can('replicate_form');
+        return $user->can('replicate_::LaraZeus\Bolt\Models\Form');
     }
 
     /**
@@ -145,7 +145,7 @@ class FormPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_form');
+        return $user->can('reorder_::LaraZeus\Bolt\Models\Form');
     }
 
 }

@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         if (config('app.env') == 'production') {
-            $user = User::create([
+            User::create([
                 'name' => 'Super Admin',
                 'email' => 'superadmin@cms.com',
                 'password' => bcrypt('password'),

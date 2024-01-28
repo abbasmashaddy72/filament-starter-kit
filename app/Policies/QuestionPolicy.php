@@ -18,7 +18,7 @@ class QuestionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_question');
+        return $user->can('view_any_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -30,7 +30,7 @@ class QuestionPolicy
      */
     public function view(User $user, Question $question): bool
     {
-        return $user->can('view_question');
+        return $user->can('view_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -41,7 +41,7 @@ class QuestionPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_question');
+        return $user->can('create_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -53,7 +53,7 @@ class QuestionPolicy
      */
     public function update(User $user, Question $question): bool
     {
-        return $user->can('update_question');
+        return $user->can('update_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -65,7 +65,7 @@ class QuestionPolicy
      */
     public function delete(User $user, Question $question): bool
     {
-        return $user->can('delete_question');
+        return $user->can('delete_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -76,7 +76,7 @@ class QuestionPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_question');
+        return $user->can('delete_any_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -88,7 +88,7 @@ class QuestionPolicy
      */
     public function forceDelete(User $user, Question $question): bool
     {
-        return $user->can('force_delete_question');
+        return $user->can('force_delete_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -99,7 +99,7 @@ class QuestionPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_question');
+        return $user->can('force_delete_any_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -111,7 +111,7 @@ class QuestionPolicy
      */
     public function restore(User $user, Question $question): bool
     {
-        return $user->can('restore_question');
+        return $user->can('restore_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -122,7 +122,7 @@ class QuestionPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_question');
+        return $user->can('restore_any_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -134,7 +134,7 @@ class QuestionPolicy
      */
     public function replicate(User $user, Question $question): bool
     {
-        return $user->can('replicate_question');
+        return $user->can('replicate_::MattDaneshvar\Survey\Models\Question');
     }
 
     /**
@@ -145,7 +145,7 @@ class QuestionPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_question');
+        return $user->can('reorder_::MattDaneshvar\Survey\Models\Question');
     }
 
 }

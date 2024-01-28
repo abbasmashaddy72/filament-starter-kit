@@ -18,7 +18,7 @@ class EmailPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_email');
+        return $user->can('view_any_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -30,7 +30,7 @@ class EmailPolicy
      */
     public function view(User $user, Email $email): bool
     {
-        return $user->can('view_email');
+        return $user->can('view_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -41,7 +41,7 @@ class EmailPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_email');
+        return $user->can('create_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -53,7 +53,7 @@ class EmailPolicy
      */
     public function update(User $user, Email $email): bool
     {
-        return $user->can('update_email');
+        return $user->can('update_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -65,7 +65,7 @@ class EmailPolicy
      */
     public function delete(User $user, Email $email): bool
     {
-        return $user->can('delete_email');
+        return $user->can('delete_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -76,7 +76,7 @@ class EmailPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_email');
+        return $user->can('delete_any_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -88,7 +88,7 @@ class EmailPolicy
      */
     public function forceDelete(User $user, Email $email): bool
     {
-        return $user->can('force_delete_email');
+        return $user->can('force_delete_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -99,7 +99,7 @@ class EmailPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_email');
+        return $user->can('force_delete_any_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -111,7 +111,7 @@ class EmailPolicy
      */
     public function restore(User $user, Email $email): bool
     {
-        return $user->can('restore_email');
+        return $user->can('restore_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -122,7 +122,7 @@ class EmailPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_email');
+        return $user->can('restore_any_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -134,7 +134,7 @@ class EmailPolicy
      */
     public function replicate(User $user, Email $email): bool
     {
-        return $user->can('replicate_email');
+        return $user->can('replicate_::RickDBCN\FilamentEmail\Models\Email');
     }
 
     /**
@@ -145,7 +145,7 @@ class EmailPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_email');
+        return $user->can('reorder_::RickDBCN\FilamentEmail\Models\Email');
     }
 
 }

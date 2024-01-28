@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->string('location')->default('header');
-            $table->string('title');
-            $table->longText('items')->nullable();
+            $table->json('title');
+            $table->json('items')->nullable();
             $table->boolean('activated')->default(0);
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class CollectionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_collection');
+        return $user->can('view_any_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -30,7 +30,7 @@ class CollectionPolicy
      */
     public function view(User $user, Collection $collection): bool
     {
-        return $user->can('view_collection');
+        return $user->can('view_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -41,7 +41,7 @@ class CollectionPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_collection');
+        return $user->can('create_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -53,7 +53,7 @@ class CollectionPolicy
      */
     public function update(User $user, Collection $collection): bool
     {
-        return $user->can('update_collection');
+        return $user->can('update_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -65,7 +65,7 @@ class CollectionPolicy
      */
     public function delete(User $user, Collection $collection): bool
     {
-        return $user->can('delete_collection');
+        return $user->can('delete_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -76,7 +76,7 @@ class CollectionPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_collection');
+        return $user->can('delete_any_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -88,7 +88,7 @@ class CollectionPolicy
      */
     public function forceDelete(User $user, Collection $collection): bool
     {
-        return $user->can('force_delete_collection');
+        return $user->can('force_delete_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -99,7 +99,7 @@ class CollectionPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_collection');
+        return $user->can('force_delete_any_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -111,7 +111,7 @@ class CollectionPolicy
      */
     public function restore(User $user, Collection $collection): bool
     {
-        return $user->can('restore_collection');
+        return $user->can('restore_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -122,7 +122,7 @@ class CollectionPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_collection');
+        return $user->can('restore_any_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -134,7 +134,7 @@ class CollectionPolicy
      */
     public function replicate(User $user, Collection $collection): bool
     {
-        return $user->can('replicate_collection');
+        return $user->can('replicate_::LaraZeus\Bolt\Models\Collection');
     }
 
     /**
@@ -145,7 +145,7 @@ class CollectionPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_collection');
+        return $user->can('reorder_::LaraZeus\Bolt\Models\Collection');
     }
 
 }

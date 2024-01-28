@@ -18,7 +18,7 @@ class ResourceLockPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_');
+        return $user->can('view_any_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -30,7 +30,7 @@ class ResourceLockPolicy
      */
     public function view(User $user, ResourceLock $resourceLock): bool
     {
-        return $user->can('view_');
+        return $user->can('view_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -41,7 +41,7 @@ class ResourceLockPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_');
+        return $user->can('create_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -53,7 +53,7 @@ class ResourceLockPolicy
      */
     public function update(User $user, ResourceLock $resourceLock): bool
     {
-        return $user->can('update_');
+        return $user->can('update_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -65,7 +65,7 @@ class ResourceLockPolicy
      */
     public function delete(User $user, ResourceLock $resourceLock): bool
     {
-        return $user->can('delete_');
+        return $user->can('delete_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -76,7 +76,7 @@ class ResourceLockPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_');
+        return $user->can('delete_any_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -88,7 +88,7 @@ class ResourceLockPolicy
      */
     public function forceDelete(User $user, ResourceLock $resourceLock): bool
     {
-        return $user->can('force_delete_');
+        return $user->can('force_delete_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -99,7 +99,7 @@ class ResourceLockPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_');
+        return $user->can('force_delete_any_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -111,7 +111,7 @@ class ResourceLockPolicy
      */
     public function restore(User $user, ResourceLock $resourceLock): bool
     {
-        return $user->can('restore_');
+        return $user->can('restore_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -122,7 +122,7 @@ class ResourceLockPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_');
+        return $user->can('restore_any_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -134,7 +134,7 @@ class ResourceLockPolicy
      */
     public function replicate(User $user, ResourceLock $resourceLock): bool
     {
-        return $user->can('replicate_');
+        return $user->can('replicate_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
     /**
@@ -145,7 +145,7 @@ class ResourceLockPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_');
+        return $user->can('reorder_::Kenepa\ResourceLock\Models\ResourceLock');
     }
 
 }

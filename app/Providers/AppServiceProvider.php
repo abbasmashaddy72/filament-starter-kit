@@ -9,6 +9,7 @@ use Spatie\Health\Checks\Checks\DebugModeCheck;
 use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,12 @@ class AppServiceProvider extends ServiceProvider
                 ->displayLocale('en')
                 ->locales(array_keys(config('app.locales')));
         });
+        FilamentShield::configurePermissionIdentifierUsing(
+            function ($resource) {
+                $str = str($resource::getModel())
+                    ->prepend('::')->toString();
+                return $str;
+            }
+        );
     }
 }

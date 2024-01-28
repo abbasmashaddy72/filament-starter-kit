@@ -9,7 +9,7 @@ use Filament\Resources\Concerns\Translatable;
 
 class CreateMenu extends CreateRecord
 {
-    use Translatable;
+    use CreateRecord\Concerns\Translatable;
 
     protected static string $resource = MenuResource::class;
 

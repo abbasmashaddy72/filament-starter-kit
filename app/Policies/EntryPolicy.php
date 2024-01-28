@@ -18,7 +18,7 @@ class EntryPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_entry');
+        return $user->can('view_any_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -30,7 +30,7 @@ class EntryPolicy
      */
     public function view(User $user, Entry $entry): bool
     {
-        return $user->can('view_entry');
+        return $user->can('view_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -41,7 +41,7 @@ class EntryPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_entry');
+        return $user->can('create_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -53,7 +53,7 @@ class EntryPolicy
      */
     public function update(User $user, Entry $entry): bool
     {
-        return $user->can('update_entry');
+        return $user->can('update_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -65,7 +65,7 @@ class EntryPolicy
      */
     public function delete(User $user, Entry $entry): bool
     {
-        return $user->can('delete_entry');
+        return $user->can('delete_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -76,7 +76,7 @@ class EntryPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_entry');
+        return $user->can('delete_any_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -88,7 +88,7 @@ class EntryPolicy
      */
     public function forceDelete(User $user, Entry $entry): bool
     {
-        return $user->can('force_delete_entry');
+        return $user->can('force_delete_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -99,7 +99,7 @@ class EntryPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_entry');
+        return $user->can('force_delete_any_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -111,7 +111,7 @@ class EntryPolicy
      */
     public function restore(User $user, Entry $entry): bool
     {
-        return $user->can('restore_entry');
+        return $user->can('restore_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -122,7 +122,7 @@ class EntryPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_entry');
+        return $user->can('restore_any_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -134,7 +134,7 @@ class EntryPolicy
      */
     public function replicate(User $user, Entry $entry): bool
     {
-        return $user->can('replicate_entry');
+        return $user->can('replicate_::MattDaneshvar\Survey\Models\Entry');
     }
 
     /**
@@ -145,7 +145,7 @@ class EntryPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_entry');
+        return $user->can('reorder_::MattDaneshvar\Survey\Models\Entry');
     }
 
 }

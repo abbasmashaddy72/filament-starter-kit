@@ -18,7 +18,7 @@ class AuthenticationLogPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_authentication::log');
+        return $user->can('view_any_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -30,7 +30,7 @@ class AuthenticationLogPolicy
      */
     public function view(User $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->can('view_authentication::log');
+        return $user->can('view_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -41,7 +41,7 @@ class AuthenticationLogPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_authentication::log');
+        return $user->can('create_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -53,7 +53,7 @@ class AuthenticationLogPolicy
      */
     public function update(User $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->can('update_authentication::log');
+        return $user->can('update_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthenticationLogPolicy
      */
     public function delete(User $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->can('delete_authentication::log');
+        return $user->can('delete_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -76,7 +76,7 @@ class AuthenticationLogPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_authentication::log');
+        return $user->can('delete_any_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -88,7 +88,7 @@ class AuthenticationLogPolicy
      */
     public function forceDelete(User $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->can('force_delete_authentication::log');
+        return $user->can('force_delete_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -99,7 +99,7 @@ class AuthenticationLogPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_authentication::log');
+        return $user->can('force_delete_any_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -111,7 +111,7 @@ class AuthenticationLogPolicy
      */
     public function restore(User $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->can('restore_authentication::log');
+        return $user->can('restore_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -122,7 +122,7 @@ class AuthenticationLogPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_authentication::log');
+        return $user->can('restore_any_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -134,7 +134,7 @@ class AuthenticationLogPolicy
      */
     public function replicate(User $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->can('replicate_authentication::log');
+        return $user->can('replicate_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
     /**
@@ -145,7 +145,7 @@ class AuthenticationLogPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_authentication::log');
+        return $user->can('reorder_::Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog');
     }
 
 }

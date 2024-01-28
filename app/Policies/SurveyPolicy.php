@@ -18,7 +18,7 @@ class SurveyPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_survey');
+        return $user->can('view_any_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -30,7 +30,7 @@ class SurveyPolicy
      */
     public function view(User $user, Survey $survey): bool
     {
-        return $user->can('view_survey');
+        return $user->can('view_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -41,7 +41,7 @@ class SurveyPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_survey');
+        return $user->can('create_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -53,7 +53,7 @@ class SurveyPolicy
      */
     public function update(User $user, Survey $survey): bool
     {
-        return $user->can('update_survey');
+        return $user->can('update_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -65,7 +65,7 @@ class SurveyPolicy
      */
     public function delete(User $user, Survey $survey): bool
     {
-        return $user->can('delete_survey');
+        return $user->can('delete_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -76,7 +76,7 @@ class SurveyPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_survey');
+        return $user->can('delete_any_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -88,7 +88,7 @@ class SurveyPolicy
      */
     public function forceDelete(User $user, Survey $survey): bool
     {
-        return $user->can('force_delete_survey');
+        return $user->can('force_delete_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -99,7 +99,7 @@ class SurveyPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_survey');
+        return $user->can('force_delete_any_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -111,7 +111,7 @@ class SurveyPolicy
      */
     public function restore(User $user, Survey $survey): bool
     {
-        return $user->can('restore_survey');
+        return $user->can('restore_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -122,7 +122,7 @@ class SurveyPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_survey');
+        return $user->can('restore_any_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -134,7 +134,7 @@ class SurveyPolicy
      */
     public function replicate(User $user, Survey $survey): bool
     {
-        return $user->can('replicate_survey');
+        return $user->can('replicate_::MattDaneshvar\Survey\Models\Survey');
     }
 
     /**
@@ -145,7 +145,7 @@ class SurveyPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_survey');
+        return $user->can('reorder_::MattDaneshvar\Survey\Models\Survey');
     }
 
 }
