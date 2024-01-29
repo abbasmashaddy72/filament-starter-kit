@@ -14,9 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-
         if (config('app.env') == 'production') {
             User::create([
                 'name' => 'Super Admin',
@@ -26,6 +23,8 @@ class UserSeeder extends Seeder
             ]);
             User::find(1)->first()->assignRole('super_admin');
         } else {
+            User::query()->delete();
+
             $users = User::factory()->count(rand(100, 300))->create();
             $superAdmin = $users->first();
             $superAdmin->update([
