@@ -10,8 +10,10 @@ use Filament\Pages\SettingsPage;
 use Illuminate\Support\Facades\Http;
 use Spatie\Sitemap\SitemapGenerator;
 use Filament\Notifications\Notification;
+use Guava\FilamentIconPicker\Forms\IconPicker;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
+use Tapp\FilamentTimezoneField\Forms\Components\TimezoneSelect;
 
 class SiteSettings extends SettingsPage
 {
@@ -33,12 +35,12 @@ class SiteSettings extends SettingsPage
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Group::make()->schema([
                         Forms\Components\Group::make()->schema([
-                            Forms\Components\FileUpload::make('profile'),
-                            Forms\Components\FileUpload::make('logo'),
-                            Forms\Components\TextInput::make('phone_code'),
+                            Forms\Components\FileUpload::make('dark_logo'),
+                            Forms\Components\FileUpload::make('light_logo'),
+                            TimezoneSelect::make('timezone')
+                                ->searchable(),
                             Forms\Components\TextInput::make('location'),
                             Forms\Components\TextInput::make('currency'),
-                            Forms\Components\TextInput::make('language'),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),
@@ -58,9 +60,16 @@ class SiteSettings extends SettingsPage
                         ]),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\Repeater::make('social')->schema([
+                                IconPicker::make('icon')
+                                    ->sets(['remix'])
+                                    ->columns([
+                                        'default' => 1,
+                                        'lg' => 3,
+                                        '2xl' => 5,
+                                    ]),
                                 Forms\Components\TextInput::make('platform'),
                                 Forms\Components\TextInput::make('link')->url(),
-                            ])->columns(2),
+                            ])->columns(3),
                         ]),
                     ])->columns(2),
                 ]),

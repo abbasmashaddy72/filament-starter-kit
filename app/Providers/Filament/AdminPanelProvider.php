@@ -8,6 +8,7 @@ use Awcodes\Overlook;
 use Filament\Widgets;
 use Filament\PanelProvider;
 use LaraZeus\Bolt\BoltPlugin;
+use App\Filament\Pages\Backups;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\Support\Colors\Color;
 use Hasnayeen\Themes\ThemesPlugin;
@@ -41,6 +42,7 @@ use BezhanSalleh\FilamentExceptions\FilamentExceptionsPlugin;
 use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
+use Amendozaaguiar\FilamentRouteStatistics\FilamentRouteStatisticsPlugin;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 use ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin;
 
@@ -134,11 +136,13 @@ class AdminPanelProvider extends PanelProvider
                 FilamentFirewallPanel::make(),
                 FilamentLogManager::make(),
                 EnvironmentIndicatorPlugin::make()->showBorder(false),
-                FilamentSpatieLaravelBackupPlugin::make()->usingQueue('backups'),
+                FilamentSpatieLaravelBackupPlugin::make()
+                    ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()->defaultLocales(array_keys(config('app.locales'))),
                 BoltPlugin::make(),
                 LightSwitchPlugin::make(),
+                FilamentRouteStatisticsPlugin::make(),
             ]);
     }
 }

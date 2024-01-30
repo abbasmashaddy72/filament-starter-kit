@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Topic;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -68,6 +69,7 @@ class PostFactory extends Factory
                 ],
             ],
             'author_id' => User::inRandomOrder()->first()->id,
+            'topic_id' => Topic::inRandomOrder()->first()->id,
         ];
     }
 }

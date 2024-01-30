@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('status')->default('Draft');
+            $table->foreignId('topic_id');
             $table->foreignId('author_id');
             $table->longText('content')->nullable();
             $table->date('published_at')->nullable();

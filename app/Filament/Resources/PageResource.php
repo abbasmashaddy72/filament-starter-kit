@@ -2,16 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PageResource\Pages;
-use App\Filament\Resources\PageResource\RelationManagers;
-use App\Models\Page;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Page;
 use Filament\Tables;
+use FilamentAddons\Enums\Status;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use App\Components\Hero;
+use App\Components\Meta;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use App\Forms\Components\PageBuilder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PageResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PageResource\RelationManagers;
 
 class PageResource extends Resource
 {
@@ -23,26 +31,57 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Draft'),
-                Forms\Components\Textarea::make('hero')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('content')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('layout')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('default'),
-                Forms\Components\Toggle::make('front_page')
-                    ->required(),
+                Forms\Components\Tabs::make()->schema([
+                    Forms\Components\Tabs\Tab::make(__('Title & Details'))->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->live()
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $operation, ?string $old, ?string $state) {
+                                if ($operation == 'edit') {
+                                    return;
+                                }
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+                                $set('slug', Str::slug($state));
+                            })
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->unique(Page::class, 'slug', fn ($record) => $record)
+                            ->disabled(fn (?string $operation) => $operation == 'edit')
+                            ->maxLength(255),
+                        Forms\Components\Select::make('status')
+                            ->disabled(fn ($get) => $get('front_page') ?: false)
+                            ->default('Draft')
+                            ->options(Status::class)
+                            ->required(),
+                        Forms\Components\Select::make('layout')
+                            ->disabled(fn ($get) => $get('front_page') ?: false)
+                            ->default('default')
+                            ->options([
+                                'default' => 'Default',
+                                'full' => 'Full Width',
+                            ])
+                            ->required(),
+                        Forms\Components\Toggle::make('front_page')
+                            ->inline(false)
+                            ->disabled(fn (?Model $record) => $record ? $record->front_page : false)
+                            ->reactive(),
+                    ]),
+                    Forms\Components\Tabs\Tab::make('Hero')
+                        ->schema([
+                            Hero::make('hero'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('SEO')
+                        ->schema([
+                            Meta::make(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Page Content')
+                        ->schema([
+                            PageBuilder::make('content'),
+                        ]),
+                ])->columns(2)->columnSpanFull(),
             ]);
     }
 

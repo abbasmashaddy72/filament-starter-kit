@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FaqResource\Pages;
-use App\Filament\Resources\FaqResource\RelationManagers;
 use App\Models\Faq;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use FilamentAddons\Enums\Status;
+use App\Components\Meta;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use App\Forms\Components\PageBuilder;
+use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\FaqResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\FaqResource\RelationManagers;
 
 class FaqResource extends Resource
 {
@@ -23,15 +27,22 @@ class FaqResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('question')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('answer')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Draft'),
+                Forms\Components\Tabs::make()->schema([
+                    Forms\Components\Tabs\Tab::make(__('Title & Details'))->schema([
+                        Forms\Components\TextInput::make('question')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('status')
+                            ->default('Draft')
+                            ->options(Status::class)
+                            ->required(),
+                        TiptapEditor::make('answer')->columnSpanFull(),
+                    ]),
+                    Forms\Components\Tabs\Tab::make('SEO')
+                        ->schema([
+                            Meta::make(),
+                        ]),
+                ])->columns(2)->columnSpanFull(),
             ]);
     }
 

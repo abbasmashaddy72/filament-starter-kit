@@ -13,17 +13,6 @@ class Meta
     {
         return Forms\Components\Group::make()
             ->relationship('meta')
-            ->saveRelationshipsUsing(function ($component, $state) {
-                $record = $component->getCachedExistingRecord();
-                $state['og_image'] = isset($state['og_image']) ? $state['og_image'] : null;
-                if ($record) {
-                    $record->update($state);
-
-                    return;
-                }
-
-                $component->getRelationship()->create($state);
-            })
             ->columns(['md' => 2])
             ->schema([
                 Forms\Components\Group::make([
@@ -54,6 +43,7 @@ class Meta
                 ]),
                 CuratorPicker::make('og_image')
                     ->label('OG Image')
+                    ->relationship('ogImage', 'og_image')
                     ->helperText('Leave empty to use default. This will also be used on any resources that utilizes a featured image i.e. blog posts.'),
             ])->columnSpanFull();
     }

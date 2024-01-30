@@ -26,6 +26,7 @@ class Post extends Model
         'title',
         'slug',
         'status',
+        'topic_id',
         'author_id',
         'content',
         'published_at',
@@ -64,5 +65,10 @@ class Post extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function topic(): BelongsTo
+    {
+        return $this->belongsTo(Topic::class, 'topic_id', 'id');
     }
 }

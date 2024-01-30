@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Enums\Status;
+use FilamentAddons\Enums\Status;
 use App\Models\Article;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -54,7 +54,7 @@ class ArticleResource extends Resource
                             ->required(),
                         Forms\Components\DatePicker::make('published_at')
                             ->label('Publish Date'),
-                        Forms\Components\Select::make('discovery_topic_id')
+                        Forms\Components\Select::make('topic_id')
                             ->relationship('topic', 'title')
                             ->required(),
                         Forms\Components\Select::make('author_id')

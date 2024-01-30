@@ -6,6 +6,7 @@ use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Meta extends Model
 {
@@ -37,9 +38,9 @@ class Meta extends Model
         'ogImage',
     ];
 
-    public function ogImage(): HasOne
+    public function ogImage(): BelongsTo
     {
-        return $this->hasOne(Media::class, 'id', 'og_image');
+        return $this->belongsTo(Media::class, 'og_image', 'id');
     }
 
     public function metaable()

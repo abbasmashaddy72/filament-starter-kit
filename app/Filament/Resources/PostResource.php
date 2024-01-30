@@ -2,16 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Post;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use App\Components\Meta;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use FilamentAddons\Enums\Status;
+use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PostResource\RelationManagers;
 
 class PostResource extends Resource
 {
@@ -23,22 +29,48 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Draft'),
-                Forms\Components\TextInput::make('author_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Textarea::make('content')
-                    ->columnSpanFull(),
-                Forms\Components\DatePicker::make('published_at'),
+                Forms\Components\Tabs::make()->schema([
+                    Forms\Components\Tabs\Tab::make(__('Title & Details'))->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->live()
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $operation, ?string $old, ?string $state) {
+                                if ($operation == 'edit') {
+                                    return;
+                                }
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+                                $set('slug', Str::slug($state));
+                            })
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->unique(Post::class, 'slug', fn ($record) => $record)
+                            ->disabled(fn (?string $operation) => $operation == 'edit')
+                            ->maxLength(255),
+                        Forms\Components\Select::make('status')
+                            ->default('Draft')
+                            ->options(Status::class)
+                            ->required(),
+                        Forms\Components\DatePicker::make('published_at')
+                            ->label('Publish Date'),
+                        Forms\Components\Select::make('topic_id')
+                            ->relationship('topic', 'title')
+                            ->required(),
+                        Forms\Components\Select::make('author_id')
+                            ->relationship('author', 'name')
+                            ->required(),
+                    ]),
+                    Forms\Components\Tabs\Tab::make('SEO')
+                        ->schema([
+                            Meta::make(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Page Content')
+                        ->schema([
+                            PageBuilder::make('content'),
+                        ]),
+                ])->columns(2)->columnSpanFull(),
             ]);
     }
 
