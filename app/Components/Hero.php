@@ -2,6 +2,7 @@
 
 namespace App\Components;
 
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Closure;
 use Filament\Forms;
 use FilamentAddons\Forms as AddonForms;
@@ -21,7 +22,7 @@ class Hero
                         'oembed' => 'oEmbed',
                     ])
                     ->reactive(),
-                CuratorForms\Components\MediaPicker::make('hero.image')
+                CuratorPicker::make('hero.image')
                     ->label('Image')
                     ->visible(fn (Closure $get): bool => $get('hero.type') == 'image' ?: false),
                 AddonForms\Components\OEmbed::make('hero.oembed')

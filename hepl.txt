@@ -1,3 +1,1 @@
 http://trovcmsf2.test/admin/users
-http://filament3s.test/admin/users
-http://manage-project.test/users/1

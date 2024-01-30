@@ -3,15 +3,15 @@
 namespace App\Components;
 
 use Filament\Forms;
-use FilamentCurator\Forms as CuratorForms;
 use Illuminate\Support\Str;
+use FilamentCurator\Forms as CuratorForms;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 
 class Meta
 {
-    public static function make(): Forms\Components\Section
+    public static function make(): Forms\Components\Group
     {
-        return Forms\Components\Section::make('SEO')
-            ->collapsible()
+        return Forms\Components\Group::make()
             ->relationship('meta')
             ->saveRelationshipsUsing(function ($component, $state) {
                 $record = $component->getCachedExistingRecord();
@@ -52,9 +52,9 @@ class Meta
                     Forms\Components\Toggle::make('indexable')
                         ->label('Indexable'),
                 ]),
-                CuratorForms\Components\MediaPicker::make('og_image')
+                CuratorPicker::make('og_image')
                     ->label('OG Image')
                     ->helperText('Leave empty to use default. This will also be used on any resources that utilizes a featured image i.e. blog posts.'),
-            ]);
+            ])->columnSpanFull();
     }
 }
