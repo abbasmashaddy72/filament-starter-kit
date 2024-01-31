@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        app()->useLangPath(base_path('lang'));
         Model::unguard();
         Health::checks([
             CacheCheck::new(),

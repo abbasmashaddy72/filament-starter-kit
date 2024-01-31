@@ -65,7 +65,7 @@ return [
         'navigation_icon' => 'heroicon-o-lock-closed',
         'navigation_label' => 'Resource Lock Manager',
         'plural_label' => 'Resource Locks',
-        'navigation_group' => 'Settings',
+        'navigation_group' => 'User Management',
         'navigation_sort' => 1,
         'limited_access' => false,
         //        'gate' => ''

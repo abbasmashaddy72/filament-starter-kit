@@ -28,6 +28,8 @@ class MenuResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-bars-3';
 
+    protected static ?string $navigationGroup = 'CMS';
+
     public static function form(Form $form): Form
     {
         $routeList = [];

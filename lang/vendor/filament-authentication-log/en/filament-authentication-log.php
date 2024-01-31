@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'navigation.group' => 'Logins',
+    'navigation.group' => 'User Management',
 
     'navigation.authentication-log.label' => 'Authentication Log',
     'navigation.authentication-log.plural-label' => 'Authentication Logs',

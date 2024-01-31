@@ -59,6 +59,15 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Blue,
             ])
+            ->navigationGroups([
+                'CMS',
+                'Blog Management',
+                'Dynamic Forms',
+                'Surveys',
+                'Statistics',
+                'User Management',
+                'Settings',
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -106,14 +115,12 @@ class AdminPanelProvider extends PanelProvider
                     'default' => 1,
                     'sm' => 2,
                     'lg' => 3
-                ])
-                    ->sectionColumnSpan(1)
+                ])->sectionColumnSpan(1)
                     ->checkboxListColumns([
                         'default' => 1,
                         'sm' => 2,
                         'lg' => 4,
-                    ])
-                    ->resourceCheckboxListColumns([
+                    ])->resourceCheckboxListColumns([
                         'default' => 1,
                         'sm' => 2,
                     ]),
@@ -140,7 +147,8 @@ class AdminPanelProvider extends PanelProvider
                     ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()->defaultLocales(array_keys(config('app.locales'))),
-                BoltPlugin::make(),
+                BoltPlugin::make()
+                    ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),
                 FilamentRouteStatisticsPlugin::make(),
             ]);

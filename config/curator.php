@@ -43,7 +43,7 @@ return [
     'resources' => [
         'label' => 'Media',
         'plural_label' => 'Media',
-        'navigation_group' => null,
+        'navigation_group' => 'CMS',
         'navigation_icon' => 'heroicon-o-photo',
         'navigation_sort' => null,
         'navigation_count_badge' => false,

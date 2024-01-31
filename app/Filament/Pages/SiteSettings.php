@@ -21,6 +21,8 @@ class SiteSettings extends SettingsPage
 
     protected static string $settings = SitesSettings::class;
 
+    protected static ?string $navigationGroup = 'CMS';
+
     protected function getActions(): array
     {
         return [

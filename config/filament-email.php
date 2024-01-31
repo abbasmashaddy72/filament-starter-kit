@@ -7,7 +7,7 @@ return [
 
     'resource' => [
         'class' => EmailResource::class,
-        'group' => null,
+        'group' => 'Settings',
         'sort' => null,
         'default_sort_column' => 'created_at',
         'default_sort_direction' => 'desc',

@@ -32,7 +32,9 @@ class ArticleResource extends Resource
 
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-bookmark';
+
+    protected static ?string $navigationGroup = 'Blog Management';
 
     public static function form(Form $form): Form
     {
