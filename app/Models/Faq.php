@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faq extends Model
 {
-    use HasFactory, HasTags, HasPublishedScope, HasMeta, SoftDeletes, HasTranslations;
+    use HasFactory, HasTags, HasPublishedScope, SoftDeletes, HasTranslations;
 
     public $translatable = ['question', 'answer'];
     /**
@@ -26,18 +26,5 @@ class Faq extends Model
         'question',
         'status',
         'answer',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-    ];
-
-    protected $with = [
-        'meta',
     ];
 }

@@ -13,6 +13,7 @@ use FilamentAddons\Enums\Status;
 use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
 use FilamentTiptapEditor\TiptapEditor;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\FaqResource\Pages;
 use Filament\Resources\Concerns\Translatable;
@@ -36,21 +37,15 @@ class FaqResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make()->schema([
-                    Forms\Components\Tabs\Tab::make(__('Title & Details'))->schema([
-                        Forms\Components\TextInput::make('question')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\Select::make('status')
-                            ->default('Draft')
-                            ->options(Status::class)
-                            ->required(),
-                        TiptapEditor::make('answer')->columnSpanFull(),
-                    ]),
-                    Forms\Components\Tabs\Tab::make('SEO')
-                        ->schema([
-                            Meta::make(),
-                        ]),
+                Forms\Components\Section::make(__('Title & Details'))->schema([
+                    Forms\Components\TextInput::make('question')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Select::make('status')
+                        ->default('Draft')
+                        ->options(Status::class)
+                        ->required(),
+                    RichEditor::make('answer')->columnSpanFull(),
                 ])->columns(2)->columnSpanFull(),
             ]);
     }

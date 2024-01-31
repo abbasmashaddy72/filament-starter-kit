@@ -39,7 +39,6 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "matt-daneshvar/laravel-survey": "dev-translatable",
         "omar-haris/filament-timezone-field": "^1.0",
         "owen-it/laravel-auditing": "^13.6",
         "pxlrbt/filament-environment-indicator": "^2.0",
@@ -57,7 +56,6 @@
         "stechstudio/filament-impersonate": "^3.5",
         "tapp/filament-auditing": "^3.0",
         "tapp/filament-authentication-log": "^3.0",
-        "tapp/filament-survey": "^3.0",
         "tapp/filament-timezone-field": "^3.0",
         "timwassenburg/filament-timesheets": "^1.0",
         "torann/geoip": "^3.0",
@@ -121,10 +119,6 @@
         }
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/TappNetwork/laravel-survey"
-        },
         {
             "type": "github",
             "url": "https://github.com/lara-zeus/filament-export"

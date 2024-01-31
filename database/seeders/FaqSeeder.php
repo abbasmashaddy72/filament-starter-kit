@@ -19,41 +19,16 @@ class FaqSeeder extends Seeder
     {
         Faq::factory()
             ->count(3)
-            ->create()->each(function ($faq) {
-                $meta = Meta::factory()->make([
-                    'metaable_id' => $faq->id,
-                    'metaable_type' => 'App\Models\Faq',
-                ]);
-
-                return $faq->meta()->create($meta->toArray());
-            });
+            ->create();
 
         Faq::factory()
             ->count(5)
             ->inReview()
-            ->create()->each(function ($faq) {
-                $meta = Meta::factory()->make([
-                    'metaable_id' => $faq->id,
-                    'metaable_type' => 'App\Models\Faq',
-                ]);
-
-                $faq->attachTag(Tag::factory()->create(['type' => 'faq']));
-
-                return $faq->meta()->create($meta->toArray());
-            });
+            ->create();
 
         Faq::factory()
             ->count(15)
             ->published()
-            ->create()->each(function ($faq) {
-                $meta = Meta::factory()->make([
-                    'metaable_id' => $faq->id,
-                    'metaable_type' => 'App\Models\Faq',
-                ]);
-
-                $faq->attachTag(Tag::factory()->create(['type' => 'faq']));
-
-                return $faq->meta()->create($meta->toArray());
-            });
+            ->create();
     }
 }

@@ -108,7 +108,6 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationCountBadge(),
                 ThemesPlugin::make(),
                 FilamentAuthenticationLogPlugin::make(),
-                FilamentSurveyPlugin::make(),
                 new FilamentEmail(),
                 FilamentExceptionsPlugin::make(),
                 FilamentShieldPlugin::make()->gridColumns([
