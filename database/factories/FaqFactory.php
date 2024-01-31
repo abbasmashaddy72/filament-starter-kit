@@ -2,12 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Faq;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Faq>
- */
 class FaqFactory extends Factory
 {
     /**
@@ -45,12 +43,22 @@ class FaqFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->sentence(rand(1, 8));
+        $titleEn = $this->faker->sentence(rand(1, 8));
+        $titleFr = $this->faker->sentence(rand(1, 8));
+        $titleAr = $this->faker->sentence(rand(1, 8));
 
         return [
-            'question' => $title,
+            'question' => [
+                'en' => $titleEn,
+                'fr' => $titleFr,
+                'ar' => $titleAr,
+            ],
             'status' => 'Draft',
-            'answer' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
+            'answer' => [
+                'en' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
+                'fr' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
+                'ar' => '<h1>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h1><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p><h2>' . Str::title($this->faker->words(rand(3, 8), true)) . '</h2><p>' . collect($this->faker->paragraphs(rand(1, 6)))->implode('</p><p>') . '</p>',
+            ],
         ];
     }
 }

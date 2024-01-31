@@ -52,7 +52,6 @@ class AppServiceProvider extends ServiceProvider
         ]);
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch->visible(outsidePanels: true)
-                ->displayLocale('en')
                 ->locales(array_keys(config('app.locales')));
         });
         FilamentShield::configurePermissionIdentifierUsing(

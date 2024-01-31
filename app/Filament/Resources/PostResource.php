@@ -13,14 +13,22 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
+use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\RelationManagers;
+use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
 
 class PostResource extends Resource
 {
+    use Translatable;
+
+    #[Reactive]
+    public ?string $activeLocale = null;
+
     protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -53,10 +61,13 @@ class PostResource extends Resource
                             ->default('Draft')
                             ->options(Status::class)
                             ->required(),
-                        Forms\Components\DatePicker::make('published_at')
+                        Flatpickr::make('published_at')
                             ->label('Publish Date'),
                         Forms\Components\Select::make('topic_id')
                             ->relationship('topic', 'title')
+                            ->getOptionLabelFromRecordUsing(fn ($record) => $record->title)
+                            ->searchable()
+                            ->preload()
                             ->required(),
                         Forms\Components\Select::make('author_id')
                             ->relationship('author', 'name')

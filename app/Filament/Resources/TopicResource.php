@@ -13,14 +13,22 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
+use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\TopicResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
 use App\Filament\Resources\TopicResource\RelationManagers;
 
 class TopicResource extends Resource
 {
+    use Translatable;
+
+    #[Reactive]
+    public ?string $activeLocale = null;
+
     protected static ?string $model = Topic::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -53,7 +61,7 @@ class TopicResource extends Resource
                             ->default('Draft')
                             ->options(Status::class)
                             ->required(),
-                        Forms\Components\DatePicker::make('published_at')
+                        Flatpickr::make('published_at')
                             ->label('Publish Date'),
                         Forms\Components\Textarea::make('excerpt'),
                     ]),

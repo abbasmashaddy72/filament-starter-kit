@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use FilamentAddons\Enums\Status;
+use App\Models\Topic;
 use App\Models\Article;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -13,13 +13,23 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
+use FilamentAddons\Enums\Status;
+use Livewire\Attributes\Reactive;
+use Illuminate\Support\Facades\Log;
 use App\Forms\Components\PageBuilder;
+use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\ArticleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
 use App\Filament\Resources\ArticleResource\RelationManagers;
 
 class ArticleResource extends Resource
 {
+    use Translatable;
+
+    #[Reactive]
+    public ?string $activeLocale = null;
+
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -52,10 +62,33 @@ class ArticleResource extends Resource
                             ->default('Draft')
                             ->options(Status::class)
                             ->required(),
-                        Forms\Components\DatePicker::make('published_at')
+                        Flatpickr::make('published_at')
                             ->label('Publish Date'),
+                        // Forms\Components\Select::make('topic_id')
+                        //     ->relationship('topic', 'title')
+                        //     ->getOptionLabelFromRecordUsing(fn ($record) => $record->title)
+                        //     ->searchable()
+                        //     ->reactive()
+                        //     ->live()
+                        //     ->preload()
+                        //     ->required(),
                         Forms\Components\Select::make('topic_id')
-                            ->relationship('topic', 'title')
+                            ->relationship('topic')
+                            ->getOptionLabelFromRecordUsing(function (Topic $topic, $livewire) {
+                                // Debugging statement
+                                Log::info('Active Locale: ' . $livewire->activeLocale);
+
+                                // Adjust according to your actual implementation
+                                $translatedTitle = $topic->getTranslation('title', $livewire->activeLocale);
+
+                                // Debugging statement
+                                Log::info('Translated Title: ' . $translatedTitle);
+
+                                return $translatedTitle ?? $topic->title; // Fallback to default title if translation is not available
+                            })
+                            ->searchable()
+                            ->preload()
+                            ->live()
                             ->required(),
                         Forms\Components\Select::make('author_id')
                             ->relationship('author', 'name')
