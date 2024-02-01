@@ -3,10 +3,13 @@
 namespace App\Filament\Pages;
 
 use Filament\Forms;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Actions\Action;
 use App\Settings\SitesSettings;
 use Filament\Pages\SettingsPage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Spatie\Sitemap\SitemapGenerator;
 use Filament\Notifications\Notification;
@@ -43,6 +46,8 @@ class SiteSettings extends SettingsPage
                                 ->searchable(),
                             Forms\Components\TextInput::make('location'),
                             Forms\Components\TextInput::make('currency'),
+                            Forms\Components\Select::make('locales')->multiple()
+                                ->options(config('locales'))->searchable(),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),

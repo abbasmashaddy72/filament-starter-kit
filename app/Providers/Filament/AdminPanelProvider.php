@@ -9,6 +9,7 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use LaraZeus\Bolt\BoltPlugin;
 use App\Filament\Pages\Backups;
+use App\Settings\SitesSettings;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\Support\Colors\Color;
 use Hasnayeen\Themes\ThemesPlugin;
@@ -145,11 +146,24 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales(array_keys(config('app.locales'))),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales($this->getLocales()),
                 BoltPlugin::make()
                     ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),
                 FilamentRouteStatisticsPlugin::make(),
             ]);
+    }
+
+    function getLocales(): array
+    {
+        $locales = app(SitesSettings::class)->locales ?? array_keys(config('app.locales'));
+
+        // Remove 'en' if present
+        $locales = array_diff($locales, ['en']);
+
+        // Ensure 'en' is the first element
+        array_unshift($locales, 'en');
+
+        return $locales;
     }
 }
