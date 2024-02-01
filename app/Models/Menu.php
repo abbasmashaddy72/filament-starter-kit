@@ -10,21 +10,20 @@ class Menu extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = ['title', 'items'];
+    public $translatable = ['items'];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        "key",
         "location",
-        "title",
         "items",
         "activated",
     ];
 
     protected $casts = [
-        "items" => "array"
+        "items" => "array",
+        "activated" => 'boolean',
     ];
 }

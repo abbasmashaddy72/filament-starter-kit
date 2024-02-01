@@ -66,14 +66,6 @@ class ArticleResource extends Resource
                             ->required(),
                         Flatpickr::make('published_at')
                             ->label('Publish Date'),
-                        // Forms\Components\Select::make('topic_id')
-                        //     ->relationship('topic', 'title')
-                        //     ->getOptionLabelFromRecordUsing(fn ($record) => $record->title)
-                        //     ->searchable()
-                        //     ->reactive()
-                        //     ->live()
-                        //     ->preload()
-                        //     ->required(),
                         Forms\Components\Select::make('topic_id')
                             ->relationship('topic')
                             ->getOptionLabelFromRecordUsing(function (Topic $topic, $livewire) {

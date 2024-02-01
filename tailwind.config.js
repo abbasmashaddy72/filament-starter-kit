@@ -3,7 +3,11 @@ const plugin = require("tailwindcss/plugin");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-    content: ["./resources/**/*.blade.php"],
+    content: [
+        "./resources/**/*.blade.php",
+        "./vendor/lara-zeus/core/resources/views/**/*.blade.php",
+        "./vendor/lara-zeus/bolt/resources/views/themes/**/*.blade.php",
+    ],
     darkMode: "class",
     theme: {
         extend: {

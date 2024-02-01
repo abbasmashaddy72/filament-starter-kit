@@ -2,13 +2,14 @@
 
 namespace App\Forms\Components;
 
-use App\Forms\Blocks\RichText;
-use App\Forms\Blocks\Tabs;
 use Closure;
-use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Repeater;
+use App\Forms\Blocks\Tabs;
+use App\Forms\Blocks\RichText;
+use App\Forms\Blocks\SelectForm;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Repeater;
 
 class PageBuilder
 {
@@ -40,6 +41,7 @@ class PageBuilder
                     ->blocks([
                         RichText::make(),
                         Tabs::make(),
+                        SelectForm::make(),
                     ]),
             ])->columnSpanFull();
     }

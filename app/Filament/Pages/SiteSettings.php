@@ -17,6 +17,7 @@ use Guava\FilamentIconPicker\Forms\IconPicker;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use Tapp\FilamentTimezoneField\Forms\Components\TimezoneSelect;
+use Parfaitementweb\FilamentCountryField\Forms\Components\Country;
 
 class SiteSettings extends SettingsPage
 {
@@ -44,10 +45,13 @@ class SiteSettings extends SettingsPage
                             Forms\Components\FileUpload::make('light_logo'),
                             TimezoneSelect::make('timezone')
                                 ->searchable(),
-                            Forms\Components\TextInput::make('location'),
-                            Forms\Components\TextInput::make('currency'),
+                            Country::make('location')
+                                ->searchable(),
+                            Forms\Components\Select::make('currency')
+                                ->searchable()
+                                ->options(config('main.currencies')),
                             Forms\Components\Select::make('locales')->multiple()
-                                ->options(config('locales'))->searchable(),
+                                ->options(config('main.locales'))->searchable(),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),

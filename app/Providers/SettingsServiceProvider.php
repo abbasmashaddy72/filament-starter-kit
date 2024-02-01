@@ -22,7 +22,7 @@ class SettingsServiceProvider extends ServiceProvider
         config(['app.name' => $siteSettings->name ?? config('app.name')]);
         config(['app.timezone' => $siteSettings->timezone ?? config('app.timezone')]);
         // Get the locales from the config file
-        $localesConfig = config('locales');
+        $localesConfig = config('main.locales');
 
         // If $siteSettings->locales is not empty, create an associative array with key-value pairs
         $localesAssociative = !empty($siteSettings->locales)

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             // Add the shield:install --fresh command here
             exec('yes | php artisan shield:install --fresh');
             $this->call([
+                MenuSeeder::class,
                 ShieldSeeder::class,
                 UserSeeder::class,
                 FaqSeeder::class,

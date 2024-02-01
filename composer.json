@@ -41,6 +41,7 @@
         "laravel/tinker": "^2.8",
         "omar-haris/filament-timezone-field": "^1.0",
         "owen-it/laravel-auditing": "^13.6",
+        "parfaitementweb/filament-country-field": "^2.0",
         "pxlrbt/filament-environment-indicator": "^2.0",
         "rappasoft/laravel-authentication-log": "^3.0",
         "rickdbcn/filament-email": "^1.0",
