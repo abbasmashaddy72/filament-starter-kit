@@ -7,9 +7,11 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./vendor/lara-zeus/core/resources/views/**/*.blade.php",
         "./vendor/lara-zeus/bolt/resources/views/themes/**/*.blade.php",
+        "./node_modules/flowbite/**/*.js",
     ],
     darkMode: "class",
     important: true,
+    jit: true,
     theme: {
         screens: {
             xs: "540px",
@@ -81,6 +83,7 @@ module.exports = {
             strategy: "class", // only generate classes
         }),
         require("@tailwindcss/typography"),
+        require("flowbite/plugin"),
         plugin(function ({ addUtilities, theme }) {
             addUtilities({
                 ".filament-gradient": {

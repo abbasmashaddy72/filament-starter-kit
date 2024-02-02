@@ -8,9 +8,10 @@
         <x-curator-glider class="absolute inset-0 z-0 object-cover w-full h-full opacity-20" :media="$media->id"
             :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" height="{{ $media->height }}"
             width="{{ $media->width }}" />
-        <div class="container z-10">
-            <p class="text-2xl font-bold text-center text-white md:text-3xl lg:text-5xl drop-shadow-md">
-                {{ $cta }}</p>
+        <div class="container z-10 hero">
+            <x-prose>
+                {!! $cta !!}
+            </x-prose>
         </div>
     @elseif ($type == 'oembed' && ($media || $cta))
         @php

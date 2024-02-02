@@ -78,7 +78,7 @@
     {{ $slot }}
 
     <x-footers.default :siteSettings="$siteSettings" :menu='$menu' />
-
+    <x-switch />
     @livewireScripts
 
     @stack('scripts')

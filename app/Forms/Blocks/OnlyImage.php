@@ -25,31 +25,13 @@ class OnlyImage
                     TextInput::make('title')
                         ->required(),
                     Textarea::make('message'),
-                    Select::make('data')
-                        ->searchable()
-                        ->native(false)
-                        ->options(config('main.models')),
-                    TextInput::make('count')
-                        ->numeric(),
+                    TextInput::make('video_url')
+                        ->required(),
+                    CuratorPicker::make('image')
+                        ->label('Image'),
+                    TextInput::make('button_text'),
+                    TextInput::make('button_url'),
                 ])->columns(2),
-                Repeater::make('items')
-                    ->schema([
-                        Group::make()->schema([
-                            TextInput::make('video_url')
-                                ->required(),
-                            CuratorPicker::make('image')
-                                ->label('Image'),
-                        ])->columns(2),
-                        TiptapEditor::make('content')
-                            ->profile('minimal')
-                            ->columnSpanFull()
-                            ->required(),
-                    ])->grid([
-                        'default' => 1,
-                        'md' => 2,
-                        'xl' => 3,
-                        '2xl' => 3,
-                    ]),
             ]);
     }
 }

@@ -42,6 +42,7 @@ class PageBuilder
                         'gray' => 'Gray',
                         'light-gray' => 'Light Gray',
                         'white' => 'White',
+                        'half' => 'Half',
                     ]),
                 Builder::make('blocks')
                     ->blocks([

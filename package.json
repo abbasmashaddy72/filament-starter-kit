@@ -23,6 +23,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "remixicon": "^4.1.0"
+        "flowbite": "^2.2.1",
+        "remixicon": "^4.1.0",
+        "tobii": "^2.0.0-alpha"
     }
 }

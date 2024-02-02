@@ -10,3 +10,5 @@ Alpine.start();
 
 import "./custom";
 import "./plugins.init";
+
+import 'flowbite';

@@ -13,6 +13,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Builder\Block;
+use Guava\FilamentIconPicker\Forms\IconPicker;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 
 class Cards
@@ -34,9 +35,16 @@ class Cards
                 ])->columns(2),
                 Repeater::make('items')
                     ->schema([
-                        TextInput::make('title')
-                            ->required(),
                         Group::make()->schema([
+                            TextInput::make('title')
+                                ->required(),
+                            IconPicker::make('icon')
+                                ->sets(['remix'])
+                                ->columns([
+                                    'default' => 1,
+                                    'lg' => 3,
+                                    '2xl' => 5,
+                                ]),
                             TextInput::make('button_text'),
                             TextInput::make('button_url'),
                             CuratorPicker::make('image')

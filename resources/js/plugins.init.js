@@ -11,11 +11,15 @@
 //=========================================//
 /*/*            01) Tobii lightbox         */
 //=========================================//
+import Tobii from "tobii";
 
 try {
-    const tobii = new Tobii();
-} catch (err) {}
-
+    const tobii = new Tobii({
+        /* options */
+    });
+} catch (err) {
+    console.error("Error initializing Tobii:", err);
+}
 //=========================================//
 /*/*            03) Data Counter           */
 //=========================================//

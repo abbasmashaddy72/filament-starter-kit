@@ -230,7 +230,7 @@ return [
         'Topic' => 'Topic',
     ],
     'font' => [
-        'url' => 'https://fonts.googleapis.com/css2?family=Single+Day&family=Sixtyfour&display=swap',
-        'family' => 'Single Day'
+        'url' => 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sixtyfour&display=swap',
+        'family' => 'Inter'
     ],
 ];

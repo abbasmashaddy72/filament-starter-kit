@@ -24,40 +24,19 @@ class ImageText
                 Group::make()->schema([
                     TextInput::make('title')
                         ->required(),
-                    Textarea::make('message'),
-                    Select::make('data')
-                        ->searchable()
-                        ->native(false)
-                        ->options(config('main.models')),
-                    TextInput::make('count')
-                        ->numeric(),
-                ])->columns(2),
-                Repeater::make('items')
-                    ->schema([
-                        TextInput::make('title')
-                            ->required(),
-                        Group::make()->schema([
-                            TextInput::make('button_text'),
-                            TextInput::make('button_url'),
-                            CuratorPicker::make('image')
-                                ->label('Image'),
-                            Select::make('image_location')
-                                ->options([
-                                    'left' => 'Left',
-                                    'right' => 'Right',
-                                ])
-                                ->native(false),
-                        ])->columns(2),
-                        TiptapEditor::make('content')
-                            ->profile('minimal')
-                            ->columnSpanFull()
-                            ->required(),
-                    ])->grid([
-                        'default' => 1,
-                        'md' => 2,
-                        'xl' => 3,
-                        '2xl' => 3,
-                    ]),
+                    CuratorPicker::make('image')
+                        ->label('Image'),
+                    Select::make('image_location')
+                        ->options([
+                            'left' => 'Left',
+                            'right' => 'Right',
+                        ])
+                        ->native(false),
+                    TiptapEditor::make('content')
+                        ->profile('default')
+                        ->columnSpanFull()
+                        ->required(),
+                ])->columns(3)
             ]);
     }
 }
