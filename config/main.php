@@ -222,5 +222,11 @@ return [
         'blogs' => 'Blogs',
         'faqs' => 'FAQs',
         'sitemap' => 'Sitemap',
-    ]
+    ],
+    'models' => [
+        'Article' => 'Article',
+        'Faq' => 'Faq',
+        'Post' => 'Post',
+        'Topic' => 'Topic',
+    ],
 ];

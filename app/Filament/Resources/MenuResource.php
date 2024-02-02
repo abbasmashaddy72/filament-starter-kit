@@ -31,6 +31,11 @@ class MenuResource extends Resource
 
     protected static ?string $navigationGroup = 'CMS';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Form $form): Form
     {
         $configMenu = config('main.menu');
@@ -53,7 +58,7 @@ class MenuResource extends Resource
                             ->default('header'),
                         Forms\Components\Toggle::make('activated')
                             ->required(),
-                    ]),
+                    ])->columns(2),
                     Forms\Components\Group::make()
                         ->schema([
                             Forms\Components\Section::make('Items')
@@ -73,10 +78,15 @@ class MenuResource extends Resource
                                             Forms\Components\Toggle::make('blank')
                                                 ->label("Open on new window")
                                                 ->required(),
-                                        ])->columns(3),
+                                        ])->grid([
+                                            'default' => 1,
+                                            'md' => 2,
+                                            'xl' => 3,
+                                            '2xl' => 3,
+                                        ]),
                                 ]),
                         ]),
-                ])->columns(2),
+                ]),
             ]);
     }
 

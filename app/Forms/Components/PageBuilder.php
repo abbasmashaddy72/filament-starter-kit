@@ -3,9 +3,15 @@
 namespace App\Forms\Components;
 
 use Closure;
+use Filament\Forms\Set;
 use App\Forms\Blocks\Tabs;
+use App\Forms\Blocks\Cards;
 use App\Forms\Blocks\RichText;
+use App\Forms\Blocks\Accordion;
+use App\Forms\Blocks\ImageText;
+use App\Forms\Blocks\OnlyImage;
 use App\Forms\Blocks\SelectForm;
+use App\Forms\Blocks\OtherSections;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Builder;
@@ -21,7 +27,7 @@ class PageBuilder
                 Toggle::make('full_width')
                     ->default(false)
                     ->reactive()
-                    ->afterStateUpdated(function (Closure $set, $state) {
+                    ->afterStateUpdated(function (Set $set, $state) {
                         if ($state === false) {
                             return $set('bg_color', '');
                         }
@@ -42,6 +48,10 @@ class PageBuilder
                         RichText::make(),
                         Tabs::make(),
                         SelectForm::make(),
+                        Accordion::make(),
+                        Cards::make(),
+                        ImageText::make(),
+                        OnlyImage::make(),
                     ]),
             ])->columnSpanFull();
     }

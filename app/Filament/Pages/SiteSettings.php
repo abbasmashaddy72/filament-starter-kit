@@ -80,7 +80,12 @@ class SiteSettings extends SettingsPage
                                     ]),
                                 Forms\Components\TextInput::make('platform'),
                                 Forms\Components\TextInput::make('link')->url(),
-                            ])->columns(3),
+                            ])->grid([
+                                'default' => 1,
+                                'md' => 2,
+                                'xl' => 3,
+                                '2xl' => 3,
+                            ]),
                         ]),
                     ])->columns(2),
                 ]),

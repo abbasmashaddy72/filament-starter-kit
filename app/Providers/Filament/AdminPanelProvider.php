@@ -41,6 +41,7 @@ use SolutionForest\FilamentFirewall\FilamentFirewallPanel;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use BezhanSalleh\FilamentExceptions\FilamentExceptionsPlugin;
 use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
+use SolutionForest\FilamentSimpleLightBox\SimpleLightBoxPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 use Amendozaaguiar\FilamentRouteStatistics\FilamentRouteStatisticsPlugin;
@@ -78,6 +79,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Overlook\Widgets\OverlookWidget::class,
             ])
+            ->databaseNotifications()
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -151,6 +153,7 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),
                 FilamentRouteStatisticsPlugin::make(),
+                SimpleLightBoxPlugin::make(),
             ]);
     }
 
