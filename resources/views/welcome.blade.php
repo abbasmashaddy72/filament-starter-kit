@@ -1,8 +1,8 @@
 <x-layouts.base :meta="$page->meta">
-
+    {{--
     @section('header')
         <x-headers.default />
-    @endsection
+    @endsection --}}
 
     @section('hero')
         <x-hero :data="$page->hero" />
@@ -14,8 +14,8 @@
         @endif
     </div>
 
-    @section('footer')
+    {{-- @section('footer')
         <x-footers.default />
-    @endsection
+    @endsection --}}
 
 </x-layouts.base>

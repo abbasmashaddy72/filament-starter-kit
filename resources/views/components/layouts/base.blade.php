@@ -7,10 +7,16 @@
     $description = $meta->description ? $meta->description : config('app.description');
     $robots = $meta->robots ? 'index,follow' : 'noindex,nofollow';
     $ogImage = $meta->ogImage ? $meta->ogImage : null;
+
+    $fontConfig = config('main.font');
+    if (!empty($fontConfig) && !empty($fontConfig['url']) && !empty($fontConfig['family'])) {
+        $fontsUrl = $fontConfig['url'];
+        $fontFamily = $fontConfig['family'];
+    }
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full light scroll-smooth" dir="ltr">
 
 <head>
     <meta charset="utf-8" />
@@ -45,37 +51,37 @@
 
     @yield('meta')
 
-    @if (filled($fontsUrl = config('filament.google_fonts')))
+    @if (!empty($fontsUrl))
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="{{ $fontsUrl }}" rel="stylesheet" />
+
+        <style>
+            body {
+                font-family: '{{ $fontFamily }}', 'sans-serif';
+            }
+        </style>
     @endif
 
     @stack('styles')
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
-<body class="h-full font-sans text-gray-100 bg-gray-900">
+<body class="text-base text-slate-950 dark:text-white dark:bg-slate-900">
+    <x-skip-link />
 
-    <div class="flex flex-col h-full">
-        <x-skip-link />
-        @yield('header')
+    <x-headers.default :siteSettings="$siteSettings" :menu='$menu' />
 
-        <main id="site-main" class="flex-1">
-            @yield('hero')
-            <div id="site-main-content">
-                {{ $slot }}
-            </div>
-        </main>
+    @yield('hero')
 
-        @yield('footer')
-    </div>
+    {{ $slot }}
+
+    <x-footers.default :siteSettings="$siteSettings" :menu='$menu' />
 
     @livewireScripts
 
     @stack('scripts')
-
 </body>
 
 </html>

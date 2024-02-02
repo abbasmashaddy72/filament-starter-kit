@@ -53,6 +53,7 @@ class MenuResource extends Resource
                                 'header' => 'Header',
                                 'footer1' => 'Footer 1',
                                 'footer2' => 'Footer 2',
+                                'headerButtons' => 'Header Button',
                             ])
                             ->required()
                             ->default('header'),

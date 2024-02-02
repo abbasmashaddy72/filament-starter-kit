@@ -7,3 +7,6 @@ Alpine.plugin(Focus);
 Alpine.plugin(AlpineFloatingUi);
 
 Alpine.start();
+
+import "./custom";
+import "./plugins.init";

@@ -229,4 +229,8 @@ return [
         'Post' => 'Post',
         'Topic' => 'Topic',
     ],
+    'font' => [
+        'url' => 'https://fonts.googleapis.com/css2?family=Single+Day&family=Sixtyfour&display=swap',
+        'family' => 'Single Day'
+    ],
 ];
