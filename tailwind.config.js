@@ -22,9 +22,9 @@ module.exports = {
             lg_992: "992px",
         },
         fontFamily: {
-            // 'rubik': ['"Rubik", sans-serif'],
             lexend: ['"Lexend", sans-serif'],
             inter: ['"Inter", sans-serif'],
+            mono: ['"monospace", sans-serif'],
         },
         container: {
             center: true,

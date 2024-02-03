@@ -149,6 +149,10 @@ ul.checked-list li::marker {
     }
 }
 
+.filament-tiptap-grid-builder {
+    @apply grid;
+}
+
 .prose h1,
 .prose h2,
 .prose h3,
@@ -165,8 +169,4 @@ ul.checked-list li::marker {
 .hero .prose h5,
 .hero .prose h6 {
     @apply text-gray-300;
-}
-
-.fi-btn {
-    @apply bg-primary-600 text-white;
 }
