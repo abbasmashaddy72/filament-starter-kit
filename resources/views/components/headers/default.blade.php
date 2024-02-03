@@ -21,7 +21,7 @@
                     @foreach ($items as $translation)
                         <li class="inline">
                             <a href="{{ $translation['url'] }}"
-                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out bg-yellow-400 border border-yellow-400 rounded-md hover:bg-yellow-500 hover:border-yellow-500">
+                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out bg-primary-400 border border-primary-400 rounded-md hover:bg-primary-500 hover:border-primary-500">
                                 {{ $translation['title'] }}
                             </a>
                         </li>

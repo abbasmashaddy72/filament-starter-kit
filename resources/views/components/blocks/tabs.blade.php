@@ -27,7 +27,7 @@
                 <button :id="$id('tab', whichChild($el.parentElement, $refs.tablist))" @click="select($el.id)"
                     @mousedown.prevent @focus="select($el.id)" type="button" :tabindex="isSelected($el.id) ? 0 : -1"
                     :aria-selected="isSelected($el.id)"
-                    :class="isSelected($el.id) ? 'border-yellow-500' : 'border-transparent'"
+                    :class="isSelected($el.id) ? 'border-primary-500' : 'border-transparent'"
                     class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                     role="tab">{{ $tab }}</button>
             </li>

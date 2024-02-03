@@ -51,7 +51,7 @@
                         @foreach ($siteSettings->social as $item)
                             <li class="inline">
                                 <a href="{{ $item['link'] }}" target="_blank"
-                                    class="inline-flex items-center justify-center w-8 h-8 text-base font-normal tracking-wide text-center align-middle transition duration-500 ease-in-out border border-gray-800 rounded-md hover:border-yellow-400 dark:hover:border-yellow-400 hover:bg-yellow-400 dark:hover:bg-yellow-400">
+                                    class="inline-flex items-center justify-center w-8 h-8 text-base font-normal tracking-wide text-center align-middle transition duration-500 ease-in-out border border-gray-800 rounded-md hover:border-primary-400 dark:hover:border-primary-400 hover:bg-primary-400 dark:hover:bg-primary-400">
                                     <i class="align-middle {{ $item['icon'] }}"
                                         title="{{ ucfirst($item['platform']) }}"></i>
                                 </a>

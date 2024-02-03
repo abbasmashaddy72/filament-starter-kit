@@ -63,6 +63,15 @@
         </style>
     @endif
 
+    <style>
+        :root {
+            @foreach ($cssVariables ?? [] as $cssVariableName => $cssVariableValue)
+        --{{ $cssVariableName }}: {{ $cssVariableValue }};
+        @endforeach
+        }
+    </style>
+
+
     @stack('styles')
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
     @livewireStyles

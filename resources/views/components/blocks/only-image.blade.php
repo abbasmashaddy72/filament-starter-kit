@@ -9,7 +9,7 @@
                     <div class="absolute text-center bottom-2/4 translate-y-2/4 end-0 start-0">
                         <a href="#!" data-type="youtube"
                             data-id="{{ $videoId = preg_replace('/.*[?&]v=([^&]+).*/', '$1', $data['video_url']) }}"
-                            class="inline-flex items-center justify-center w-16 h-16 mx-auto text-yellow-400 duration-500 ease-in-out bg-white rounded-full shadow-lg lightbox lg:h-20 lg:w-20 dark:shadow-gray-800 hover:bg-yellow-400 hover:text-white">
+                            class="inline-flex items-center justify-center w-16 h-16 mx-auto duration-500 ease-in-out bg-white rounded-full shadow-lg text-primary-400 lightbox lg:h-20 lg:w-20 dark:shadow-gray-800 hover:bg-primary-400 hover:text-white">
                             <i class="inline-flex items-center justify-center text-3xl ri-play-fill"></i>
                         </a>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="section-title text-md-start">
                             <p class="max-w-xl mx-auto mb-2 text-gray-50">{{ $data['message'] }}</p>
                             <a href="{{ $data['button_url'] }}"
-                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out bg-blue-600 border border-blue-600 rounded-md hover:bg-blue-500 hover:border-blue-500">
+                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out border rounded-md bg-info-600 border-info-600 hover:bg-info-500 hover:border-info-500">
                                 {{ $data['button_text'] }}
                             </a>
                         </div>

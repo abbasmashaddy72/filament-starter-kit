@@ -15,7 +15,7 @@
             @endif
         </div>
         @if ($container['bg_color'] == 'half')
-            <div class="absolute bottom-0 bg-yellow-400 end-0 start-0 h-4/5 md:h-2/3"></div>
+            <div class="absolute bottom-0 bg-primary-400 end-0 start-0 h-4/5 md:h-2/3"></div>
         @endif
     </section>
 @endforeach

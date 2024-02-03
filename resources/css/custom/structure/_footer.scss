@@ -5,10 +5,10 @@
 /*===============================*/
 .footer {
     .foot-subscribe {
-        input{
-            &::placeholder{
+        input {
+            &::placeholder {
                 @apply text-gray-200;
             }
         }
-    } 
+    }
 }

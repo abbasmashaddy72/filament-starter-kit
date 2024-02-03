@@ -5,11 +5,11 @@
 </div>
 
 <div id="accordion-color" data-accordion="collapse"
-    data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
+    data-active-classes="bg-primary-100 dark:bg-gray-800 text-primary-600 dark:text-white">
     @foreach ($data['items'] as $item)
         <h2 id="accordion-color-heading-{{ $loop->index }}">
             <button type="button"
-                class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-gray-200 rtl:text-right focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 @if ($loop->first) rounded-t-xl @endif @if (!$loop->last) border-b-0 @endif"
+                class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-gray-200 rtl:text-right focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-800 dark:border-gray-700 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-gray-800 @if ($loop->first) rounded-t-xl @endif @if (!$loop->last) border-b-0 @endif"
                 data-accordion-target="#accordion-color-body-{{ $loop->index }}" aria-expanded="true"
                 aria-controls="accordion-color-body-{{ $loop->index }}">
                 <span class="flex items-center"><svg class="w-5 h-5 me-2 shrink-0" fill="currentColor"

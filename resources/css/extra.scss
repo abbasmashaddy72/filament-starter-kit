@@ -34,10 +34,19 @@ ul.checked-list li {
 ul.checked-list li::marker {
     content: "✓";
     font-size: 1.5rem;
-    color: theme("colors.accent.500");
+    color: theme("colors.primary.500");
     flex-shrink: 0;
     line-height: 1;
     font-weight: 700;
+}
+
+.filament-gradient {
+    background-image: radial-gradient(
+        circle at top,
+        theme("colors.primary.800"),
+        theme("colors.gray.800"),
+        theme("colors.gray.900") 100%
+    );
 }
 
 .filament-tiptap-grid {
