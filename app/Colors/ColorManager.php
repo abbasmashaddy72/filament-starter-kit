@@ -3,8 +3,9 @@
 namespace App\Colors;
 
 use Closure;
-use App\Concerns\EvaluatesClosures;
 use Spatie\Color\Hex;
+use App\Settings\SitesSettings;
+use App\Concerns\EvaluatesClosures;
 
 class ColorManager
 {
@@ -80,11 +81,15 @@ class ColorManager
      */
     public function getColors(): array
     {
+        $rawPrimaryColor = app(SitesSettings::class)->primary_color;
+
+        $resolvedColor = constant("App\\Colors\\Color::$rawPrimaryColor") ?? Color::Amber;
+
         $colors = [
             'danger' => Color::Red,
             'gray' => Color::Zinc,
             'info' => Color::Blue,
-            'primary' => Color::Amber,
+            'primary' => $resolvedColor,
             'success' => Color::Green,
             'warning' => Color::Amber,
         ];

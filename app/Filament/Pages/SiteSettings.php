@@ -3,9 +3,11 @@
 namespace App\Filament\Pages;
 
 use Filament\Forms;
+use App\Colors\Color;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
+use Illuminate\Support\Arr;
 use Filament\Actions\Action;
 use App\Settings\SitesSettings;
 use Filament\Pages\SettingsPage;
@@ -52,6 +54,10 @@ class SiteSettings extends SettingsPage
                                 ->options(config('main.currencies')),
                             Forms\Components\Select::make('locales')->multiple()
                                 ->options(config('main.locales'))->searchable(),
+                            Forms\Components\Select::make('primary_color')
+                                ->options($this->getColors())
+                                ->allowHtml()
+                                ->searchable(),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),
@@ -101,4 +107,37 @@ class SiteSettings extends SettingsPage
             ->success()
             ->send();
     }
+
+    public function getColors()
+    {
+        $colors = Arr::except(Color::all(), ['gray', 'zinc', 'neutral', 'stone']);
+        $filteredColors = [];
+
+        foreach ($colors as $colorName => $shades) {
+            if (isset($shades[500])) {
+                $filteredColors[ucfirst($colorName)] = "<div class=\"bg-{$colorName}-500 p-2 flex items-center w-full rounded-md\">" . ucfirst($colorName) . "</div>";
+            }
+        }
+
+        return $filteredColors;
+    }
 }
+
+// bg-slate-500
+// bg-red-500
+// bg-orange-500
+// bg-amber-500
+// bg-yellow-500
+// bg-lime-500
+// bg-green-500
+// bg-emerald-500
+// bg-teal-500
+// bg-cyan-500
+// bg-sky-500
+// bg-blue-500
+// bg-indigo-500
+// bg-violet-500
+// bg-purple-500
+// bg-fuchsia-500
+// bg-pink-500
+// bg-rose-500

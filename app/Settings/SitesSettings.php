@@ -20,6 +20,7 @@ class SitesSettings extends Settings
     public ?string $location;
     public ?string $currency;
     public ?array $social;
+    public ?string $primary_color;
 
     public static function group(): string
     {
