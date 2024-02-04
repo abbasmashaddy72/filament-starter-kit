@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         if (config('app.env') == 'production') {
+            // Add the shield:install --fresh command here
+            exec('yes | php artisan shield:install --fresh');
             $this->call([
                 ShieldSeeder::class,
                 UserSeeder::class,

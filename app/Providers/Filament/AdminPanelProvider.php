@@ -35,6 +35,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Kenepa\ResourceLock\Resources\ResourceLockResource;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Yebor974\Filament\RenewPassword\RenewPasswordPlugin;
+use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use SolutionForest\FilamentFirewall\FilamentFirewallPanel;
@@ -93,7 +94,8 @@ class AdminPanelProvider extends PanelProvider
                 SetTheme::class,
             ])
             ->authMiddleware([
-                Authenticate::class,
+                'auth',
+                Locker::class,
             ])->spa()
             ->maxContentWidth(MaxWidth::Full)
             ->sidebarCollapsibleOnDesktop()
