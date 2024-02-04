@@ -18,12 +18,11 @@ class FaqController extends Controller
                 $tags->forget($tag->getKey());
 
                 return;
-            } else {
-                return collect([
-                    'tag' => $tag,
-                    'faqs' => $fqs,
-                ]);
             }
+            return collect([
+                'tag' => $tag,
+                'faqs' => $fqs,
+            ]);
         });
 
         $faqs = $faqs->filter(function ($item) {

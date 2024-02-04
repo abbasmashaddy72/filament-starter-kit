@@ -2,11 +2,9 @@
 
 namespace App\Components;
 
-use Closure;
 use Filament\Forms;
 use Filament\Forms\Get;
 use FilamentAddons\Forms as AddonForms;
-use FilamentCurator\Forms as CuratorForms;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use FilamentTiptapEditor\TiptapEditor;
 

@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Log;
 use App\Forms\Components\PageBuilder;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\ArticleResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
-use App\Filament\Resources\ArticleResource\RelationManagers;
 
 class ArticleResource extends Resource
 {

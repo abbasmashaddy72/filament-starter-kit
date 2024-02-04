@@ -17,11 +17,12 @@ class Tabs extends Component
      */
     public function __construct(array $data)
     {
-        if ($data['items']) {
-            foreach ($data['items'] as $tab) {
-                $this->tabs[] = $tab['title'];
-                $this->panels[] = $tab['content'];
-            }
+        if (!$data['items']) {
+            return;
+        }
+        foreach ($data['items'] as $tab) {
+            $this->tabs[] = $tab['title'];
+            $this->panels[] = $tab['content'];
         }
     }
 

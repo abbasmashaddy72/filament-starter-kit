@@ -4,7 +4,6 @@ namespace App\Components;
 
 use Filament\Forms;
 use Illuminate\Support\Str;
-use FilamentCurator\Forms as CuratorForms;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 
 class Meta

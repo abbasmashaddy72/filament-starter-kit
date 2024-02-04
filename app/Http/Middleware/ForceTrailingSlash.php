@@ -19,12 +19,10 @@ class ForceTrailingSlash
     {
         $currentPath = $request->getRequestUri();
 
-        if ($currentPath !== '/' && !Str::of($currentPath)->contains('/admin/') && !Str::of($currentPath)->contains('?')) {
-            if (!preg_match('/.+\/$/', $currentPath)) {
-                $base_url = config('app.url');
+        if ($currentPath !== '/' && !Str::of($currentPath)->contains('/admin/') && !Str::of($currentPath)->contains('?') && !preg_match('/.+\/$/', $currentPath)) {
+            $base_url = config('app.url');
 
-                return redirect($base_url . $currentPath . '/');
-            }
+            return redirect($base_url . $currentPath . '/');
         }
 
         return $next($request);

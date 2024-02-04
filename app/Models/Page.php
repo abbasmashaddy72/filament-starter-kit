@@ -52,31 +52,33 @@ class Page extends Model
     protected static function booted()
     {
         static::creating(function ($page) {
-            if ($page->front_page) {
-                $oldFrontPage = Page::where('front_page', true)->first();
-                if ($oldFrontPage) {
-                    $oldFrontPage->update([
-                        'front_page' => false,
-                    ]);
-                }
-
-                $page->status = 'Published';
-                $page->layout = 'full';
+            if (!$page->front_page) {
+                return;
             }
+            $oldFrontPage = Page::where('front_page', true)->first();
+            if ($oldFrontPage) {
+                $oldFrontPage->update([
+                    'front_page' => false,
+                ]);
+            }
+
+            $page->status = 'Published';
+            $page->layout = 'full';
         });
 
         static::updating(function ($page) {
-            if ($page->front_page) {
-                $oldFrontPage = Page::where('front_page', true)->first();
-                if ($oldFrontPage && $oldFrontPage->id !== $page->id) {
-                    $oldFrontPage->update([
-                        'front_page' => false,
-                    ]);
-                }
-
-                $page->status = 'Published';
-                $page->layout = 'full';
+            if (!$page->front_page) {
+                return;
             }
+            $oldFrontPage = Page::where('front_page', true)->first();
+            if ($oldFrontPage && $oldFrontPage->id !== $page->id) {
+                $oldFrontPage->update([
+                    'front_page' => false,
+                ]);
+            }
+
+            $page->status = 'Published';
+            $page->layout = 'full';
         });
     }
 

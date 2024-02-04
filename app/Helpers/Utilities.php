@@ -2,12 +2,8 @@
 
 use App\Colors\Color;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use App\Settings\SitesSettings;
-use Illuminate\Container\Container;
-use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('random_password')) {
     function random_password(): string

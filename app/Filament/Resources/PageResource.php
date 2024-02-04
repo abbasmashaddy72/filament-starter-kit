@@ -17,11 +17,8 @@ use FilamentAddons\Enums\Status;
 use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\PageResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PageResource\RelationManagers;
 
 class PageResource extends Resource
 {

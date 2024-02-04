@@ -15,12 +15,9 @@ use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
 use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\TopicResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
-use App\Filament\Resources\TopicResource\RelationManagers;
 
 class TopicResource extends Resource
 {

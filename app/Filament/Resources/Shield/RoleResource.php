@@ -239,20 +239,21 @@ class RoleResource extends Resource implements HasShieldPermissions
     public static function setPermissionStateForRecordPermissions(Component $component, string $operation, array $permissions, ?Model $record): void
     {
 
-        if (in_array($operation, ['edit', 'view'])) {
+        if (!in_array($operation, ['edit', 'view'])) {
+            return;
+        }
 
-            if (blank($record)) {
-                return;
-            }
-            if ($component->isVisible() && count($permissions) > 0) {
-                $component->state(
-                    collect($permissions)
-                        /** @phpstan-ignore-next-line */
-                        ->filter(fn ($value, $key) => $record->checkPermissionTo($key))
-                        ->keys()
-                        ->toArray()
-                );
-            }
+        if (blank($record)) {
+            return;
+        }
+        if ($component->isVisible() && count($permissions) > 0) {
+            $component->state(
+                collect($permissions)
+                    /** @phpstan-ignore-next-line */
+                    ->filter(fn ($value, $key) => $record->checkPermissionTo($key))
+                    ->keys()
+                    ->toArray()
+            );
         }
     }
 

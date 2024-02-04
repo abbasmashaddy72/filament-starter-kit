@@ -23,10 +23,9 @@ class Menu extends Component
             return view($this->view, [
                 "menu" => $items
             ]);
-        } else {
-            return view('livewire.menu', [
-                "menu" => $items
-            ]);
         }
+        return view('livewire.menu', [
+            "menu" => $items
+        ]);
     }
 }

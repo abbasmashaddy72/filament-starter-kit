@@ -15,11 +15,8 @@ use Filament\Resources\Resource;
 use FilamentAddons\Enums\Status;
 use Livewire\Attributes\Reactive;
 use App\Forms\Components\PageBuilder;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\PostResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PostResource\RelationManagers;
 use Coolsam\FilamentFlatpickr\Forms\Components\Flatpickr;
 
 class PostResource extends Resource

@@ -55,23 +55,26 @@ class ColorManager
             return Color::rgb($color);
         }
 
-        if (is_array($color)) {
-            return array_map(function (string $color): string {
-                if (str_starts_with($color, '#')) {
-                    $color = Hex::fromString($color)->toRgb();
+        if (!is_array($color)) {
 
-                    return "{$color->red()}, {$color->green()}, {$color->blue()}";
-                }
-
-                if (str_starts_with($color, 'rgb')) {
-                    return (string) str($color)
-                        ->after('rgb(')
-                        ->before(')');
-                }
-
-                return $color;
-            }, $color);
+            return $color;
         }
+        return array_map(function (string $color): string {
+            if (str_starts_with($color, '#')) {
+                $color = Hex::fromString($color)->toRgb();
+
+                return "{$color->red()}, {$color->green()}, {$color->blue()}";
+            }
+
+            if (str_starts_with($color, 'rgb')) {
+                return (string) str($color)
+                    ->after('rgb(')
+                    ->before(')');
+            }
+
+            return $color;
+        }, $color);
+
 
         return $color;
     }

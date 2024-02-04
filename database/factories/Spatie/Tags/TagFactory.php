@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Spatie\Tags;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

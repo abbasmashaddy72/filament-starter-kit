@@ -10,13 +10,8 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Livewire\Attributes\Reactive;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\MenuResource\Pages;
-use Guava\FilamentIconPicker\Forms\IconPicker;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\MenuResource\RelationManagers;
 
 class MenuResource extends Resource
 {
