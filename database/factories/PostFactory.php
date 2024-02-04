@@ -71,7 +71,6 @@ class PostFactory extends Factory
             'content' => [
                 'en' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -85,7 +84,6 @@ class PostFactory extends Factory
                 ],
                 'fr' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -99,7 +97,6 @@ class PostFactory extends Factory
                 ],
                 'ar' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [

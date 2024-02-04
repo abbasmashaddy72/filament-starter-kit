@@ -150,25 +150,12 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales($this->getLocales()),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales(getLocales()),
                 BoltPlugin::make()
                     ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),
                 FilamentRouteStatisticsPlugin::make(),
                 SimpleLightBoxPlugin::make(),
             ]);
-    }
-
-    function getLocales(): array
-    {
-        $locales = app(SitesSettings::class)->locales ?? array_keys(config('app.locales'));
-
-        // Remove 'en' if present
-        $locales = array_diff($locales, ['en']);
-
-        // Ensure 'en' is the first element
-        array_unshift($locales, 'en');
-
-        return $locales;
     }
 }

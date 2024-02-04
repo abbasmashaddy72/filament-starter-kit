@@ -223,12 +223,12 @@ return [
         'faqs' => 'FAQs',
         'sitemap' => 'Sitemap',
     ],
-    'models' => [
-        'Article' => 'Article',
-        'Faq' => 'Faq',
-        'Post' => 'Post',
-        'Topic' => 'Topic',
-    ],
+    'models' => getAllModels([
+        '\App\MyQueueMonitor',
+        '\App\Menu',
+        '\App\Meta',
+        '\App\User',
+    ]),
     'font' => [
         'url' => 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sixtyfour&display=swap',
         'family' => 'Inter'

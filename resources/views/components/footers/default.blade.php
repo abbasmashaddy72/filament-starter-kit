@@ -6,12 +6,12 @@
                     <div class="grid grid-cols-1">
                         <div class="text-center">
                             @if (!empty($siteSettings->dark_logo) && !empty($siteSettings->light_logo))
-                                <a class="" href="{{ route('welcome') }}">
+                                <a class="{{ route('welcome') }}" href="{{ route('welcome') }}">
                                     <img src="{{ $siteSettings->light_logo }}" class="block w-auto h-24 mx-auto"
                                         alt="">
                                 </a>
                             @else
-                                <a class="" href="{{ route('welcome') }}">
+                                <a class="{{ route('welcome') }}" href="{{ route('welcome') }}">
                                     <span
                                         class="block w-auto mx-auto text-5xl text-white">{{ config('app.name') }}</span>
                                 </a>
@@ -24,6 +24,7 @@
                                 @foreach ($items as $translation)
                                     <li class="inline px-2">
                                         <a class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"
+                                            @if ($translation['blank']) target="__blank" @endif
                                             href="{{ $translation['url'] }}">{{ $translation['title'] }}</a>
                                     </li>
                                 @endforeach

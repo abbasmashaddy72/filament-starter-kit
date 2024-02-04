@@ -24,12 +24,12 @@ class Hero
                         'oembed' => 'oEmbed',
                     ])
                     ->reactive(),
+                AddonForms\Components\OEmbed::make('hero.oembed')
+                    ->label('Details (If Image is selected video will be in popup)')
+                    ->visible(fn (Get $get): bool => $get('hero.type') == 'oembed' ?: false),
                 CuratorPicker::make('hero.image')
                     ->label('Image')
-                    ->visible(fn (Get $get): bool => $get('hero.type') == 'image' ?: false),
-                AddonForms\Components\OEmbed::make('hero.oembed')
-                    ->label('Details')
-                    ->visible(fn (Get $get): bool => $get('hero.type') == 'oembed' ?: false),
+                    ->visible(),
                 TiptapEditor::make('hero.cta')
                     ->label('Call to Action'),
             ]);

@@ -24,26 +24,11 @@ class PageBuilder
         return Repeater::make($field)
             ->label('Sections')
             ->schema([
-                Toggle::make('full_width')
-                    ->default(false)
-                    ->reactive()
-                    ->afterStateUpdated(function (Set $set, $state) {
-                        if ($state === false) {
-                            return $set('bg_color', '');
-                        }
-                    }),
                 Select::make('bg_color')
                     ->label('Background Color')
-                    ->options([
-                        'primary' => 'Primary',
-                        'secondary' => 'Secondary',
-                        'tertiary' => 'Tertiary',
-                        'accent' => 'Accent',
-                        'gray' => 'Gray',
-                        'light-gray' => 'Light Gray',
-                        'white' => 'White',
-                        'half' => 'Half',
-                    ]),
+                    ->allowHtml()
+                    ->searchable()
+                    ->options(array_merge(['half' => 'Half'], getColors(200))),
                 Builder::make('blocks')
                     ->blocks([
                         RichText::make(),

@@ -4,6 +4,7 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
     content: [
         "./app/Colors/**/*.php",
+        "./app/Helpers/Utilities.php",
         "./resources/**/*.blade.php",
         "./vendor/lara-zeus/core/resources/views/**/*.blade.php",
         "./vendor/lara-zeus/bolt/resources/views/themes/**/*.blade.php",

@@ -17,6 +17,7 @@ use Spatie\Sitemap\SitemapGenerator;
 use Filament\Notifications\Notification;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use Tapp\FilamentTimezoneField\Forms\Components\TimezoneSelect;
 use Parfaitementweb\FilamentCountryField\Forms\Components\Country;
@@ -43,8 +44,8 @@ class SiteSettings extends SettingsPage
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Group::make()->schema([
                         Forms\Components\Group::make()->schema([
-                            Forms\Components\FileUpload::make('dark_logo'),
-                            Forms\Components\FileUpload::make('light_logo'),
+                            CuratorPicker::make('dark_logo'),
+                            CuratorPicker::make('light_logo'),
                             TimezoneSelect::make('timezone')
                                 ->searchable(),
                             Country::make('location')
@@ -55,9 +56,11 @@ class SiteSettings extends SettingsPage
                             Forms\Components\Select::make('locales')->multiple()
                                 ->options(config('main.locales'))->searchable(),
                             Forms\Components\Select::make('primary_color')
-                                ->options($this->getColors())
+                                ->options(getColors(500))
                                 ->allowHtml()
                                 ->searchable(),
+                            Forms\Components\Select::make('default_locales')
+                                ->options(config('main.locales'))->searchable(),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),
@@ -73,7 +76,6 @@ class SiteSettings extends SettingsPage
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\Textarea::make('description'),
-                            Forms\Components\Textarea::make('keywords'),
                         ]),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\Repeater::make('social')->schema([
@@ -107,37 +109,4 @@ class SiteSettings extends SettingsPage
             ->success()
             ->send();
     }
-
-    public function getColors()
-    {
-        $colors = Arr::except(Color::all(), ['gray', 'zinc', 'neutral', 'stone']);
-        $filteredColors = [];
-
-        foreach ($colors as $colorName => $shades) {
-            if (isset($shades[500])) {
-                $filteredColors[ucfirst($colorName)] = "<div class=\"bg-{$colorName}-500 p-2 flex items-center w-full rounded-md\">" . ucfirst($colorName) . "</div>";
-            }
-        }
-
-        return $filteredColors;
-    }
 }
-
-// bg-slate-500
-// bg-red-500
-// bg-orange-500
-// bg-amber-500
-// bg-yellow-500
-// bg-lime-500
-// bg-green-500
-// bg-emerald-500
-// bg-teal-500
-// bg-cyan-500
-// bg-sky-500
-// bg-blue-500
-// bg-indigo-500
-// bg-violet-500
-// bg-purple-500
-// bg-fuchsia-500
-// bg-pink-500
-// bg-rose-500

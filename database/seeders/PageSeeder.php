@@ -27,7 +27,6 @@ class PageSeeder extends Seeder
             'content' => [
                 'en' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -41,7 +40,6 @@ class PageSeeder extends Seeder
                 ],
                 'fr' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -55,7 +53,6 @@ class PageSeeder extends Seeder
                 ],
                 'ar' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [

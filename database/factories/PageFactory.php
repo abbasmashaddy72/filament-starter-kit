@@ -110,7 +110,6 @@ class PageFactory extends Factory
             'content' => [
                 'en' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -124,7 +123,6 @@ class PageFactory extends Factory
                 ],
                 'fr' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -138,7 +136,6 @@ class PageFactory extends Factory
                 ],
                 'ar' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [

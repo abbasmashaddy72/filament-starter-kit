@@ -70,7 +70,6 @@ class ArticleFactory extends Factory
             'content' => [
                 'en' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -84,7 +83,6 @@ class ArticleFactory extends Factory
                 ],
                 'fr' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [
@@ -98,7 +96,6 @@ class ArticleFactory extends Factory
                 ],
                 'ar' => [
                     [
-                        'full_width' => false,
                         'bg_color' => '',
                         'blocks' => [
                             [

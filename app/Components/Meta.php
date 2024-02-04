@@ -38,6 +38,7 @@ class Meta
                         })
                         ->reactive()
                         ->required(),
+                    Forms\Components\Textarea::make('keywords'),
                     Forms\Components\Toggle::make('indexable')
                         ->label('Indexable'),
                 ]),

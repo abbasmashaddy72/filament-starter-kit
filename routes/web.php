@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SitemapController;
+use App\Settings\SitesSettings;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use App\Http\Controllers\SitemapController;
 |
 */
 
-Route::middleware('routestatistics')->group(function () {
+$default_locale = app(SitesSettings::class)->default_locale ?? 'en';
+
+Route::prefix('{locale?}')->where(['locale' => '[a-zA-Z]{2}'])->middleware(['routestatistics', 'setlocale:' . $default_locale])->group(function () {
     Route::get('sitemap.xml', [SitemapController::class, 'index']);
     Route::get('sitemap', [SitemapController::class, 'pretty']);
 

@@ -40,7 +40,6 @@ class MenuResource extends Resource
     {
         $configMenu = config('main.menu');
         $databaseOptions = Page::where('status', 'Published')->where('front_page', false)->pluck('title', 'slug')->toArray();
-        $URLoptions = array_merge($configMenu, $databaseOptions);
         $URLoptionsKeys = array_keys($configMenu + $databaseOptions);
         $URLoptionsValues = array_values($configMenu + $databaseOptions);
 

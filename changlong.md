@@ -4,47 +4,47 @@
 
 ### Common Config
 
-- Add More Options in Config File So that we don't need to change code again & again Like options
+- Add More Options in Config File So that we don't need to change code again & again Like options - **Done**
 
 ### Setting Page
 
-- Adding Default Front Page Locale
-- Remove Keywords
+- Adding Default Front Page Locale - **Done**
+- Remove Keywords - **Done**
 
 ### Pages
 
-- Adding Keywords in SEO Section
-- Adding Type Selection in Cards
+- Adding Keywords in SEO Section - **Done**
 
 ### Articles
 
-- Adding Keywords in SEO Section
+- Adding Keywords in SEO Section - **Done**
 
 ### Posts
 
-- Adding Keywords in SEO Section
+- Adding Keywords in SEO Section - **Done**
 
 ### Topics
 
-- Adding Keywords in SEO Section
+- Adding Keywords in SEO Section - **Done**
 
 ### Forms
 
-- Adding Option to Change Title of Save Button & Section is Collapsible in Front Page
+- Adding Option to Change Title of Save Button & Section is Collapsible in Front Page - **Long Plan**
 
 ### Code Change
 
-- Adding auth middleware in AdminPanel
+- Adding auth middleware in AdminPanel - **Done**
 
 ## Frontend Code Change
 
 ### Menu
 
-- Adding open in new tab
+- Adding open in new tab - **Done**
+- Adding Option to Change Language - **Done**
 
 ### Hero Section
 
-- Changing the UI for both
+- Changing the UI for both - **Done**
 
 ### Page Builder Blocks
 

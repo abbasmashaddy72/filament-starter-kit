@@ -8,7 +8,6 @@ return new class extends SettingsMigration
     {
         $this->migrator->add('sites.name', 'CMS');
         $this->migrator->add('sites.description', 'Full CMS');
-        $this->migrator->add('sites.keywords', 'Content, Management, System');
         $this->migrator->add('sites.dark_logo', '');
         $this->migrator->add('sites.light_logo', '');
         $this->migrator->add('sites.author', 'abbasmashaddy72');

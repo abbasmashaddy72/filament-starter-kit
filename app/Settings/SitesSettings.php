@@ -8,7 +8,6 @@ class SitesSettings extends Settings
 {
     public ?string $name;
     public ?string $description;
-    public ?string $keywords;
     public ?string $light_logo;
     public ?string $dark_logo;
     public ?string $author;
@@ -21,6 +20,7 @@ class SitesSettings extends Settings
     public ?string $currency;
     public ?array $social;
     public ?string $primary_color;
+    public ?string $default_locale;
 
     public static function group(): string
     {
