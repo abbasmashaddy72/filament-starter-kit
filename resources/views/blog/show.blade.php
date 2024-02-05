@@ -1,12 +1,7 @@
 <x-layouts.base :meta="$meta">
-
-    @section('header')
-        <x-headers.default />
-    @endsection
-
-    {{-- @section('hero')
+    @section('hero')
         <x-hero :media="$post->featuredImage" />
-    @endsection --}}
+    @endsection
 
     <x-grid>
         <div class="pt-8 lg:t-12">
@@ -30,9 +25,4 @@
         </x-slot> --}}
 
     </x-grid>
-
-    @section('footer')
-        <x-footers.default />
-    @endsection
-
 </x-layouts.base>

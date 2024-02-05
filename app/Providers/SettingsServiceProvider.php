@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use App\Settings\SitesSettings;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SettingsServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,7 @@ class SettingsServiceProvider extends ServiceProvider
         config(['app.name' => $siteSettings->name ?? config('app.name')]);
         config(['app.timezone' => $siteSettings->timezone ?? config('app.timezone')]);
         // Get the locales from the config file
-        $localesConfig = config('main.locales');
+        $localesConfig = LaravelLocalization::getSupportedLocales();
 
         // If $siteSettings->locales is not empty, create an associative array with key-value pairs
         $localesAssociative = !empty($siteSettings->locales)
@@ -30,6 +31,6 @@ class SettingsServiceProvider extends ServiceProvider
             : config('app.locales');
 
         // Set the locales into the config
-        config(['app.locales' => $localesAssociative]);
+        config(['laravellocalization.supportedLocales' => $localesAssociative]);
     }
 }

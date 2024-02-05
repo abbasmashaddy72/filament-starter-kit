@@ -27,6 +27,8 @@
 
 - Adding Keywords in SEO Section - **Done**
 
+#### *Remove Keywords in SEO Section as Now a Days Not Necessary* [source](https://www.greengeeks.com/blog/html-tags-for-seo/)
+
 ### Forms
 
 - Adding Option to Change Title of Save Button & Section is Collapsible in Front Page - **Long Plan**
@@ -53,3 +55,7 @@
 ### Rich Text Content
 
 - Adding TipTap Editor CSS - **Done**
+
+## Fixes Needs to Done
+
+- *laravel-geoip* package issue: [This cache store does not support tagging](https://github.com/Torann/laravel-geoip/issues/123) - **Done *(Fixed with config File Change)***

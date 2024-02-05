@@ -4,6 +4,7 @@ use App\Colors\Color;
 use Illuminate\Support\Arr;
 use App\Settings\SitesSettings;
 use Illuminate\Database\Eloquent\Model;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 if (!function_exists('random_password')) {
     function random_password(): string
@@ -117,6 +118,20 @@ if (!function_exists('getAllModels')) {
 
             return in_array($class, $excludeModels) ? [] : [$class => class_basename($class)];
         })->toArray();
+    }
+}
+
+if (!function_exists('transformSupportedLocales')) {
+    function transformSupportedLocales()
+    {
+        $supportedLocales = LaravelLocalization::getSupportedLocales();
+        $transformedArray = [];
+
+        foreach ($supportedLocales as $code => $locale) {
+            $transformedArray[$code] = $locale['name'];
+        }
+
+        return $transformedArray;
     }
 }
 

@@ -14,6 +14,7 @@ use Guava\FilamentIconPicker\Forms\IconPicker;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Tapp\FilamentTimezoneField\Forms\Components\TimezoneSelect;
 use Parfaitementweb\FilamentCountryField\Forms\Components\Country;
 
@@ -49,13 +50,17 @@ class SiteSettings extends SettingsPage
                                 ->searchable()
                                 ->options(config('main.currencies')),
                             Forms\Components\Select::make('locales')->multiple()
-                                ->options(config('main.locales'))->searchable(),
+                                ->options(transformSupportedLocales())
+                                ->getOptionLabelUsing(fn ($value): ?string => $value)
+                                ->searchable(),
                             Forms\Components\Select::make('primary_color')
                                 ->options(getColors(500))
                                 ->allowHtml()
                                 ->searchable(),
-                            Forms\Components\Select::make('default_locales')
-                                ->options(config('main.locales'))->searchable(),
+                            Forms\Components\Select::make('default_locale')
+                                ->options(transformSupportedLocales())
+                                ->getOptionLabelUsing(fn ($value): ?string => $value)
+                                ->searchable(),
                         ])->columns(2),
                         Forms\Components\Group::make()->schema([
                             Forms\Components\TextInput::make('name'),

@@ -1,9 +1,4 @@
 <x-layouts.base :meta="$meta">
-
-    @section('header')
-        <x-headers.default />
-    @endsection
-
     <div class="py-8 lg:py-12">
         <x-layouts.two-column-right>
             <x-prose>
@@ -15,7 +10,7 @@
                                 <article>
                                     <h2><a href="{{ route('blog.show', $post) }}">{{ $post->title }}</a></h2>
                                     <span class="sr-only">Post Tags</span>
-                                    <ul role="list" class="flex items-center gap-3 flex-wrap">
+                                    <ul role="list" class="flex flex-wrap items-center gap-3">
                                         @foreach ($post->tags->pluck('name') as $tag)
                                             <li>
                                                 <x-pill>
@@ -40,9 +35,4 @@
 
         </x-layouts.two-column-right>
     </div>
-
-    @section('footer')
-        <x-footers.default />
-    @endsection
-
 </x-layouts.base>

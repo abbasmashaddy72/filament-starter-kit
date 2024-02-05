@@ -16,7 +16,8 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full light scroll-smooth" dir="ltr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full light scroll-smooth"
+    dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
     <meta charset="utf-8" />
@@ -66,8 +67,8 @@
     <style>
         :root {
             @foreach ($cssVariables ?? [] as $cssVariableName => $cssVariableValue)
-        --{{ $cssVariableName }}: {{ $cssVariableValue }};
-        @endforeach
+                --{{ $cssVariableName }}: {{ $cssVariableValue }};
+            @endforeach
         }
     </style>
 

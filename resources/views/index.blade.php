@@ -1,9 +1,4 @@
 <x-layouts.base :meta="$meta">
-
-    @section('header')
-        <x-headers.default />
-    @endsection
-
     <div class="py-8 lg:py-12">
         <x-layouts.two-column-right>
             <x-prose>
@@ -31,9 +26,4 @@
 
         </x-layouts.two-column-right>
     </div>
-
-    @section('footer')
-        <x-footers.default />
-    @endsection
-
 </x-layouts.base>

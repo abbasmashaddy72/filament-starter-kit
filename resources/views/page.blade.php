@@ -1,9 +1,4 @@
 <x-layouts.base :meta="$page->meta">
-
-    @section('header')
-        <x-headers.default />
-    @endsection
-
     @section('hero')
         <x-hero :data="$page->hero" />
     @endsection
@@ -22,9 +17,4 @@
 
         </x-layouts.two-column-right>
     </div>
-
-    @section('footer')
-        <x-footers.default />
-    @endsection
-
 </x-layouts.base>

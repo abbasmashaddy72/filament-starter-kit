@@ -3,10 +3,13 @@
         @if (!empty($siteSettings->dark_logo) && !empty($siteSettings->light_logo))
             <a class="navbar-brand md:me-8" href="{{ route('welcome') }}">
                 <span class="inline-block dark:hidden">
-                    <img src="{{ $siteSettings->dark_logo }}" class="w-auto h-20 l-dark" alt="">
-                    <img src="{{ $siteSettings->light_logo }}" class="w-auto h-20 l-light" alt="">
+                    <x-curator-glider class="w-auto h-20 l-dark" :media="$siteSettings->dark_logo" :srcset="['1200w', '1024w', '640w']"
+                        sizes="(max-width: 1200px) 100vw, 1024px" />
+                    <x-curator-glider class="w-auto h-20 l-light" :media="$siteSettings->light_logo" :srcset="['1200w', '1024w', '640w']"
+                        sizes="(max-width: 1200px) 100vw, 1024px" />
                 </span>
-                <img src="{{ $siteSettings->light_logo }}" class="hidden w-auto h-20 dark:inline-block" alt="">
+                <x-curator-glider class="hidden w-auto h-20 dark:inline-block" :media="$siteSettings->light_logo" :srcset="['1200w', '1024w', '640w']"
+                    sizes="(max-width: 1200px) 100vw, 1024px" />
             </a>
         @else
             <a class="text-3xl navbar-brand md:me-8 " href="{{ route('welcome') }}">
@@ -22,7 +25,7 @@
                         <li class="inline">
                             <a href="{{ $translation['url'] }}"
                                 @if ($translation['blank']) target="__blank" @endif
-                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out bg-primary-400 border border-primary-400 rounded-md hover:bg-primary-500 hover:border-primary-500">
+                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out border rounded-md bg-primary-400 border-primary-400 hover:bg-primary-500 hover:border-primary-500">
                                 {{ $translation['title'] }}
                             </a>
                         </li>
@@ -30,7 +33,8 @@
                             <li class="inline">
                                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                                     class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                    type="button">Change language
+                                    type="button">
+                                    {{ strtoupper(LaravelLocalization::getCurrentLocale()) }}
                                     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 10 6">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -42,14 +46,16 @@
                                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownDefaultButton">
-                                        @foreach (config('app.locales') as $key => $locale)
+                                        @foreach (config('laravellocalization.supportedLocales') as $localeCode => $properties)
                                             <li>
-                                                <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), ['locale' => $key]) }}"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $locale }}</a>
+                                                <a rel="alternate" hreflang="{{ $localeCode }}"
+                                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $properties['name'] }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
                                 </div>
+                            </li>
                         @endif
                     @endforeach
                 @endforeach

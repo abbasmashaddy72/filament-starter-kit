@@ -7,8 +7,8 @@
                         <div class="text-center">
                             @if (!empty($siteSettings->dark_logo) && !empty($siteSettings->light_logo))
                                 <a class="{{ route('welcome') }}" href="{{ route('welcome') }}">
-                                    <img src="{{ $siteSettings->light_logo }}" class="block w-auto h-24 mx-auto"
-                                        alt="">
+                                    <x-curator-glider class="block w-auto h-24 mx-auto" :media="$siteSettings->light_logo"
+                                        :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
                                 </a>
                             @else
                                 <a class="{{ route('welcome') }}" href="{{ route('welcome') }}">
