@@ -167,6 +167,7 @@ return [
          */
         Torann\GeoIP\GeoIPServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
+        Akaunting\Firewall\Provider::class,
         /*
          * Application Service Providers...
          */

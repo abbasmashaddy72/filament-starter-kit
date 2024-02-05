@@ -28,8 +28,16 @@ class Cards
                         ->options(config('main.models')),
                     TextInput::make('count')
                         ->numeric(),
-                ])->columns(2),
+                    Select::make('image_location')
+                        ->options([
+                            'left' => 'Left',
+                            'right' => 'Right',
+                            'top' => 'Top',
+                        ])
+                        ->native(false),
+                ])->columns(3),
                 Repeater::make('items')
+                    ->defaultItems(0)
                     ->schema([
                         Group::make()->schema([
                             TextInput::make('title')
@@ -49,6 +57,7 @@ class Cards
                                 ->options([
                                     'left' => 'Left',
                                     'right' => 'Right',
+                                    'top' => 'Top',
                                 ])
                                 ->native(false),
                         ])->columns(2),

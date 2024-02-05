@@ -28,6 +28,7 @@ class Accordion
                         ->numeric(),
                 ])->columns(2),
                 Repeater::make('items')
+                    ->defaultItems(0)
                     ->schema([
                         TextInput::make('title')
                             ->required(),
