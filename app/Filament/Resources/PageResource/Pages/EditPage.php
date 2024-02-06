@@ -17,6 +17,8 @@ class EditPage extends EditRecord
         return [
             Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
+            Actions\ForceDeleteAction::make(),
+            Actions\RestoreAction::make(),
             Actions\LocaleSwitcher::make(),
         ];
     }

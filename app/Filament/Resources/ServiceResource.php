@@ -71,7 +71,13 @@ class ServiceResource extends Resource
                         Forms\Components\Textarea::make('excerpt')
                             ->required()
                             ->maxLength(255),
-                        IconPicker::make('icon'),
+                        IconPicker::make('icon')
+                            ->sets(['remix'])
+                            ->columns([
+                                'default' => 1,
+                                'lg' => 3,
+                                '2xl' => 5,
+                            ]),
                         CuratorPicker::make('image_id')->label('Image'),
                         Forms\Components\Select::make('status')
                             ->default('Draft')
@@ -126,6 +132,9 @@ class ServiceResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ForceDeleteAction::make(),
+                Tables\Actions\RestoreAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
