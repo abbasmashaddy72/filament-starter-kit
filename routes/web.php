@@ -16,7 +16,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-$default_locale = app(SitesSettings::class)->default_locale ?? 'en';
+if (app()->runningInConsole()) {
+    $default_locale = 'en';
+} else {
+    $default_locale = app(SitesSettings::class)->default_locale ?? 'en';
+}
 
 Route::get('sitemap.xml', [SitemapController::class, 'index']);
 Route::get('sitemap', [SitemapController::class, 'pretty']);
