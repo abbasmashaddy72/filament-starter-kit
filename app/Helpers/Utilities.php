@@ -109,14 +109,19 @@ if (!function_exists('getAllModels')) {
     {
         $path = app_path('Models') . '/*.php';
 
-        return collect(glob($path))->mapWithKeys(function ($file) use ($excludeModels) {
+        $namespace = app()->getNamespace() . 'Models\\';
+
+        return collect(glob($path))->mapWithKeys(function ($file) use ($excludeModels, $namespace) {
             $class = sprintf(
-                '\%s%s',
-                app()->getNamespace(),
+                '%s%s',
+                $namespace,
                 strtr(basename($file, '.php'), '/', '\\')
             );
 
-            return in_array($class, $excludeModels) ? [] : [$class => class_basename($class)];
+            // Use fully qualified class name for comparison
+            $fullyQualifiedClass = '\\' . ltrim($class, '\\');
+
+            return in_array($fullyQualifiedClass, $excludeModels) ? [] : [$fullyQualifiedClass => class_basename($class)];
         })->toArray();
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class Tabs extends Component
 {
+    public $items;
+
     public $tabs = [];
 
     public $panels = [];
@@ -17,6 +19,12 @@ class Tabs extends Component
      */
     public function __construct(array $data)
     {
+        $modelClass = $data['data'];
+        $modelData = app($modelClass);
+        $this->items = $modelData
+            ->where('status', 'published')
+            ->take((int) $data['count'])
+            ->get();
         if (!$data['items']) {
             return;
         }

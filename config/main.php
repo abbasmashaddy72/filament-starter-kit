@@ -169,11 +169,11 @@ return [
         'sitemap' => 'Sitemap',
     ],
     'models' => getAllModels([
-        '\App\MyQueueMonitor',
-        '\App\Menu',
-        '\App\Meta',
-        '\App\Page',
-        '\App\User',
+        '\App\Models\MyQueueMonitor',
+        '\App\Models\Menu',
+        '\App\Models\Meta',
+        '\App\Models\Page',
+        '\App\Models\User',
     ]),
     'font' => [
         'url' => 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sixtyfour&display=swap',
