@@ -1,10 +1,24 @@
 {
-    "name": "laravel/laravel",
+    "name": "abbasmashaddy72/filament-starter-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "A CMS start kit for websites, built on Filament and Laravel.",
+    "homepage": "https://github.com/abbasmashaddy72/filament-starter-kit",
+    "support": {
+        "issues": "https://github.com/abbasmashaddy72/filament-starter-kit/issues",
+        "source": "https://github.com/abbasmashaddy72/filament-starter-kit"
+    },
     "keywords": [
         "laravel",
-        "framework"
+        "filament",
+        "abbasmashaddy72",
+        "cms",
+        "filament-starter-kit"
+    ],
+    "authors": [
+        {
+            "name": "abbasmashaddy72",
+            "email": "abbasmashaddy72@gmail.com"
+        }
     ],
     "license": "MIT",
     "require": {
