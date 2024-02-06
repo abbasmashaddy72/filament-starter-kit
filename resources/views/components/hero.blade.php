@@ -9,7 +9,7 @@
             :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" height="{{ $media->height }}"
             width="{{ $media->width }}" />
         <div class="container z-10 hero">
-            <x-prose>
+            <x-prose class=" @if (Route::currentRouteName() != 'welcome') text-center font-bold text-5xl @endif">
                 {!! $cta !!}
             </x-prose>
         </div>

@@ -1,10 +1,17 @@
 <x-layouts.base :meta="$page->meta">
     @section('hero')
-        <x-hero :data="$page->hero" />
+        <x-hero :data="$page->hero ?? [
+            'type' => 'image',
+            'image' => $page->meta->ogImage->id,
+            'cta' => $page->title,
+        ]" />
     @endsection
 
-    <div class="py-8 lg:py-12">
-        <x-layouts.two-column-right>
+    <div class="py-8 pt-16 lg:py-12">
+        @if ($page->content)
+            <x-page-builder :content="$page->content" />
+        @endif
+        {{-- <x-layouts.two-column-right>
             @if ($page->content)
                 <x-page-builder :content="$page->content" />
             @endif
@@ -15,6 +22,6 @@
                 </x-widget>
             </x-slot>
 
-        </x-layouts.two-column-right>
+        </x-layouts.two-column-right> --}}
     </div>
 </x-layouts.base>
