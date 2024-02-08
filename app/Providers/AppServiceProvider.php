@@ -72,7 +72,6 @@ class AppServiceProvider extends ServiceProvider
         if (app()->runningInConsole()) {
             return [];
         }
-        // dd(app(SitesSettings::class));
         // Access the locales property directly as an array
         $locales = app(SitesSettings::class)->locales ?? [];
 

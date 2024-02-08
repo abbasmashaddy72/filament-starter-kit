@@ -40,8 +40,21 @@ class SiteSettings extends SettingsPage
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Group::make()->schema([
                         Forms\Components\Group::make()->schema([
-                            CuratorPicker::make('dark_logo'),
-                            CuratorPicker::make('light_logo'),
+                            CuratorPicker::make('dark_logo')
+                                ->lazyLoad()
+                                ->listDisplay()
+                                ->constrained(true)
+                                ->visible(),
+                            CuratorPicker::make('light_logo')
+                                ->lazyLoad()
+                                ->listDisplay()
+                                ->constrained(true)
+                                ->visible(),
+                            CuratorPicker::make('no_image')
+                                ->lazyLoad()
+                                ->listDisplay()
+                                ->constrained(true)
+                                ->visible(),
                             TimezoneSelect::make('timezone')
                                 ->searchable(),
                             Country::make('location')

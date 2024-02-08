@@ -10,6 +10,7 @@ class SitesSettings extends Settings
     public ?string $description;
     public ?string $light_logo;
     public ?string $dark_logo;
+    public ?string $no_image;
     public ?string $author;
     public ?string $address;
     public ?string $email;

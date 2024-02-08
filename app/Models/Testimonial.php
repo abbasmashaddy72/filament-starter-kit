@@ -39,6 +39,11 @@ class Testimonial extends Model
         'published_at' => 'datetime:Y-m-d',
     ];
 
+    public function getDynamicRelationships(): array
+    {
+        return ['image']; // Add other relationships as needed
+    }
+
     public function image(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'image_id', 'id');

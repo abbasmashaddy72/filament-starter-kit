@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use LaraZeus\Bolt\Events\FormSent;
+use Illuminate\Support\Facades\Event;
+use LaraZeus\Bolt\Events\FormMounted;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        FormSent::class => [
+            \App\Listeners\SendNotification::class,
         ],
     ];
 

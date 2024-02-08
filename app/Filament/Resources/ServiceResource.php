@@ -78,7 +78,12 @@ class ServiceResource extends Resource
                                 'lg' => 3,
                                 '2xl' => 5,
                             ]),
-                        CuratorPicker::make('image_id')->label('Image'),
+                        CuratorPicker::make('image_id')
+                            ->label('Image')
+                            ->lazyLoad()
+                            ->listDisplay()
+                            ->constrained(true)
+                            ->visible(),
                         Forms\Components\Select::make('status')
                             ->default('Draft')
                             ->options(Status::class)

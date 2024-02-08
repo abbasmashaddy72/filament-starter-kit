@@ -8,6 +8,8 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./vendor/lara-zeus/core/resources/views/**/*.blade.php",
         "./vendor/lara-zeus/bolt/resources/views/themes/**/*.blade.php",
+        "./vendor/lara-zeus/bolt/resources/views/filament/**/*.blade.php",
+        "./vendor/filament/**/*.blade.php",
         "./node_modules/flowbite/**/*.js",
     ],
     darkMode: "class",

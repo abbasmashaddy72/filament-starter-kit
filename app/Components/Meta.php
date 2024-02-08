@@ -42,6 +42,10 @@ class Meta
                 ]),
                 CuratorPicker::make('og_image')
                     ->label('OG Image')
+                    ->lazyLoad()
+                    ->listDisplay()
+                    ->constrained(true)
+                    ->visible()
                     ->relationship('ogImage', 'og_image')
                     ->helperText('Leave empty to use default. This will also be used on any resources that utilizes a featured image i.e. blog posts.'),
             ])->columnSpanFull();

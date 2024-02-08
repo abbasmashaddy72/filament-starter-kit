@@ -21,8 +21,11 @@ function fn() {
 /*     Menus         */
 /*********************/
 
+// Function to handle scroll event
 function windowScroll() {
     const navbar = document.getElementById("navbar");
+
+    // Check if the page is scrolled down
     if (
         document.body.scrollTop >= 50 ||
         document.documentElement.scrollTop >= 50
@@ -33,10 +36,11 @@ function windowScroll() {
     }
 }
 
-window.addEventListener("scroll", (ev) => {
-    ev.preventDefault();
-    windowScroll();
-});
+// Add event listener for scroll event
+window.addEventListener("scroll", windowScroll);
+
+// Call the function on page load
+window.onload = windowScroll;
 
 // Navbar Active Class
 try {
@@ -119,24 +123,40 @@ function topFunction() {
 /* Dark & Light Mode */
 /*********************/
 try {
-    function changeTheme(e) {
-        e.preventDefault();
+    const switcher = document.getElementById("chk");
+
+    function changeTheme() {
         const htmlTag = document.getElementsByTagName("html")[0];
 
-        if (htmlTag.className.includes("dark")) {
-            htmlTag.className = "light";
-        } else {
+        if (switcher.checked) {
             htmlTag.className = "dark";
+            localStorage.setItem("theme", "dark");
+        } else {
+            htmlTag.className = "light";
+            localStorage.setItem("theme", "light");
         }
     }
 
-    const switcher = document.getElementById("theme-mode");
-    switcher?.addEventListener("click", changeTheme);
+    function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        const htmlTag = document.getElementsByTagName("html")[0];
 
-    const chk = document.getElementById("chk");
+        if (savedTheme === "dark") {
+            switcher.checked = true;
+            htmlTag.className = "dark";
+        } else {
+            switcher.checked = false;
+            htmlTag.className = "light";
+        }
+    }
 
-    chk.addEventListener("change", changeTheme);
-} catch (err) {}
+    // Call setInitialTheme on page load
+    setInitialTheme();
+
+    switcher.addEventListener("change", changeTheme);
+} catch (err) {
+    console.error(err);
+}
 
 /*********************/
 /* LTR & RTL Mode */

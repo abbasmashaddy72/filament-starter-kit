@@ -1,5 +1,5 @@
 @if (!empty($items))
-    <div class="mb-4 border-b border-gray-200 render-block render-block__tabs dark:border-gray-700"
+    <div class="mb-4 border-b border-gray-200 render-block render-block__tabs dark:border-white/10"
         x-data="{
             selectedId: null,
             init() {
@@ -35,7 +35,7 @@
             @endforeach
         </ul>
 
-        <div role="tabpanels" class="rounded-lg bg-gray-50 dark:bg-gray-800">
+        <div role="tabpanels" class="rounded-lg bg-gray-50 dark:bg-gray-900">
             @foreach ($items as $panel)
                 <section x-show="isSelected($id('tab', whichChild($el, $el.parentElement)))"
                     :aria-labelledby="$id('tab', whichChild($el, $el.parentElement))" role="tabpanel" class="p-8">
@@ -51,7 +51,7 @@
         </div>
     </div>
 @else
-    <div class="mb-4 border-b border-gray-200 render-block render-block__tabs dark:border-gray-700"
+    <div class="mb-4 border-b border-gray-200 render-block render-block__tabs dark:border-white/10"
         x-data="{
             selectedId: null,
             init() {
@@ -88,7 +88,7 @@
             @endforeach
         </ul>
 
-        <div role="tabpanels" class="rounded-lg bg-gray-50 dark:bg-gray-800">
+        <div role="tabpanels" class="rounded-lg bg-gray-50 dark:bg-gray-900">
             @foreach ($panels as $panel)
                 <section x-show="isSelected($id('tab', whichChild($el, $el.parentElement)))"
                     :aria-labelledby="$id('tab', whichChild($el, $el.parentElement))" role="tabpanel" class="p-8">

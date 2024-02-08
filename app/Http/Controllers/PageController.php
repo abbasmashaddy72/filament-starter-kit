@@ -19,6 +19,15 @@ class PageController extends Controller
         ]);
     }
 
+    public function show(Page $page)
+    {
+        abort_unless($page->status == 'Published' || auth()->user(), 404);
+
+        return view('page', [
+            'page' => $page,
+        ]);
+    }
+
     public function service_show(Service $page)
     {
         abort_unless($page->status == 'Published' || auth()->user(), 404);

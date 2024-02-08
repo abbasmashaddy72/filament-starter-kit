@@ -3,8 +3,9 @@
 ])
 
 <aside
-    class="relative flex items-center justify-center min-h-[256px] md:min-h-[322px] @if (Route::currentRouteName() === 'welcome') lg:min-h-[750px] @else lg:min-h-[480px] @endif filament-gradient pt-16">
+    class="relative flex items-center justify-center min-h-[256px] md:min-h-[322px] @if (Route::currentRouteName() === 'welcome') lg:min-h-[750px] @else lg:min-h-[480px] @endif pt-16">
     @if ($type == 'image' && ($media || $cta))
+        <div class="absolute inset-0 bg-slate-950/85"></div>
         <x-curator-glider class="absolute inset-0 z-0 object-cover w-full h-full opacity-20" :media="$media->id"
             :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" height="{{ $media->height }}"
             width="{{ $media->width }}" />
@@ -14,7 +15,7 @@
                     {!! $cta !!}
                 </x-prose>
             @else
-                <x-prose class="text-5xl font-bold text-center">
+                <x-prose class="text-3xl font-bold text-center">
                     {!! $cta !!}
                 </x-prose>
             @endif

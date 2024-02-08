@@ -43,7 +43,7 @@ ul.checked-list li::marker {
 .filament-gradient {
     background-image: radial-gradient(
         circle at top,
-        theme("colors.primary.800"),
+        theme("colors.primary.400"),
         theme("colors.gray.800"),
         theme("colors.gray.900") 100%
     );

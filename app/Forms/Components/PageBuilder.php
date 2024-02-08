@@ -26,7 +26,7 @@ class PageBuilder
                     ->label('Background Color')
                     ->allowHtml()
                     ->searchable()
-                    ->options(array_merge(['half' => 'Half'], getColors(200))),
+                    ->options(array_merge(['half' => 'Half'], getColors(100))),
                 Toggle::make('combine')
                     ->helperText('Will only combine 2 Blocks'),
                 Builder::make('blocks')

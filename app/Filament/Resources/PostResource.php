@@ -73,8 +73,7 @@ class PostResource extends Resource
                             ->relationship('topic', 'title')
                             ->getOptionLabelFromRecordUsing(fn ($record) => $record->title)
                             ->searchable()
-                            ->preload()
-                            ->required(),
+                            ->preload(),
                         Forms\Components\Select::make('author_id')
                             ->relationship('author', 'name')
                             ->required(),

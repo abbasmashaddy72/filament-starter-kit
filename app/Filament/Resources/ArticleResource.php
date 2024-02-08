@@ -87,8 +87,7 @@ class ArticleResource extends Resource
                             })
                             ->searchable()
                             ->preload()
-                            ->live()
-                            ->required(),
+                            ->live(),
                         Forms\Components\Select::make('author_id')
                             ->relationship('author', 'name')
                             ->required(),

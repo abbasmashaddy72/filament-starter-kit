@@ -31,8 +31,6 @@ Route::group(
         'middleware' => ['routestatistics', 'firewall.all']
     ],
     function () {
-        Route::redirect('login', 'admin/login', 301)->name('login');
-
         Route::middleware('force_trailing_slash')->group(function () {
             Route::name('welcome')->get('', [\App\Http\Controllers\PageController::class, 'index']);
 

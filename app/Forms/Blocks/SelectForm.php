@@ -20,11 +20,22 @@ class SelectForm
                     ->required(),
                 Textarea::make('message'),
                 CuratorPicker::make('image')
-                    ->label('Image'),
+                    ->label('Image')
+                    ->lazyLoad()
+                    ->listDisplay()
+                    ->constrained(true)
+                    ->visible(),
                 Select::make('image_location')
                     ->options([
                         'left' => 'Left',
                         'right' => 'Right',
+                    ])
+                    ->native(false),
+                Select::make('type')
+                    ->options([
+                        'content' => 'Content',
+                        'image' => 'Image',
+                        'contact_details' => 'Contact Details',
                     ])
                     ->native(false),
                 TiptapEditor::make('content')

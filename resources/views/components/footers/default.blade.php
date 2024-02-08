@@ -16,7 +16,8 @@
                                         class="block w-auto mx-auto text-5xl text-white">{{ config('app.name') }}</span>
                                 </a>
                             @endif
-                            <p class="max-w-xl mx-auto mt-8 text-slate-400">{{ $siteSettings->description }}</p>
+                            <p class="max-w-xl mx-auto mt-8 text-slate-500 dark:text-slate-300">
+                                {{ $siteSettings->description }}</p>
                         </div>
 
                         <ul class="mt-8 space-x-2 text-center list-none footer-list">

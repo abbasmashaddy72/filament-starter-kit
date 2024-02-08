@@ -1,6 +1,6 @@
 <h2 id="accordion-color-heading-{{ $loop->index }}">
     <button type="button"
-        class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-gray-200 rtl:text-right focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-800 dark:border-gray-700 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-gray-800 @if ($loop->first) rounded-t-xl @endif @if (!$loop->last) border-b-0 @endif"
+        class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-gray-200 rtl:text-right focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-800 dark:border-white/10 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-gray-800 @if ($loop->first) rounded-t-xl @endif @if (!$loop->last) border-b-0 @endif"
         data-accordion-target="#accordion-color-body-{{ $loop->index }}" aria-expanded="true"
         aria-controls="accordion-color-body-{{ $loop->index }}">
         <span class="flex items-center"><svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
@@ -18,7 +18,7 @@
 </h2>
 <div id="accordion-color-body-{{ $loop->index }}" class="hidden"
     aria-labelledby="accordion-color-heading-{{ $loop->index }}">
-    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+    <div class="p-5 border border-b-0 border-gray-200 dark:border-white/10 dark:bg-gray-900">
         <x-prose>
             {!! $content !!}
         </x-prose>

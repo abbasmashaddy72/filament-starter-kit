@@ -19,20 +19,20 @@
         @endif
 
         <div class="flex items-center nav-icons lg_992:order-2 ms-auto lg:ms-4">
-            <ul class="mb-0 list-none menu-social">
+            <ul class="mb-0 space-x-2 list-none menu-social">
                 @foreach ($menu->where('location', 'headerButtons')->pluck('items') as $items)
                     @foreach ($items as $translation)
                         <li class="inline">
                             <a href="{{ $translation['url'] }}"
                                 @if ($translation['blank']) target="__blank" @endif
-                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out border rounded-md bg-primary-400 border-primary-400 hover:bg-primary-500 hover:border-primary-500">
+                                class="inline-flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out border rounded-md bg-primary-500 border-primary-500 hover:bg-primary-600 hover:border-primary-500">
                                 {{ $translation['title'] }}
                             </a>
                         </li>
                         @if (count(config('laravellocalization.supportedLocales')) > 1)
                             <li class="inline">
                                 <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                    class="text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                     type="button">
                                     {{ strtoupper(LaravelLocalization::getCurrentLocale()) }}
                                     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

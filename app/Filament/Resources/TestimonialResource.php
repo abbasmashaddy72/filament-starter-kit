@@ -45,7 +45,12 @@ class TestimonialResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                CuratorPicker::make('image_id')->label('Image'),
+                CuratorPicker::make('image_id')
+                    ->label('Image')
+                    ->lazyLoad()
+                    ->listDisplay()
+                    ->constrained(true)
+                    ->visible(),
                 RatingStar::make('rating'),
                 Forms\Components\TextInput::make('video_link')
                     ->maxLength(255),

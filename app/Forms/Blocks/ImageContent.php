@@ -26,7 +26,11 @@ class ImageContent
                         ->required(),
                     Textarea::make('message'),
                     CuratorPicker::make('image')
-                        ->label('Image'),
+                        ->label('Image')
+                        ->lazyLoad()
+                        ->listDisplay()
+                        ->constrained(true)
+                        ->visible(),
                 ])->columns(2),
             ]);
     }

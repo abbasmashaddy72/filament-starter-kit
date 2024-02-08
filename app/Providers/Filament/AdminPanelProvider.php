@@ -104,9 +104,6 @@ class AdminPanelProvider extends PanelProvider
                         ResourceLockResource::class,
                     ])->sortBy('navigation'),
                 CuratorPlugin::make()
-                    ->label('Media')
-                    ->pluralLabel('Media')
-                    ->navigationIcon('heroicon-o-photo')
                     ->navigationCountBadge(),
                 ThemesPlugin::make()
                     ->registerTheme([

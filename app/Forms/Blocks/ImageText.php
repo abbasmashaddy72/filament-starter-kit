@@ -19,7 +19,11 @@ class ImageText
                     TextInput::make('title')
                         ->required(),
                     CuratorPicker::make('image')
-                        ->label('Image'),
+                        ->label('Image')
+                        ->lazyLoad()
+                        ->listDisplay()
+                        ->constrained(true)
+                        ->visible(),
                     Select::make('image_location')
                         ->options([
                             'left' => 'Left',

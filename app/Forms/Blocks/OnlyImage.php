@@ -15,13 +15,15 @@ class OnlyImage
         return Block::make('only-image')
             ->schema([
                 Group::make()->schema([
-                    TextInput::make('title')
-                        ->required(),
+                    TextInput::make('title'),
                     Textarea::make('message'),
-                    TextInput::make('video_url')
-                        ->required(),
+                    TextInput::make('video_url'),
                     CuratorPicker::make('image')
-                        ->label('Image'),
+                        ->label('Image')
+                        ->lazyLoad()
+                        ->listDisplay()
+                        ->constrained(true)
+                        ->visible(),
                     TextInput::make('button_text'),
                     TextInput::make('button_url'),
                 ])->columns(2),

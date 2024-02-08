@@ -60,7 +60,11 @@ class Cards
                             TextInput::make('button_text'),
                             TextInput::make('button_url'),
                             CuratorPicker::make('image')
-                                ->label('Image'),
+                                ->label('Image')
+                                ->lazyLoad()
+                                ->listDisplay()
+                                ->constrained(true)
+                                ->visible(),
                         ])->columns(2),
                         TiptapEditor::make('content')
                             ->profile('minimal')
