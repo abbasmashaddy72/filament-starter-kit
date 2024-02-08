@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Settings\SitesSettings;
 use Spatie\Health\Facades\Health;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
@@ -52,8 +53,8 @@ class AppServiceProvider extends ServiceProvider
             UsedDiskSpaceCheck::new(),
         ]);
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->visible(outsidePanels: true)
-                ->locales(getLocales());
+            $switch->visible(outsidePanels: false)
+                ->locales($this->getLocales());
         });
         FilamentShield::configurePermissionIdentifierUsing(
             function ($resource) {
@@ -62,5 +63,25 @@ class AppServiceProvider extends ServiceProvider
                 return $str;
             }
         );
+        view()->share('getLocales', $this->getLocales());
+    }
+
+    function getLocales(): array
+    {
+        // Skip execution during migrations
+        if (app()->runningInConsole()) {
+            return [];
+        }
+        // dd(app(SitesSettings::class));
+        // Access the locales property directly as an array
+        $locales = app(SitesSettings::class)->locales ?? [];
+
+        // Remove 'en' if present
+        $locales = array_diff($locales, ['en']);
+
+        // Ensure 'en' is the first element
+        array_unshift($locales, 'en');
+
+        return $locales;
     }
 }

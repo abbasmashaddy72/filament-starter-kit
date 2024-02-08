@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Yebor974\Filament\RenewPassword\Traits\RenewPassword;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Yebor974\Filament\RenewPassword\Contracts\RenewPasswordContract;
@@ -18,7 +19,7 @@ use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 class User extends Authenticatable implements RenewPasswordContract, AuditableContract
 {
-    use Auditable, AuthenticationLoggable, HasApiTokens, HasFactory, HasPanelShield, HasRoles, Notifiable, TwoFactorAuthenticatable;
+    use Auditable, AuthenticationLoggable, HasApiTokens, HasFactory, HasPanelShield, HasRoles, Notifiable, TwoFactorAuthenticatable, RenewPassword;
 
     /**
      * The attributes that are mass assignable.

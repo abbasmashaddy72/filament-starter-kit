@@ -73,26 +73,6 @@ if (!function_exists('is_front_page')) {
     }
 }
 
-if (!function_exists('getLocales')) {
-    function getLocales(): array
-    {
-        // Skip execution during migrations
-        if (app()->runningInConsole()) {
-            return [];
-        }
-
-        $locales = app(SitesSettings::class)->locales ?? array_keys(config('app.locales'));
-
-        // Remove 'en' if present
-        $locales = array_diff($locales, ['en']);
-
-        // Ensure 'en' is the first element
-        array_unshift($locales, 'en');
-
-        return $locales;
-    }
-}
-
 if (!function_exists('getColors')) {
     function getColors($weight)
     {

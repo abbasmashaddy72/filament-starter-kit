@@ -58,8 +58,8 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Blue,
             ])
             ->navigationGroups([
-                'Content',
                 'CMS',
+                'Content',
                 'Blog Management',
                 'Dynamic Forms',
                 'Surveys',
@@ -97,7 +97,8 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->plugins([
                 ResourceLockPlugin::make(),
-                new RenewPasswordPlugin(),
+                RenewPasswordPlugin::make()
+                    ->timestampColumn('password_changed_at'),
                 QuickCreatePlugin::make()
                     ->excludes([
                         ResourceLockResource::class,
@@ -107,7 +108,10 @@ class AdminPanelProvider extends PanelProvider
                     ->pluralLabel('Media')
                     ->navigationIcon('heroicon-o-photo')
                     ->navigationCountBadge(),
-                ThemesPlugin::make(),
+                ThemesPlugin::make()
+                    ->registerTheme([
+                        \Hasnayeen\Themes\Themes\Sunset::class,
+                    ]),
                 FilamentAuthenticationLogPlugin::make(),
                 new FilamentEmail(),
                 FilamentExceptionsPlugin::make(),
@@ -146,7 +150,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales(getLocales()),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales($getLocales ?? ['en']),
                 BoltPlugin::make()
                     ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),

@@ -15,7 +15,7 @@ class SitesSettings extends Settings
     public ?string $email;
     public ?string $phone;
     public ?string $timezone;
-    public ?array $locales;
+    public ?array $locales = ['en'];
     public ?string $location;
     public ?string $currency;
     public ?array $social;
