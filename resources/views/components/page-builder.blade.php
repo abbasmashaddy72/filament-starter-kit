@@ -27,7 +27,7 @@
         </div>
         @if ($container['bg_color'] == 'half')
             <div
-                class="absolute bottom-0 bg-primary-400 end-0 start-0 h-4/5 @if (empty($container['blocks'][0]['data']['title'])) md:h-2/4 @else md:h-2/3 @endif">
+                class="absolute bottom-0 bg-primary-400 end-0 start-0 @if (empty($container['blocks'][0]['data']['title'])) h-2/4 @else h-2/3 @endif">
             </div>
         @endif
     </section>
