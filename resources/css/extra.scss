@@ -170,3 +170,11 @@ ul.checked-list li::marker {
 .hero .prose h6 {
     @apply text-gray-300;
 }
+
+.prose ol > li::marker {
+    @apply text-slate-800 dark:text-slate-200 font-bold text-lg;
+}
+
+.prose p > strong {
+    @apply text-slate-800 dark:text-slate-200;
+}
