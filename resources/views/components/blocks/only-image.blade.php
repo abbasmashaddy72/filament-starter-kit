@@ -3,7 +3,7 @@
         <div class="grid justify-center grid-cols-1 text-center lg:grid-cols-12 md:text-start">
             <div class="lg:col-start-2 lg:col-span-10">
                 <div class="relative">
-                    <x-curator-glider class="object-cover rounded-md shadow-lg aspect-video" :media="$data['image']"
+                    <x-curator-glider class="object-cover rounded-md shadow-lg aspect-video" :media="$data['image'] ?? app(\App\Settings\SitesSettings::class)->no_image"
                         :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
                     <img src="assets/images/cta.jpg" class="rounded-md shadow-lg" alt="">
                     <div class="absolute text-center bottom-2/4 translate-y-2/4 end-0 start-0">

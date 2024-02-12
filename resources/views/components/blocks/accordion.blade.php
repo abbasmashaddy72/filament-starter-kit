@@ -9,7 +9,21 @@
         @php
             $modelClass = $data['data'];
             $modelData = app($modelClass);
-            $items = $modelData->where('status', 'published')->take((int) $data['count'])->get();
+
+            // Check if the model has the getDynamicRelationships method
+            $withRelations = method_exists($modelData, 'getDynamicRelationships') ? $modelData->getDynamicRelationships() : [];
+
+            $query = $modelData->where('status', 'published');
+
+            if ($data['count'] !== null) {
+                $query->take((int) $data['count']);
+            }
+
+            $items = $query
+                ->when(count($withRelations) > 0, function ($query) use ($withRelations) {
+                    return $query->with($withRelations);
+                })
+                ->get();
         @endphp
         @foreach ($items as $item)
             <x-accordion.item :title="$item->question" :content="$item->answer" :loop="$loop" />

@@ -18,6 +18,10 @@
         'dark:bg-purple-700 bg-purple-100' => $container['bg_color'] == 'Purple',
         'dark:bg-fuchsia-700 bg-fuchsia-100' => $container['bg_color'] == 'Fuchsia',
         'dark:bg-pink-700 bg-pink-100' => $container['bg_color'] == 'Pink',
+        'dark:bg-gray-700 bg-gray-100' => $container['bg_color'] == 'Gray',
+        'dark:bg-zinc-700 bg-zinc-100' => $container['bg_color'] == 'Zinc',
+        'dark:bg-neutral-700 bg-neutral-100' => $container['bg_color'] == 'Neutral',
+        'dark:bg-stone-700 bg-stone-100' => $container['bg_color'] == 'Stone',
         'dark:bg-rose-700 bg-rose-100' => $container['bg_color'] == 'Rose',
     ])>
         <div class="container mx-auto content">

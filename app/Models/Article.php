@@ -49,7 +49,7 @@ class Article extends Model
 
     public function getPublicUrl()
     {
-        return route('articles.show', $this);
+        return route('article.show', $this);
     }
 
     public function topic(): BelongsTo

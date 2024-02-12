@@ -4,7 +4,7 @@
 </div>
 
 <div
-    class="grid @if (class_basename($data['data']) == 'Testimonial' || class_basename($data['data']) == 'Post') lg:grid-cols-3 @else lg:grid-cols-4 @endif md:grid-cols-2 grid-cols-1 mt-4 gap-[30px]">
+    class="grid {{ class_basename($data['data']) == 'Testimonial' || class_basename($data['data']) == 'Post' ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} md:grid-cols-2 grid-cols-1 mt-4 gap-[30px]">
     @if (isset($data['data']) && class_exists($data['data']))
         @php
             $modelClass = $data['data'];
@@ -13,48 +13,70 @@
             // Check if the model has the getDynamicRelationships method
             $withRelations = method_exists($modelData, 'getDynamicRelationships') ? $modelData->getDynamicRelationships() : [];
 
-            $items = $modelData
+            $query = $modelData->where('status', 'published');
+
+            if ($data['count'] !== null) {
+                $query->take((int) $data['count']);
+            }
+
+            $items = $query
                 ->when(count($withRelations) > 0, function ($query) use ($withRelations) {
                     return $query->with($withRelations);
                 })
-                ->where('status', 'published')
-                ->take((int) $data['count'])
                 ->get();
         @endphp
         @foreach ($items as $item)
+            @php
+                $title = $item->title ?? '';
+                $content = $item->excerpt ?? ($item->content ?? '');
+                $route = !empty($content) ? route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) : '#';
+            @endphp
+
             @if (class_basename($modelClass) == 'Testimonial')
                 <x-card.testimonial :item="$item" />
+            @elseif (class_basename($modelClass) == 'Project')
+                <x-card.project :item="$item" :route="$route" />
             @else
                 @if ($data['type'] == 'only_text')
-                    <x-card.only-image :title="$item->title" :content="$item->excerpt ?? $item->content" :route="route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug])" />
+                    <x-card.only-image :title="$title" :content="$content" :route="$route" />
                 @elseif($data['type'] == 'button_text')
-                    <x-card.button-text :title="$item->title" :content="$item->excerpt ?? $item->content" :route="route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug])" />
+                    <x-card.button-text :title="$title" :content="$content" :route="$route" />
                 @elseif($data['type'] == 'icon')
-                    <x-card.icon :title="$item->title" :content="$item->excerpt ?? $item->content" :route="route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug])" :icon="$item->icon" />
+                    <x-card.icon :title="$title" :content="$content" :route="$route" :icon="$item->icon ?? ''" />
                 @elseif($data['type'] == 'image')
                     @if ($data['image_location'] == 'top')
-                        <x-card.top :title="$item->title" :content="$item->excerpt ?? ($this->meta->description ?? $item->content)" :route="route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug])" :imageId="$item->meta->ogImage->id ?? $item->image->id" />
+                        <x-card.top :title="$title" :content="$content" :route="$route" :imageId="$item->meta->ogImage->id ??
+                            ($item->image->id ?? app(\App\Settings\SitesSettings::class)->no_image)" />
                     @else
-                        <x-card.right-left :title="$item->title" :content="$item->excerpt ?? ($this->meta->description ?? $item->content)" :route="route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug])" :imageId="$item->meta->ogImage->id ?? $item->image->id"
-                            :imageLocation="$item->image_location" />
+                        <x-card.right-left :title="$title" :content="$content" :route="$route" :imageId="$item->meta->ogImage->id ??
+                            ($item->image->id ?? app(\App\Settings\SitesSettings::class)->no_image)"
+                            :imageLocation="$item->image_location ?? ''" />
                     @endif
                 @endif
             @endif
         @endforeach
     @else
         @foreach ($data['items'] as $item)
+            @php
+                $title = $item['title'] ?? '';
+                $content = $item['content'] ?? '';
+                $route = !empty($content) ? $item['button_url'] ?? '#' : '#';
+            @endphp
+
             @if ($data['type'] == 'only_text')
-                <x-card.only-image :title="$item['title']" :content="$item['content']" :route="$item['button_url'] ?? '#'" />
+                <x-card.only-image :title="$title" :content="$content" :route="$route" />
             @elseif($data['type'] == 'button_text')
-                <x-card.button-text :title="$item['title']" :content="$item['content']" :route="$item['button_url'] ?? '#'" :buttonText="$item['button_text']" />
+                <x-card.button-text :title="$title" :content="$content" :route="$route" :buttonText="$item['button_text'] ?? ''" />
             @elseif($data['type'] == 'icon')
-                <x-card.icon :title="$item['title']" :content="$item['content']" :route="$item['button_url'] ?? '#'" :icon="$item['icon']" />
+                <x-card.icon :title="$title" :content="$content" :route="$route" :icon="$item['icon'] ?? ''" />
             @elseif($data['type'] == 'image')
                 @if ($data['image_location'] == 'top')
-                    <x-card.top :title="$item['title']" :content="$item['content']" :route="$item['button_url']" :imageId="$item->meta->ogImage->id ?? $item->image->id" />
+                    <x-card.top :title="$title" :content="$content" :route="$route" :imageId="$item->meta->ogImage->id ??
+                        ($item->image->id ?? app(\App\Settings\SitesSettings::class)->no_image)" />
                 @else
-                    <x-card.right-left :title="$item['title']" :content="$item['content']" :route="$item['button_url']" :imageId="$item->meta->ogImage->id ?? $item->image->id"
-                        :imageLocation="$item['image_location']" />
+                    <x-card.right-left :title="$title" :content="$content" :route="$route" :imageId="$item->meta->ogImage->id ??
+                        ($item->image->id ?? app(\App\Settings\SitesSettings::class)->no_image)"
+                        :imageLocation="$item['image_location'] ?? ''" />
                 @endif
             @endif
         @endforeach

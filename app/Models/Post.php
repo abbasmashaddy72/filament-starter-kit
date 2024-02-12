@@ -62,7 +62,7 @@ class Post extends Model
 
     public function getPublicUrl()
     {
-        return route('blog.show', $this);
+        return route('post.show', $this);
     }
 
     public function author(): BelongsTo

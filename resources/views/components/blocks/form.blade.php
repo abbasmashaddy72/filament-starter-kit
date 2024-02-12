@@ -9,7 +9,7 @@
 
     @if ($data['type'] == 'content')
         <div class="lg:col-span-4 @if ($data['image_location'] == 'left') order-first @endif">
-            <x-curator-glider class="relative rounded-lg shadow-lg aspect-[3/4] object-cover" :media="$data['image']"
+            <x-curator-glider class="relative rounded-lg shadow-lg aspect-[3/4] object-cover" :media="$data['image'] ?? app(\App\Settings\SitesSettings::class)->no_image"
                 :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
         </div>
     @elseif($data['type'] == 'image')

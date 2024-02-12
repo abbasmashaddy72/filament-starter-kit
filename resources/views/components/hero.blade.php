@@ -3,10 +3,10 @@
 ])
 
 <aside
-    class="relative flex items-center justify-center @if (Route::currentRouteName() === 'welcome') min-h-[80vh] @else min-h-[20vh] @endif pt-20">
+    class="relative flex items-center justify-center @if (Route::currentRouteName() === 'welcome') min-h-[80vh] @else min-h-[35vh] @endif pt-20">
     @if ($type == 'image' && ($media || $cta))
         <div class="absolute inset-0 bg-slate-950/85"></div>
-        <x-curator-glider class="absolute inset-0 z-0 object-cover w-full h-full opacity-20" :media="$media->id"
+        <x-curator-glider class="absolute inset-0 z-0 object-cover w-full h-full opacity-20" :media="$media->id ?? app(\App\Settings\SitesSettings::class)->no_image"
             :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" height="{{ $media->height }}"
             width="{{ $media->width }}" />
         <div class="container z-10 hero">

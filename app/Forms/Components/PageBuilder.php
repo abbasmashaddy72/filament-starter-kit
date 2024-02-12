@@ -40,6 +40,6 @@ class PageBuilder
                         OnlyImage::make(),
                         ImageContent::make(),
                     ]),
-            ])->columnSpanFull();
+            ])->reorderableWithButtons()->columnSpanFull();
     }
 }

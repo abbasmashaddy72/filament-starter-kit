@@ -3,30 +3,34 @@
 namespace App\Models;
 
 use App\Concerns\HasMeta;
-use App\Concerns\Sluggable;
+use Awcodes\Curator\Models\Media;
 use App\Concerns\HasFeaturedImage;
 use App\Concerns\HasPublishedScope;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Topic extends Model
+class Project extends Model
 {
-    use HasPublishedScope, Sluggable, HasFactory, HasMeta, SoftDeletes, HasFeaturedImage, HasTranslations;
+    use HasPublishedScope, HasFactory, HasMeta, SoftDeletes, HasFeaturedImage, HasTranslations;
 
-    public $translatable = ['title', 'content', 'excerpt'];
+    public $translatable = ['title', 'excerpt'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'image_id',
         'title',
-        'slug',
-        'status',
+        'location',
         'excerpt',
-        'content',
+        'status',
+        'start_date',
+        'end_date',
     ];
 
     /**
@@ -35,22 +39,12 @@ class Topic extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'indexable' => 'boolean',
-        'content' => 'array',
+        'start_date' => 'datetime:Y-m-d',
+        'end_date' => 'datetime:Y-m-d',
     ];
 
-    protected $with = [
-        'meta',
-    ];
-
-    public function getPublicUrl()
+    public function image(): BelongsTo
     {
-        return route('topic.show', $this);
-    }
-
-    public function articles()
-    {
-        return $this->hasMany(Article::class);
+        return $this->belongsTo(Media::class, 'image_id', 'id');
     }
 }

@@ -49,6 +49,11 @@ class Service extends Model
         'meta',
     ];
 
+    public function getPublicUrl()
+    {
+        return route('service.show', $this);
+    }
+
     public function image(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'image_id', 'id');

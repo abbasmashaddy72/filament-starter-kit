@@ -50,8 +50,8 @@
 
 ### Page Builder Blocks
 
-- Adding More Option to Select Type in Cards Field
-- Cards - Dropdown for image location
+- Adding More Option to Select Type in Cards Field - **Done**
+- Cards - Dropdown for image location - **Done**
 
 ### Rich Text Content
 

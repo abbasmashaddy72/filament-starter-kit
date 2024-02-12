@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d3c12b1e6c1a2e4a417a2b050abc163",
+    "content-hash": "c627e5d9fdfa294371771388f0ffb151",
     "packages": [
         {
             "name": "akaunting/laravel-firewall",
@@ -15257,66 +15257,6 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
-        },
-        {
-            "name": "timwassenburg/filament-timesheets",
-            "version": "v1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/timwassenburg/filament-timesheets.git",
-                "reference": "4ae75f40826efb99e3ac194a1f2ea9bc2a22fb85"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/timwassenburg/filament-timesheets/zipball/4ae75f40826efb99e3ac194a1f2ea9bc2a22fb85",
-                "reference": "4ae75f40826efb99e3ac194a1f2ea9bc2a22fb85",
-                "shasum": ""
-            },
-            "require": {
-                "filament/filament": "^3.0-stable",
-                "pxlrbt/filament-excel": "^2.1"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.13"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TimWassenburg\\FilamentTimesheets\\FilamentTimesheetsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TimWassenburg\\FilamentTimesheets\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tim Wassenburg",
-                    "email": "tim@codexion.nl",
-                    "homepage": "https://codexion.nl/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Filament Timesheets is a package for Filament that allows you to track time spent on projects and tasks.",
-            "homepage": "https://github.com/timwassenburg/filament-timesheets",
-            "keywords": [
-                "filament",
-                "laravel",
-                "php",
-                "timesheets"
-            ],
-            "support": {
-                "issues": "https://github.com/timwassenburg/filament-timesheets/issues",
-                "source": "https://github.com/timwassenburg/filament-timesheets/tree/v1.0.3"
-            },
-            "time": "2023-12-17T14:35:47+00:00"
         },
         {
             "name": "torann/geoip",
