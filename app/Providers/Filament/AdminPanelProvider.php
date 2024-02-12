@@ -7,6 +7,7 @@ use Filament\Panel;
 use Awcodes\Overlook;
 use Filament\PanelProvider;
 use LaraZeus\Bolt\BoltPlugin;
+use App\Settings\SitesSettings;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\Support\Colors\Color;
 use Hasnayeen\Themes\ThemesPlugin;
@@ -147,12 +148,30 @@ class AdminPanelProvider extends PanelProvider
                 FilamentSpatieLaravelBackupPlugin::make()
                     ->usingQueue('backups'),
                 FilamentSpatieLaravelHealthPlugin::make(),
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales($getLocales ?? ['en']),
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales($this->getLocales() ?? ['en']),
                 BoltPlugin::make()
                     ->navigationGroupLabel('Dynamic Forms'),
                 LightSwitchPlugin::make(),
                 FilamentRouteStatisticsPlugin::make(),
                 SimpleLightBoxPlugin::make(),
             ]);
+    }
+
+    function getLocales(): array
+    {
+        // Skip execution during migrations
+        if (app()->runningInConsole()) {
+            return [];
+        }
+        // Access the locales property directly as an array
+        $locales = app(SitesSettings::class)->locales ?? [];
+
+        // Remove 'en' if present
+        $locales = array_diff($locales, ['en']);
+
+        // Ensure 'en' is the first element
+        array_unshift($locales, 'en');
+
+        return $locales;
     }
 }

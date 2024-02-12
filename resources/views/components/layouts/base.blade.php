@@ -16,7 +16,8 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full light scroll-smooth"
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    class="h-full antialiased light scroll-smooth filament js-focus-visible"
     dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
@@ -65,6 +66,10 @@
     @endif
 
     <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
         :root {
             @foreach ($cssVariables ?? [] as $cssVariableName => $cssVariableValue)
                 --{{ $cssVariableName }}: {{ $cssVariableValue }};
@@ -73,9 +78,10 @@
     </style>
 
 
-    @stack('styles')
-    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+    @livewireStyles
     @filamentStyles
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 
 <body class="text-base text-slate-950 dark:text-white dark:bg-slate-900">
@@ -89,9 +95,9 @@
 
     <x-footers.default :siteSettings="$siteSettings" :menu='$menu' />
     <x-switch />
-    @filamentScripts
-
     @stack('scripts')
+    @livewireScripts
+    @filamentScripts
 </body>
 
 </html>

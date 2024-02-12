@@ -63,7 +63,6 @@ class AppServiceProvider extends ServiceProvider
                 return $str;
             }
         );
-        view()->share('getLocales', $this->getLocales());
     }
 
     function getLocales(): array

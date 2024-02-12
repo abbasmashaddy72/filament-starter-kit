@@ -1,15 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* FONTS */
-@import "./custom/fonts";
+@import "/vendor/filament/filament/resources/css/theme.css";
 
 /* general */
 @import "./custom/general";
-
-/* components */
-/* @import "components/buttons"; */
 
 /* structure */
 @import "./custom/structure/topnav";
@@ -17,7 +9,6 @@
 
 /* pages */
 @import "./custom/pages/helper";
-@import "./custom/pages/contact";
 
 @import "./extra";
 

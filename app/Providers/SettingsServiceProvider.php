@@ -27,7 +27,7 @@ class SettingsServiceProvider extends ServiceProvider
 
         // If $siteSettings->locales is not empty, create an associative array with key-value pairs
         $localesAssociative = !empty($siteSettings->locales)
-            ? Arr::only($localesConfig, $siteSettings->locales)
+            ? array_intersect_key($localesConfig, array_flip($siteSettings->locales))
             : config('app.locales');
 
         // Set the locales into the config
