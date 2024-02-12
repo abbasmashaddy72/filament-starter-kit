@@ -75,7 +75,7 @@
 
     @stack('styles')
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
-    @livewireStyles
+    @filamentStyles
 </head>
 
 <body class="text-base text-slate-950 dark:text-white dark:bg-slate-900">
@@ -89,7 +89,7 @@
 
     <x-footers.default :siteSettings="$siteSettings" :menu='$menu' />
     <x-switch />
-    @livewireScripts
+    @filamentScripts
 
     @stack('scripts')
 </body>

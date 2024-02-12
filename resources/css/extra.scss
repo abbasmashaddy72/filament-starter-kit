@@ -116,6 +116,10 @@ ul.checked-list li::marker {
     @apply text-slate-800 dark:text-slate-200;
 }
 
+.prose a {
+    @apply text-slate-800 dark:text-slate-200 hover:text-primary-500;
+}
+
 /* Buttons in Paragraphs */
 .prose p > [data-as-button="true"]:hover,
 .prose p > [data-as-button="true"]:is([data-as-button="true"]) {
