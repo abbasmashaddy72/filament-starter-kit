@@ -62,3 +62,5 @@
 - *laravel-geoip* package issue: [This cache store does not support tagging](https://github.com/Torann/laravel-geoip/issues/123) - **Done *(Fixed with config File Change)***
 
 - *filament-firewall*, *akaunting/laravel-firewall* Need to Work on these package as in Production Access Denied Issue - **Done *(I think it is done Need to Test Fixed by adding laravel-firewall in app.php and removing the filament-firewall from Kernel)***
+
+- Report Entry Fix in Form Need to Add Function in Users Model
