@@ -1,6 +1,6 @@
 @foreach ($content as $container)
     <section id="{{ generateSectionId($container['blocks'][0]['data']['title'] ?? '') }}" @class([
-        'py-16 md:py-24',
+        'relative py-16 md:py-24',
         'dark:bg-slate-700 bg-slate-100' => $container['bg_color'] == 'Slate',
         'dark:bg-red-700 bg-red-100' => $container['bg_color'] == 'Red',
         'dark:bg-orange-700 bg-orange-100' => $container['bg_color'] == 'Orange',

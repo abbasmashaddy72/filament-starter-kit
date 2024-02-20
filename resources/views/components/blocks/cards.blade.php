@@ -29,7 +29,7 @@
             @php
                 $title = $item->title ?? '';
                 $content = $item->excerpt ?? ($item->content ?? '');
-                $route = !empty($content) ? route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) : '#';
+                $route = !empty($content) && Route::has(strtolower(class_basename($modelClass)) . '.show') ? route(strtolower(class_basename($modelClass)) . '.show', ['page' => $item->slug]) : '#';
             @endphp
 
             @if (class_basename($modelClass) == 'Testimonial')

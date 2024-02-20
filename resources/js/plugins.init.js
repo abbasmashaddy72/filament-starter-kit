@@ -10,7 +10,7 @@
 //=========================================//
 /*/*            01) Tobii lightbox         */
 //=========================================//
-import Tobii from "tobii";
+import Tobii from "@midzer/tobii";
 
 try {
     const tobii = new Tobii({
