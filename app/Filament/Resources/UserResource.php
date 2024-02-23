@@ -22,6 +22,11 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = 'User Management';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.user');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

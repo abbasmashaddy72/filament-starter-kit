@@ -178,4 +178,24 @@ return [
         'url' => 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sixtyfour&display=swap',
         'family' => 'Inter'
     ],
+    'menu' => [
+        'pages' => [
+            'siteSettings' => true,
+        ],
+        'resources' => [
+            'article' => true,
+            'faq' => true,
+            'menu' => true,
+            'page' => true,
+            'post' => true,
+            'project' => true,
+            'service' => true,
+            'testimonial' => true,
+            'topic' => true,
+            'user' => true,
+        ],
+        'packages' => [
+            'curator' => true,
+        ]
+    ]
 ];

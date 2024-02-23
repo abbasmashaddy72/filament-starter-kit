@@ -35,6 +35,11 @@ class PageResource extends Resource
 
     protected static ?string $navigationGroup = 'CMS';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.page');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

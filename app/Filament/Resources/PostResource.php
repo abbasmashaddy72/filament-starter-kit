@@ -34,6 +34,11 @@ class PostResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Management';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.post');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

@@ -39,6 +39,11 @@ class ServiceResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.service');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

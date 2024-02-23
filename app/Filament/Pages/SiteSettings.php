@@ -26,6 +26,11 @@ class SiteSettings extends SettingsPage
 
     protected static ?string $navigationGroup = 'CMS';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.pages.siteSettings');
+    }
+
     protected function getActions(): array
     {
         return [

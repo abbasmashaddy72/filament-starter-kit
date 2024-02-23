@@ -34,6 +34,11 @@ class TopicResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Management';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.topic');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

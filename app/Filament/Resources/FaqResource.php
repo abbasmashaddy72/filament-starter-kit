@@ -29,6 +29,11 @@ class FaqResource extends Resource
 
     protected static ?string $navigationGroup = 'CMS';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.faq');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

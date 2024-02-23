@@ -34,6 +34,11 @@ class TestimonialResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.testimonial');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

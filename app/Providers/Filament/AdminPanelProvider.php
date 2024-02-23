@@ -105,6 +105,7 @@ class AdminPanelProvider extends PanelProvider
                         ResourceLockResource::class,
                     ])->sortBy('navigation'),
                 CuratorPlugin::make()
+                    ->registerNavigation(config('main.menu.packages.curator'))
                     ->navigationCountBadge(),
                 ThemesPlugin::make()
                     ->registerTheme([

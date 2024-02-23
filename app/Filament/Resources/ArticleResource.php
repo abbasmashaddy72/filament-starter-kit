@@ -36,6 +36,11 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Management';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return  config('main.menu.resources.article');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
