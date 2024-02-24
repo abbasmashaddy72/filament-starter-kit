@@ -38,7 +38,7 @@ class MenuResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $configMenu = config('main.menu');
+        $configMenu = config('main.menuUrls');
         $databaseOptions = Page::where('status', 'Published')->where('front_page', false)->pluck('title', 'slug')->toArray();
         $URLoptionsKeys = array_keys($configMenu + $databaseOptions);
         $URLoptionsValues = array_values($configMenu + $databaseOptions);

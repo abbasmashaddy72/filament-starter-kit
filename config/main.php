@@ -164,7 +164,7 @@ return [
         'ZMW' => 'Zambian Kwacha',
         'ZWL' => 'Zimbabwean Dollar',
     ],
-    'menu' => [
+    'menuUrls' => [
         '/' => 'Home Page (Welcome)',
         'sitemap' => 'Sitemap',
     ],

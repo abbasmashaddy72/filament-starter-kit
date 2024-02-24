@@ -2,7 +2,7 @@
 /*             Menu              */
 /*===============================*/
 .navbar {
-    @apply fixed top-0 start-0 end-0 z-50 bg-transparent py-3 transition-all duration-500 font-lexend;
+    @apply fixed top-0 start-0 end-0 z-50 bg-transparent py-3 transition-all duration-500 font-lexend w-screen;
     .navigation {
         @apply w-full m-0;
         .navbar-nav {

@@ -8,20 +8,22 @@
     @endsection
 
     <div class="py-8 pt-16 lg:py-12">
-        @if ($page->content)
-            <x-page-builder :content="$page->content" />
-        @endif
-        {{-- <x-layouts.two-column-right>
+        @if (Route::currentRouteName() == 'quiztopic.show')
             @if ($page->content)
                 <x-page-builder :content="$page->content" />
             @endif
-
-            <x-slot name="sidebar">
-                <x-widget heading="Check out our awesome blog">
-                    <p>When we get around to writing some posts.</p>
-                </x-widget>
-            </x-slot>
-
-        </x-layouts.two-column-right> --}}
+            <div class="container mx-auto content">
+                <a href="{{ route('quiz.start', ['page' => $page->slug]) }}"
+                    class="flex items-center justify-center p-2 text-base font-normal tracking-wide text-center text-white align-middle transition duration-500 ease-in-out border rounded-md bg-primary-500 border-primary-500 hover:bg-primary-600 hover:border-primary-500">
+                    Start Quiz
+                </a>
+            </div>
+        @elseif(Route::currentRouteName() == 'quiz.start')
+            @livewire('quiz-form', ['topic' => $page])
+        @else
+            @if ($page->content)
+                <x-page-builder :content="$page->content" />
+            @endif
+        @endif
     </div>
 </x-layouts.base>

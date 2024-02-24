@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Page extends Model
 {
-    use HasFactory, HasPublishedScope, Sluggable, HasMeta, SoftDeletes, HasFeaturedImage, HasTranslations;
+    use HasFactory, SoftDeletes, Sluggable, HasMeta, HasTranslations, HasPublishedScope, HasFeaturedImage;
 
     public $translatable = ['title', 'content'];
 

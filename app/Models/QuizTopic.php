@@ -2,19 +2,23 @@
 
 namespace App\Models;
 
+use App\Concerns\HasMeta;
+use App\Concerns\Sluggable;
 use Awcodes\Curator\Models\Media;
+use App\Concerns\HasFeaturedImage;
+use App\Concerns\HasPublishedScope;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class QuizTopic extends Model
 {
-    use HasFactory, SoftDeletes, HasTranslations;
+    use HasFactory, SoftDeletes, Sluggable, HasMeta, HasTranslations, HasPublishedScope, HasFeaturedImage;
 
-    public $translatable = ['title', 'description'];
+    public $translatable = ['title', 'content', 'excerpt'];
 
     protected $fillable = [
         'type',
@@ -23,15 +27,25 @@ class QuizTopic extends Model
         'end',
         'is_age_restricted',
         'total_question_count',
-        'description',
+        'content',
+        'hero',
+        'excerpt',
+        'slug',
+        'status',
     ];
 
     protected $casts = [
         'start' => 'date',
         'end' => 'date',
         'is_age_restricted' => 'boolean',
-        'description' => 'array',
+        'content' => 'array',
+        'hero' => 'array',
         'title' => 'array',
+        'excerpt' => 'array',
+    ];
+
+    protected $with = [
+        'meta',
     ];
 
     public function medias(): BelongsToMany

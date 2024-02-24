@@ -4,12 +4,20 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Enums\Status;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use App\Components\Hero;
+use App\Components\Meta;
 use Filament\Forms\Form;
 use App\Models\QuizTopic;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use LaraZeus\Qr\Facades\Qr;
 use App\Enums\QuizTopicStatus;
 use Filament\Resources\Resource;
 use Livewire\Attributes\Reactive;
+use App\Forms\Components\PageBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\QuizTopicResource\Pages;
@@ -44,28 +52,64 @@ class QuizTopicResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('type')
-                    ->native(false)
-                    ->required()
-                    ->options(QuizTopicStatus::class),
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\DatePicker::make('start'),
-                Forms\Components\DatePicker::make('end'),
-                Forms\Components\Toggle::make('is_age_restricted')
-                    ->required(),
-                Forms\Components\TextInput::make('total_question_count')
-                    ->numeric(),
-                Forms\Components\RichEditor::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\Fieldset::make('Attachments')->schema([
-                    CuratorPicker::make('medias')
-                        ->hiddenLabel()
-                        ->relationship('medias', 'id')
-                        ->helperText(__('Here you can attach all files needed for this ticket'))
-                        ->multiple()
-                        ->listDisplay(),
-                ]),
+                Forms\Components\Tabs::make()->schema([
+                    Forms\Components\Tabs\Tab::make(__('Title & Details'))->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->live()
+                            ->afterStateUpdated(function (Get $get, Set $set, ?string $operation, ?string $old, ?string $state) {
+                                if ($operation == 'edit') {
+                                    return;
+                                }
+                                if (($get('slug') ?? '') !== Str::slug($old)) {
+                                    return;
+                                }
+                                $set('slug', Str::slug($state));
+                            })
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->unique(QuizTopic::class, 'slug', fn ($record) => $record)
+                            ->disabled(fn (?string $operation) => $operation == 'edit')
+                            ->maxLength(255),
+                        Forms\Components\Select::make('type')
+                            ->native(false)
+                            ->required()
+                            ->options(QuizTopicStatus::class),
+                        Forms\Components\Select::make('status')
+                            ->default('Draft')
+                            ->options(Status::class)
+                            ->required(),
+                        Forms\Components\DatePicker::make('start'),
+                        Forms\Components\DatePicker::make('end'),
+                        Forms\Components\Toggle::make('is_age_restricted')
+                            ->required(),
+                        Forms\Components\TextInput::make('total_question_count')
+                            ->numeric(),
+                        Forms\Components\Textarea::make('excerpt'),
+                    ]),
+                    Forms\Components\Tabs\Tab::make('SEO')
+                        ->schema([
+                            Meta::make(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Hero')
+                        ->schema([
+                            Hero::make('hero'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Page Content')
+                        ->schema([
+                            PageBuilder::make('content'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Attachments')
+                        ->schema([
+                            CuratorPicker::make('medias')
+                                ->hiddenLabel()
+                                ->relationship('medias', 'id')
+                                ->helperText(__('Here you can attach all files needed for this ticket'))
+                                ->multiple()
+                                ->listDisplay(),
+                        ]),
+                ])->columns(2)->columnSpanFull(),
             ]);
     }
 
@@ -100,6 +144,13 @@ class QuizTopicResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                \LaraZeus\Popover\Tables\PopoverColumn::make('title')
+                    ->trigger('click')
+                    ->placement('right')
+                    ->offset(10)
+                    ->popOverMaxWidth('none')
+                    ->icon('heroicon-o-chevron-right')
+                    ->content(fn ($record) => (new static())->generateQR($record)),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -140,5 +191,14 @@ class QuizTopicResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function generateQR($record)
+    {
+        $url = route('quiztopic.show', ['page' => $record->slug]);
+
+        $data = Qr::render(data: $url);
+
+        return $data;
     }
 }

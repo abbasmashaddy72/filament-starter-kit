@@ -9,6 +9,7 @@ use App\Forms\Blocks\Accordion;
 use App\Forms\Blocks\ImageText;
 use App\Forms\Blocks\OnlyImage;
 use App\Forms\Blocks\SelectForm;
+use App\Forms\Blocks\ImageSlider;
 use App\Forms\Blocks\ImageContent;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
@@ -39,6 +40,7 @@ class PageBuilder
                         ImageText::make(),
                         OnlyImage::make(),
                         ImageContent::make(),
+                        ImageSlider::make(),
                     ]),
             ])->reorderableWithButtons()->columnSpanFull();
     }

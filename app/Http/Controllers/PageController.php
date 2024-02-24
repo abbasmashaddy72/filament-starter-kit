@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\Service;
 use App\Models\Topic;
+use App\Models\Article;
+use App\Models\Service;
+use App\Models\QuizTopic;
 
 class PageController extends Controller
 {
@@ -56,6 +57,24 @@ class PageController extends Controller
     }
 
     public function topic_show(Topic $page)
+    {
+        abort_unless($page->status == 'Published' || auth()->user(), 404);
+
+        return view('page', [
+            'page' => $page,
+        ]);
+    }
+
+    public function quiztopic_show(QuizTopic $page)
+    {
+        abort_unless($page->status == 'Published' || auth()->user(), 404);
+
+        return view('page', [
+            'page' => $page,
+        ]);
+    }
+
+    public function quiz_start(QuizTopic $page)
     {
         abort_unless($page->status == 'Published' || auth()->user(), 404);
 

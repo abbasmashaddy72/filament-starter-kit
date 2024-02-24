@@ -47,8 +47,6 @@ class QuizUserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Toggle::make('self_enroll')
-                    ->required(),
                 Forms\Components\Toggle::make('self_or_else')
                     ->required(),
                 Forms\Components\TextInput::make('person_father_name')
@@ -77,8 +75,6 @@ class QuizUserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('self_enroll')
-                    ->boolean(),
                 Tables\Columns\IconColumn::make('self_or_else')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('person_name')

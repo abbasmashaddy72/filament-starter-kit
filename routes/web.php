@@ -24,6 +24,8 @@ Route::group([
     Route::name('article.show')->get('article/{page:slug}', [\App\Http\Controllers\PageController::class, 'article_show']);
     Route::name('post.show')->get('post/{page:slug}', [\App\Http\Controllers\PageController::class, 'post_show']);
     Route::name('topic.show')->get('topic/{page:slug}', [\App\Http\Controllers\PageController::class, 'topic_show']);
+    Route::name('quiztopic.show')->get('quiztopic/{page:slug}', [\App\Http\Controllers\PageController::class, 'quiztopic_show']);
+    Route::name('quiz.start')->get('quiz/{page:slug}', [\App\Http\Controllers\PageController::class, 'quiz_start']);
 
     // this needs to be last
     Route::name('pages.show')->get('{page:slug}', [\App\Http\Controllers\PageController::class, 'show']);

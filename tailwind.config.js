@@ -2,13 +2,21 @@ import preset from "./vendor/filament/filament/tailwind.config.preset";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    presets: [preset],
+    presets: [preset, require("./vendor/wireui/wireui/tailwind.config.js")],
     content: [
+        "./app/Colors/**/*.php",
         "./app/Helpers/Utilities.php",
         "./resources/**/*.blade.php",
+        "./vendor/lara-zeus/core/resources/views/**/*.blade.php",
+        "./vendor/lara-zeus/bolt/resources/views/themes/**/*.blade.php",
         "./vendor/lara-zeus/bolt/resources/views/filament/**/*.blade.php",
         "./vendor/filament/**/*.blade.php",
         "./node_modules/flowbite/**/*.js",
+        "./vendor/wireui/wireui/src/*.php",
+        "./vendor/wireui/wireui/ts/**/*.ts",
+        "./vendor/wireui/wireui/src/View/**/*.php",
+        "./vendor/wireui/wireui/src/WireUi/**/*.php",
+        "./vendor/wireui/wireui/src/resources/**/*.blade.php",
     ],
     darkMode: "class",
     important: true,

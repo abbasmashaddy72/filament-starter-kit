@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,21 +15,32 @@ class QuizUser extends Model
         'unique_id',
         'name',
         'email',
-        'self_enroll',
+        'dob',
         'self_or_else',
         'person_name',
         'person_father_name',
         'person_contact_no',
-        'dob',
+        'person_dob',
         'location',
         'gender',
     ];
 
     protected $casts = [
-        'self_enroll' => 'boolean',
         'self_or_else' => 'boolean',
         'dob' => 'date',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->unique_id = Str::random(5);
+            while (static::where('unique_id', $model->unique_id)->exists()) {
+                $model->unique_id = Str::random(5);
+            }
+        });
+    }
 
     public function quizResults()
     {
