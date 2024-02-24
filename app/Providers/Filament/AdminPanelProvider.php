@@ -59,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Blue,
             ])
             ->navigationGroups([
+                'Quiz',
                 'CMS',
                 'Content',
                 'Blog Management',
