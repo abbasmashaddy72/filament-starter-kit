@@ -10,9 +10,7 @@ use App\Models\QuizUser;
 use Filament\Forms\Form;
 use App\Models\QuizTopic;
 use App\Models\QuizResult;
-use Illuminate\Support\Str;
 use App\Models\QuizQuestion;
-use Forms\Components\TextInput;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
 
@@ -33,65 +31,26 @@ class QuizForm extends Component implements HasForms
         'gender' => null,
     ];
 
-    // Model Custom Quiz User Value
-    public $quizUserId;
-
-    public $name;
-
-    public $father_name;
-
-    public $gender;
-
-    public $dob;
-
-    public $location;
-
-    public $mobile;
-
-    public $aic;
-
-    // Model Custom Topic Value
     public $topic;
 
-    public $topicData;
-
-    // Model Custom Question Values
+    public $age;
+    public $quizUserId;
     public $count;
-
     public $quizSize;
-
     public $currentQuestion;
-
-    public $restricted_age;
-
-    // Model Custom Result Values
     public $currentQuizAnswers;
-
     public $quizPercentage;
-
     public $totalQuizQuestions;
-
     public $currentResultData;
-
     public $answeredQuestionsWithOptions;
 
     // Custom Values
     public $quizRegister = true; // Progress
-
-    public $quizSlides = false; // Progress
-
+    public $quizContent = false; // Progress
     public $quizInProgress = false; // Progress
-
-    public $quizDeclaration = false; // Progress
-
     public $showResult = false; // Progress
-
-    public $preRegister = false; // Progress
-
     public $isDisabled = true; // Button
-
     public $userAnswered; // Checkbox
-
     public $answeredQuestions = []; // Answered Question List
 
     public function form(Form $form): Form
@@ -138,9 +97,9 @@ class QuizForm extends Component implements HasForms
 
     public function registerQuizUser()
     {
-        $age = $this->quizUserData['age'];
+        $this->age = $this->quizUserData['age'];
         $new_dob = new Carbon();
-        $this->quizUserData['dob'] = $new_dob->subYears($age)->format('Y-m-d');
+        $this->quizUserData['dob'] = $new_dob->subYears($this->age)->format('Y-m-d');
 
         unset($this->quizUserData['age']);
 
@@ -152,22 +111,27 @@ class QuizForm extends Component implements HasForms
         $quizUser = QuizUser::create($this->quizUserData);
         $this->quizUserId = $quizUser->id;
 
-        $this->quizRegister = false;
-        $this->startQuiz();
+        if (!is_null($this->topic->content)) {
+            $this->quizContent = true;
+            $this->quizRegister = false;
+        } else {
+            $this->quizRegister = false;
+            $this->startQuiz();
+        }
     }
 
     public function startQuiz()
     {
         if ($this->topic->type == 'Marks') {
             $this->quizRegister = false;
-            $this->preRegister = true;
         } else {
+            $this->quizContent = false;
             $this->quizRegister = false;
 
-            $this->topicData = QuizTopic::where('id', $this->topic->id)->get();
+            $topicData = QuizTopic::where('id', $this->topic->id)->get();
 
-            if ($this->dob == 0 && $this->topic->age_restriction == 0) {
-                $this->topicData->transform(function ($category) {
+            if ($this->age == 0 && $this->topic->is_age_restricted) {
+                $topicData->transform(function ($category) {
                     $category->questions = QuizQuestion::whereHas('quizTopic', function ($q) use ($category) {
                         $q->where('id', $category->id);
                     })->inRandomOrder()
@@ -176,8 +140,8 @@ class QuizForm extends Component implements HasForms
 
                     return $category;
                 });
-            } elseif ($this->dob > 12 && $this->topic->age_restriction == 1) {
-                $this->topicData->transform(function ($category) {
+            } elseif ($this->age > 12 && $this->topic->is_age_restricted) {
+                $topicData->transform(function ($category) {
                     $category->questions = QuizQuestion::whereHas('quizTopic', function ($q) use ($category) {
                         $q->where('id', $category->id);
                     })->where('age_restriction_condition', '=', '>=12')
@@ -187,8 +151,8 @@ class QuizForm extends Component implements HasForms
 
                     return $category;
                 });
-            } elseif ($this->dob <= 12 && $this->topic->age_restriction == 1) {
-                $this->topicData->transform(function ($category) {
+            } elseif ($this->age <= 12 && $this->topic->is_age_restricted) {
+                $topicData->transform(function ($category) {
                     $category->questions = QuizQuestion::whereHas('quizTopic', function ($q) use ($category) {
                         $q->where('id', $category->id);
                     })->where('age_restriction_condition', '=', '<=12')
@@ -199,7 +163,7 @@ class QuizForm extends Component implements HasForms
                     return $category;
                 });
             } else {
-                $this->topicData->transform(function ($category) {
+                $topicData->transform(function ($category) {
                     $category->questions = QuizQuestion::whereHas('quizTopic', function ($q) use ($category) {
                         $q->where('id', $category->id);
                     })->inRandomOrder()
@@ -210,7 +174,7 @@ class QuizForm extends Component implements HasForms
                 });
             }
 
-            $this->quizSize = $this->topicData->first()->questions->count();
+            $this->quizSize = $topicData->first()->questions->count();
 
             $this->count = 1;
             $this->currentQuestion = $this->getNextQuestion();
@@ -230,20 +194,20 @@ class QuizForm extends Component implements HasForms
 
     public function getNextQuestion() // Next Question
     {
-        if ($this->dob == 0 && $this->topic->age_restriction == 0) {
+        if ($this->age == 0 && $this->topic->is_age_restricted) {
             $question = QuizQuestion::where('quiz_topic_id', $this->topic->id)
                 ->with('quizOptions')
                 ->whereNotIn('id', $this->answeredQuestions)
                 ->inRandomOrder()
                 ->first();
-        } elseif ($this->dob > 12 && $this->topic->age_restriction == 1) {
+        } elseif ($this->age > 12 && $this->topic->is_age_restricted) {
             $question = QuizQuestion::where('quiz_topic_id', $this->topic->id)
                 ->with('quizOptions')
                 ->whereNotIn('id', $this->answeredQuestions)
                 ->where('age_restriction_condition', '=', '>=12')
                 ->inRandomOrder()
                 ->first();
-        } elseif ($this->dob <= 12 && $this->topic->age_restriction == 1) {
+        } elseif ($this->age <= 12 && $this->topic->is_age_restricted) {
             $question = QuizQuestion::where('quiz_topic_id', $this->topic->id)
                 ->with('quizOptions')
                 ->whereNotIn('id', $this->answeredQuestions)
@@ -287,7 +251,6 @@ class QuizForm extends Component implements HasForms
         if ($this->count == $this->quizSize + 1) {
             if (!is_null($this->topic->declaration)) {
                 $this->quizInProgress = false;
-                $this->quizDeclaration = true;
             } else {
                 $this->showResults();
             }
@@ -298,12 +261,11 @@ class QuizForm extends Component implements HasForms
 
     public function showResults() // Show Results
     {
-        $this->quizDeclaration = false;
         // Get a count of total number of quiz questions in Quiz table for the just finished quiz.
         $this->totalQuizQuestions = QuizResult::where('quiz_topic_id', $this->topic->id)->where('quiz_user_id', $this->quizUserId)->count();
         // Get a count of correctly answered questions for this quiz.
         $this->currentQuizAnswers = QuizResult::where('quiz_topic_id', $this->topic->id)
-            ->where('correct', '1')
+            ->where('correct', 1)
             ->where('quiz_user_id', $this->quizUserId)
             ->count();
         // Calculate score for updating the quiz_header table before finishing the quid.
@@ -315,7 +277,7 @@ class QuizForm extends Component implements HasForms
         // Gets All Question Id's User Attended
         $this->currentResultData = QuizResult::where('quiz_user_id', $this->quizUserId)->get();
         // dd($answeredQuestionIds);
-        $this->answeredQuestionsWithOptions = QuizQuestion::whereIn('id', $this->currentResultData->pluck('question_id'))->with('options')->get();
+        $this->answeredQuestionsWithOptions = QuizQuestion::whereIn('id', $this->currentResultData->pluck('quiz_question_id'))->with('quizOptions')->get();
     }
 
     public function render()

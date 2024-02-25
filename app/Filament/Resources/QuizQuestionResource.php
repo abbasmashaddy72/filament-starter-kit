@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\QuizQuestionResource\Pages;
-use App\Filament\Resources\QuizQuestionResource\RelationManagers;
 
 class QuizQuestionResource extends Resource
 {
@@ -77,7 +76,7 @@ class QuizQuestionResource extends Resource
                             'md' => 2,
                             'xl' => 4,
                             '2xl' => 4,
-                        ])->defaultItems(4)->maxItems(4)->minItems(4)
+                        ])->defaultItems(4)->maxItems(4)->minItems(2)
                 ])->columnSpanFull(),
             ]);
     }

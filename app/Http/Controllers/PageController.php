@@ -73,13 +73,4 @@ class PageController extends Controller
             'page' => $page,
         ]);
     }
-
-    public function quiz_start(QuizTopic $page)
-    {
-        abort_unless($page->status == 'Published' || auth()->user(), 404);
-
-        return view('page', [
-            'page' => $page,
-        ]);
-    }
 }
