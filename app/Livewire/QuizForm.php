@@ -45,8 +45,8 @@ class QuizForm extends Component implements HasForms
     public $answeredQuestionsWithOptions;
 
     // Custom Values
-    public $quizRegister = true; // Progress
-    public $quizContent = false; // Progress
+    public $quizRegister = false; // Progress
+    public $quizContent = true; // Progress
     public $quizInProgress = false; // Progress
     public $showResult = false; // Progress
     public $isDisabled = true; // Button
@@ -66,7 +66,7 @@ class QuizForm extends Component implements HasForms
                     ->numeric()
                     ->required(),
                 Forms\Components\Toggle::make('self_or_else')
-                    ->label('Do you want to Enroll Yourself or Some One Else in Class?')
+                    ->label('Do you want to Enroll Yourself or Someone else in Class?')
                     ->reactive()
                     ->required(),
                 Forms\Components\TextInput::make('person_name')
@@ -83,6 +83,7 @@ class QuizForm extends Component implements HasForms
                     ->visible(fn (Get $get): bool => $get('self_or_else'))
                     ->required(fn (Get $get): bool => $get('self_or_else')),
                 Forms\Components\TextInput::make('location')
+                    ->label('Locality Where You Stay')
                     ->visible(fn (Get $get): bool => $get('self_or_else'))
                     ->required(fn (Get $get): bool => $get('self_or_else')),
                 Forms\Components\Select::make('gender')

@@ -1,39 +1,40 @@
-<div id="custom-controls-gallery" class="relative flex flex-col items-center justify-center" data-carousel="static">
-    <div class="relative overflow-hidden rounded-lg h-[80vh] aspect-[4/5]">
-        @foreach ($data['image'] as $item)
-            <div class="hidden duration-700 ease-in-out"
-                data-carousel-item="@if ($loop->index == 0) active @endif">
-                <x-curator-glider
-                    class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-lg shadow-lg aspect-[4/5] object-cover"
-                    :media="$item ?? app(\App\Settings\SitesSettings::class)->no_image" :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
-            </div>
-        @endforeach
+<div data-hs-carousel='{
+    "loadingClasses": "opacity-0"
+  }' class="relative">
+    <div class="hs-carousel relative overflow-hidden w-full h-[70vh] bg-white rounded-lg">
+        <div
+            class="absolute top-0 bottom-0 flex transition-transform duration-700 opacity-0 hs-carousel-body start-0 flex-nowrap">
+            @foreach ($data['image'] as $item)
+                <div class="hs-carousel-slide">
+                    <div class="flex justify-center h-[70vh] aspect-[4/5] bg-gray-100">
+                        <x-curator-glider class="self-center object-cover w-full h-full transition duration-700"
+                            :media="$item ?? app(\App\Settings\SitesSettings::class)->no_image" :srcset="['1200w', '1024w', '640w']" sizes="(max-width: 1200px) 100vw, 1024px" />
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
-    <div class="flex items-center justify-center pt-4 ">
-        <button type="button"
-            class="flex items-center justify-center h-full cursor-pointer me-4 group focus:outline-none"
-            data-carousel-prev>
-            <span
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
-                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 5H1m0 0 4 4M1 5l4-4" />
-                </svg>
-                <span class="sr-only">Previous</span>
-            </span>
-        </button>
-        <button type="button" class="flex items-center justify-center h-full cursor-pointer group focus:outline-none"
-            data-carousel-next>
-            <span
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
-                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-                <span class="sr-only">Next</span>
-            </span>
-        </button>
-    </div>
+
+    <button type="button"
+        class="hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/[.1]">
+        <span class="text-2xl" aria-hidden="true">
+            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+            </svg>
+        </span>
+        <span class="sr-only">Previous</span>
+    </button>
+    <button type="button"
+        class="hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/[.1]">
+        <span class="sr-only">Next</span>
+        <span class="text-2xl" aria-hidden="true">
+            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </span>
+    </button>
 </div>

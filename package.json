@@ -25,6 +25,7 @@
     "dependencies": {
         "@midzer/tobii": "^2.5.0",
         "flowbite": "^2.2.1",
+        "preline": "^2.0.3",
         "remixicon": "^4.1.0"
     }
 }

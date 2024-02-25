@@ -12,6 +12,7 @@ module.exports = {
         "./vendor/lara-zeus/bolt/resources/views/filament/**/*.blade.php",
         "./vendor/filament/**/*.blade.php",
         "./node_modules/flowbite/**/*.js",
+        "node_modules/preline/dist/*.js",
     ],
     darkMode: "class",
     important: true,
@@ -70,5 +71,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require("flowbite/plugin")],
+    plugins: [require("flowbite/plugin"), require("preline/plugin")],
 };
