@@ -45,8 +45,9 @@ class QuizForm extends Component implements HasForms
     public $answeredQuestionsWithOptions;
 
     // Custom Values
-    public $quizRegister = false; // Progress
-    public $quizContent = true; // Progress
+    public $quizRegister = true; // Progress
+    public $quizContent = false; // Progress
+    public $preRegister = false; // Progress
     public $quizInProgress = false; // Progress
     public $showResult = false; // Progress
     public $isDisabled = true; // Button
@@ -125,6 +126,7 @@ class QuizForm extends Component implements HasForms
     {
         if ($this->topic->type == 'Marks') {
             $this->quizRegister = false;
+            $this->preRegister = true;
         } else {
             $this->quizContent = false;
             $this->quizRegister = false;

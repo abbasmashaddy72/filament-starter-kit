@@ -163,4 +163,8 @@
             {{ __('Thanks for attempting the Quiz, Please Collect Your Gift.') }}
         </div>
     @endif
+    @if ($preRegister)
+        You Have Registered Your Self For Children's Exhibition.<br> Collect Your Gift At Registration
+        Counter On Exhibition Day.
+    @endif
 </x-filament::section>
