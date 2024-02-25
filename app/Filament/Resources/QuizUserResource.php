@@ -47,7 +47,14 @@ class QuizUserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Toggle::make('self_or_else')
+                Forms\Components\Radio::make('enrollment_type')
+                    ->label('Select Enrollment Type')
+                    ->options([
+                        'self' => 'Enroll Myself',
+                        'someone_else' => 'Enroll Someone Else',
+                        'none' => 'None (I don\'t want to enroll)',
+                    ])
+                    ->default('none')
                     ->required(),
                 Forms\Components\TextInput::make('person_father_name')
                     ->maxLength(255),
@@ -75,8 +82,8 @@ class QuizUserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('self_or_else')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('enrollment_type')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('person_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('person_contact_no')

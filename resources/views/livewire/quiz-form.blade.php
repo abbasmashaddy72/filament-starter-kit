@@ -74,21 +74,26 @@
 
     @if ($showResult)
         <div class="justify-center mb-5 text-center">
-            <h1 class="mb-4 text-2xl font-medium text-center text-gray-900 dark:text-white sm:text-3xl title-font">
+            <h1 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl title-font">
                 Quiz Result
             </h1>
 
-            <p class="mt-10 text-gray-500 text-md dark:text-gray-400">
-                Dear <span class="mr-2 font-extrabold text-primary-600">
-                    {{ $quizUserData['name'] . '!' }}
-                </span>You have secured
+            <p class="mt-8 text-lg text-gray-600 dark:text-gray-400">
+                Congratulations <span class="font-bold text-primary-600">{{ $quizUserData['name'] }}!</span>
+                You have successfully completed the quiz.
             </p>
 
-            <progress class="mx-auto text-base leading-relaxed xl:w-2/4 lg:w-3/4" value="{{ $quizPercentage }}"
-                max="100">
-                {{ $quizPercentage }}
-            </progress>
-            <span class="text-gray-500 dark:text-gray-400">{{ $quizPercentage }}%</span>
+            <div class="mt-6">
+                <p class="text-xl font-semibold text-gray-700 dark:text-gray-300">
+                    Your Score:
+                </p>
+
+                <div class="flex items-center justify-center mt-2">
+                    <progress class="w-full text-base leading-relaxed" value="{{ $quizPercentage }}"
+                        max="100"></progress>
+                    <span class="ml-2 text-gray-700 dark:text-gray-300">{{ $quizPercentage }}%</span>
+                </div>
+            </div>
         </div>
         <div class="grid grid-cols-1 gap-2">
             <div class="flex items-center h-full p-4 bg-gray-100 rounded dark:bg-gray-800">
@@ -145,7 +150,7 @@
                     <label for="question-{{ $answer->id }}">
                         <div
                             class="px-3 py-3 m-3 text-sm border-2 border-gray-300 rounded-lg max-w-auto dark:border-gray-700
-                            @if ($isCorrect && !$isSelected) bg-success-500
+                            @if ($isCorrect) bg-success-500
                             @elseif (!$isCorrect && $isSelected) bg-danger-500 @endif">
                             <label class="inline-flex items-center">
                                 <input type="radio" class="w-4 h-4 form-radio" id="question-{{ $answer->id }}"
@@ -160,11 +165,27 @@
         @endforeach
 
         <div class="flex flex-wrap justify-center mt-4">
-            {{ __('Thanks for attempting the Quiz, Please Collect Your Gift.') }}
+            <p class="text-lg font-medium text-gray-700 dark:text-gray-300">
+                {{ __('Thank you for participating in the Quiz! Your effort is appreciated. Please visit the Gift Collection Counter to claim your prize.') }}
+            </p>
         </div>
     @endif
     @if ($preRegister)
-        You Have Registered Your Self For Children's Exhibition.<br> Collect Your Gift At Registration
-        Counter On Exhibition Day.
+        <div class="space-y-4">
+            <p class="text-lg font-medium">Dear {{ $quizUserData['name'] }},</p>
+
+            <p>Thank you for registering for the Children's Exhibition. We are thrilled to have you join us!</p>
+
+            <p class="italic">Your unique ID for the exhibition is:
+                <strong>{{ $quizUserUniqueId ?? 'Name' }}</strong>.</p>
+
+            <p>On the day of the exhibition, please visit the Registration Counter to collect your special gift.</p>
+
+            <p>We look forward to seeing you there!</p>
+
+            <p class="font-medium">Best regards,<br>{{ config('app.name') }}</p>
+
+            <p class="font-bold text-danger-600">Don't forget to take a screenshot of this message for reference!</p>
+        </div>
     @endif
 </x-filament::section>

@@ -16,7 +16,7 @@ class QuizUser extends Model
         'name',
         'email',
         'dob',
-        'self_or_else',
+        'enrollment_type',
         'person_name',
         'person_father_name',
         'person_contact_no',
@@ -26,7 +26,6 @@ class QuizUser extends Model
     ];
 
     protected $casts = [
-        'self_or_else' => 'boolean',
         'dob' => 'date',
     ];
 

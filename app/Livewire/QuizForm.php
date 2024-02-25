@@ -22,7 +22,8 @@ class QuizForm extends Component implements HasForms
         'name' => null,
         'email' => null,
         'age' => null,
-        'self_or_else' => false,
+        'enrollment_type' => 'none',
+        'self' => true,
         'person_name' => null,
         'person_father_name' => null,
         'person_contact_no' => null,
@@ -35,6 +36,7 @@ class QuizForm extends Component implements HasForms
 
     public $age;
     public $quizUserId;
+    public $quizUserUniqueId;
     public $count;
     public $quizSize;
     public $currentQuestion;
@@ -66,30 +68,36 @@ class QuizForm extends Component implements HasForms
                 Forms\Components\TextInput::make('age')
                     ->numeric()
                     ->required(),
-                Forms\Components\Toggle::make('self_or_else')
-                    ->label('Do you want to Enroll Yourself or Someone else in Class?')
+                Forms\Components\Select::make('enrollment_type')
+                    ->label('Do you want to enroll in the class?')
+                    ->options([
+                        'self' => 'Enroll Myself',
+                        'someone_else' => 'Enroll Someone Else',
+                        'none' => 'None (I don\'t want to enroll)',
+                    ])
+                    ->default('none')
                     ->reactive()
                     ->required(),
                 Forms\Components\TextInput::make('person_name')
-                    ->visible(fn (Get $get): bool => $get('self_or_else'))
-                    ->required(fn (Get $get): bool => $get('self_or_else')),
+                    ->visible(fn (Get $get): bool => $get('enrollment_type') == 'someone_else')
+                    ->required(fn (Get $get): bool => $get('enrollment_type') == 'someone_else'),
                 Forms\Components\TextInput::make('person_father_name')
-                    ->visible(fn (Get $get): bool => $get('self_or_else'))
-                    ->required(fn (Get $get): bool => $get('self_or_else')),
+                    ->visible(fn (Get $get): bool => $get('enrollment_type') != 'none')
+                    ->required(fn (Get $get): bool => $get('enrollment_type') != 'none'),
                 Forms\Components\TextInput::make('person_contact_no')
-                    ->visible(fn (Get $get): bool => $get('self_or_else'))
-                    ->required(fn (Get $get): bool => $get('self_or_else')),
+                    ->visible(fn (Get $get): bool => $get('enrollment_type') != 'none')
+                    ->required(fn (Get $get): bool => $get('enrollment_type') != 'none'),
                 Forms\Components\TextInput::make('person_age')
                     ->numeric()
-                    ->visible(fn (Get $get): bool => $get('self_or_else'))
-                    ->required(fn (Get $get): bool => $get('self_or_else')),
+                    ->visible(fn (Get $get): bool => $get('enrollment_type') == 'someone_else')
+                    ->required(fn (Get $get): bool => $get('enrollment_type') == 'someone_else'),
                 Forms\Components\TextInput::make('location')
                     ->label('Locality Where You Stay')
-                    ->visible(fn (Get $get): bool => $get('self_or_else'))
-                    ->required(fn (Get $get): bool => $get('self_or_else')),
+                    ->visible(fn (Get $get): bool => $get('enrollment_type') != 'none')
+                    ->required(fn (Get $get): bool => $get('enrollment_type') != 'none'),
                 Forms\Components\Select::make('gender')
-                    ->visible(fn (Get $get): bool => $get('self_or_else'))
-                    ->required(fn (Get $get): bool => $get('self_or_else'))
+                    ->visible(fn (Get $get): bool => $get('enrollment_type') != 'none')
+                    ->required(fn (Get $get): bool => $get('enrollment_type') != 'none')
                     ->options([
                         'Male' => 'Male',
                         'Female' => 'Female',
@@ -99,10 +107,12 @@ class QuizForm extends Component implements HasForms
 
     public function registerQuizUser()
     {
+        $this->validate();
         $this->age = $this->quizUserData['age'];
         $new_dob = new Carbon();
         $this->quizUserData['dob'] = $new_dob->subYears($this->age)->format('Y-m-d');
 
+        unset($this->quizUserData['self']);
         unset($this->quizUserData['age']);
 
         if (!is_null($this->quizUserData['person_age'])) {
@@ -111,11 +121,17 @@ class QuizForm extends Component implements HasForms
         unset($this->quizUserData['person_age']);
 
         $quizUser = QuizUser::create($this->quizUserData);
+        $this->quizUserUniqueId = $quizUser->unique_id;
         $this->quizUserId = $quizUser->id;
 
         if (!is_null($this->topic->content)) {
-            $this->quizContent = true;
-            $this->quizRegister = false;
+            if ($this->topic->type == 'Marks') {
+                $this->quizRegister = false;
+                $this->preRegister = true;
+            } else {
+                $this->quizContent = true;
+                $this->quizRegister = false;
+            }
         } else {
             $this->quizRegister = false;
             $this->startQuiz();
