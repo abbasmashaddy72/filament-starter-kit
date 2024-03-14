@@ -13,17 +13,21 @@
                     {{ $item->title }}
                 </h5>
             </a>
-            <x-prose class="line-clamp-4 text-slate-500 dark:text-slate-300">
-                {{ $item->excerpt }}
-            </x-prose>
+            @if(!empty($item->excerpt))
+                <x-prose class="line-clamp-4 text-slate-500 dark:text-slate-300">
+                    {{ $item->excerpt }}
+                </x-prose>
+            @endif
         </div>
-        <div class="mt-auto">
+        <div class="">
             <div class="text-slate-500 dark:text-slate-300">
                 {{ $item->location }}
             </div>
             <div class="flex items-center justify-between mt-2 text-slate-500 dark:text-slate-300">
                 <div>{{ \Carbon\Carbon::parse($item->start_date)->format('M Y') }}</div>
-                <div>{{ \Carbon\Carbon::parse($item->end_date)->format('M Y') }}</div>
+                @if(!empty($item->end_date))
+                    <div>{{ \Carbon\Carbon::parse($item->end_date)->format('M Y') }}</div>
+                @endif
             </div>
         </div>
         <div class="flex items-end justify-between @if ($route !== '#') mt-4 @endif">

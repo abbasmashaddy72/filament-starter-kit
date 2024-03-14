@@ -59,7 +59,7 @@
         "laravel/tinker": "^2.8",
         "marjose123/filament-lockscreen": "^2.0",
         "mcamara/laravel-localization": "^1.8",
-        "omar-haris/filament-timezone-field": "^1.0",
+        "omar-haris/filament-timezone-field": "*",
         "owen-it/laravel-auditing": "^13.6",
         "parfaitementweb/filament-country-field": "^2.0",
         "pxlrbt/filament-environment-indicator": "^2.0",

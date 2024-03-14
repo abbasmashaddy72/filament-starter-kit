@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Livewire\Attributes\Reactive;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Exports\QuizUserExporter;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\Resources\QuizUserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -37,15 +38,11 @@ class QuizUserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('unique_id')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\Radio::make('enrollment_type')
                     ->label('Select Enrollment Type')
@@ -111,6 +108,26 @@ class QuizUserResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from')->format('YYYY-MM-DD'),
+                        Forms\Components\DatePicker::make('created_until')->format('YYYY-MM-DD'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
+            ])
+            ->headerActions([
+                Tables\Actions\ExportAction::make()
+                    ->exporter(QuizUserExporter::class)
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
